@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+
+<overlay id="thunderbird-overlay" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+<script type="application/x-javascript" src="chrome://thunderlink/content/thunderlink.js"/>
+	<popup id="mailContext">
+		<menu id="thunderlink-options" label="ThunderLink...">
+			<menupopup>
+		  <menuitem
+		    id="thunderlink_option"
+		    label="Copy plain TL to clipboard"
+		    oncommand="ThunderLinkChromeNS.CopyMessageUrlToClp();"/>
+		
+			<menuitem
+		    id="thunderlink_exe_option"
+		    label="Copy call to executable + TL to clipboard"
+		    oncommand="ThunderLinkChromeNS.CopyMessageUrlToClpWithExe();"/>
+		</menupopup>
+		</menu>		
+    </popup>
+    
+</overlay>    

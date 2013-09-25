@@ -1,0 +1,9 @@
+content   thunderlink                 chrome/thunderlink/content/
+
+overlay chrome://messenger/content/mailWindowOverlay.xul	chrome://thunderlink/content/thunderlink-overlay.xul
+
+component {547bfe26-688b-4e63-a1da-07da0e8367e1} components/thunderlinkCommandLineHandler.js
+contract @mozilla.org/commandlinehandler/general-startup;1?type=thunderlink {547bfe26-688b-4e63-a1da-07da0e8367e1}
+category command-line-handler ThunderLink @mozilla.org/commandlinehandler/general-startup;1?type=thunderlink
+
+
