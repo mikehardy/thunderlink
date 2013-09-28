@@ -1,1 +1,1 @@
-zip -r thunderlink-$1-tb.xpi . -x *.xpi *.sh *.git* .gitignore
+zip -r thunderlink-$1-tb.xpi . -x *.swo *.swp *.xpi *.sh *.git* .gitignore
