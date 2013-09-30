@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<prefwindow id="appPreferences"
+    xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+    <prefpane id="pane1" label="Preferences">
+        <preferences>
+            <preference id="prefs_customTlString1" name="extensions.thunderlink.custom-tl-string-1" type="string"/>
+            <preference id="prefs_customTlString2" name="extensions.thunderlink.custom-tl-string-2" type="string"/>
+            <preference id="prefs_customTlString3" name="extensions.thunderlink.custom-tl-string-3" type="string"/>
+            <preference id="prefs_customTlString4" name="extensions.thunderlink.custom-tl-string-4" type="string"/>
+            <preference id="prefs_customTlString1title" name="extensions.thunderlink.custom-tl-string-1-title" type="string"/>
+            <preference id="prefs_customTlString2title" name="extensions.thunderlink.custom-tl-string-2-title" type="string"/>
+            <preference id="prefs_customTlString3title" name="extensions.thunderlink.custom-tl-string-3-title" type="string"/>
+            <preference id="prefs_customTlString4title" name="extensions.thunderlink.custom-tl-string-4-title" type="string"/>
+        </preferences>
+        <label control="csLabel" value="Custom ThunderLink string:"/>
+        <label control="csLabel" value="You can use the following placeholders: &#60;thunderlink&#62; &#60;messageid&#62; &#60;subject&#62; &#60;sender&#62;"/>
+
+        <tabbox id="myTabList" selectedIndex="0">
+            <tabs>
+                <tab label="Custom String 1"/>
+                <tab label="Custom String 2"/>
+                <tab label="Custom String 3"/>
+                <tab label="Custom String 4"/>
+            </tabs>
+            <tabpanels>
+                <tabpanel>        
+                    <vbox align="left">
+                        <label control="title" value="Custom string title:"/>
+                        <textbox id="prefCustomTlString1-title" preference="prefs_customTlString1title"/>
+                        <label control="string" value="Custom string:"/>
+                        <textbox id="prefCustomTlString1-textbox" preference="prefs_customTlString1" multiline="true" cols="50" rows="5"/>
+                    </vbox>
+                </tabpanel>
+                <tabpanel>
+                    <vbox align="left">
+                        <label control="title" value="Custom string title:"/>
+                        <textbox id="prefCustomTlString1-title" preference="prefs_customTlString2title"/>
+                        <label control="string" value="Custom string:"/>
+                        <textbox id="prefCustomTlString2-textbox" preference="prefs_customTlString2" multiline="true" cols="50" rows="5"/>
+                    </vbox>
+                </tabpanel>
+                <tabpanel>
+                    <vbox align="left">
+                         <label control="title" value="Custom string title:"/>
+                        <textbox id="prefCustomTlString3-title" preference="prefs_customTlString3title"/>
+                        <label control="string" value="Custom string:"/>
+                        <textbox id="prefCustomTlString3-textbox" preference="prefs_customTlString3" multiline="true" cols="50" rows="5"/>
+                    </vbox>
+                </tabpanel>
+                <tabpanel>
+                    <vbox align="left">
+                         <label control="title" value="Custom string title:"/>
+                        <textbox id="prefCustomTlString4-title" preference="prefs_customTlString4title"/>
+                        <label control="string" value="Custom string:"/>
+                        <textbox id="prefCustomTlString4-textbox" preference="prefs_customTlString4" multiline="true" cols="50" rows="5"/>
+                    </vbox>
+                </tabpanel>
+            </tabpanels>
+        </tabbox>
+    </prefpane>
+</prefwindow>

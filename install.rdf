@@ -7,7 +7,7 @@
     <em:version>0.07</em:version>
     <em:creator>Christoph Zwirello</em:creator>
     <em:description>Link from your browser to your email messages!</em:description>
-
+    <em:optionsURL>chrome://thunderlink/content/preferences.xul</em:optionsURL>
     <em:targetApplication>
       <Description>
         <em:id>{3550f703-e582-4d05-9a08-453d09bdfdc6}</em:id> <!-- Thunderbird -->
