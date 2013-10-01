@@ -3,17 +3,17 @@
 <overlay id="thunderbird-overlay" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
     <script type="application/x-javascript" src="chrome://thunderlink/content/thunderlink.js"/>
     <keyset>
-        <key id="cpCstTlStr1" modifiers="control" key="1"
+        <key id="cpCstTlStr1" modifiers="control alt" key="1"
             oncommand="ThunderLinkChromeNS.CopyCustomTlStringToClp(1);"/>
-        <key id="cpCstTlStr2" modifiers="control" key="2"
+        <key id="cpCstTlStr2" modifiers="control alt" key="2"
             oncommand="ThunderLinkChromeNS.CopyCustomTlStringToClp(2);"/>
-        <key id="cpCstTlStr3" modifiers="control" key="3"
+        <key id="cpCstTlStr3" modifiers="control alt" key="3"
             oncommand="ThunderLinkChromeNS.CopyCustomTlStringToClp(3);"/>
-        <key id="cpCstTlStr4" modifiers="control" key="4"
+        <key id="cpCstTlStr4" modifiers="control alt" key="4"
             oncommand="ThunderLinkChromeNS.CopyCustomTlStringToClp(4);"/>
-        <key id="cpTlStr" modifiers="control" key="5"
+        <key id="cpTlStr" modifiers="control alt" key="5"
             oncommand="ThunderLinkChromeNS.CopyMessageUrlToClp();"/>
-        <key id="cpTlStrWtExe" modifiers="control" key="6"
+        <key id="cpTlStrWtExe" modifiers="control alt" key="6"
             oncommand="ThunderLinkChromeNS.CopyMessageUrlToClpWithExe();"/>
     </keyset>
     <popup id="mailContext">
