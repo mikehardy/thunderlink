@@ -106,12 +106,17 @@ var ThunderLinkChromeNS = {
             return item;
         }
         var popup = window.document.getElementById("thunderlink-custom-strings");
-        if (!popup.hasChildNodes()){
+
+        if (popup.hasChildNodes()){
+            while (popup.firstChild) {
+                    popup.removeChild(popup.firstChild);
+                }
+        }
             popup.appendChild(createCstrMenuItem(1));
             popup.appendChild(createCstrMenuItem(2));
             popup.appendChild(createCstrMenuItem(3));
             popup.appendChild(createCstrMenuItem(4));
-        }
+        
     }
 
 }
