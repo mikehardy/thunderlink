@@ -14,7 +14,7 @@
             <preference id="prefs_customTlString4title" name="extensions.thunderlink.custom-tl-string-4-title" type="string"/>
         </preferences>
         <label control="csLabel" value="Custom ThunderLink string:"/>
-        <label control="csLabel" value="You can use the following placeholders: &#60;thunderlink&#62; &#60;messageid&#62; &#60;subject&#62; &#60;sender&#62;"/>
+        <label control="csLabel" value="You can use the following placeholders: &#60;thunderlink&#62; &#60;messageid&#62; &#60;subject&#62; &#60;sender&#62; &#60;tbexe&#62;"/>
 
         <tabbox id="myTabList" selectedIndex="0">
             <tabs>

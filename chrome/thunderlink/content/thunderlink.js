@@ -37,7 +37,7 @@ var ThunderLinkChromeNS = {
         ThunderLinkChromeNS.CopyStringToClpBrd(ThunderLinkChromeNS.GetThunderlink());
     },
 
-    CopyMessageUrlToClpWithExe: function()
+    GetPathToExe: function()
     {
         var appDir;
         try {
@@ -50,13 +50,10 @@ var ThunderLinkChromeNS = {
             dump("ex="+ex+"\n");
         }
         // gives an [xpconnect wrapped nsILocalFile]
-        appDir.append("thunderbird\" -thunderlink ");
-        dump("CopyMessageUrlToClpWithExe appDir: " + appDir.path + "\n");
-
-        var pathToExePlusTL = "\"" + appDir.path + ThunderLinkChromeNS.GetThunderlink();
-        //   dump("CopyMessageUrlToClp pathToExePlusTL: " + pathToExePlusTL + "\n");
-        ThunderLinkChromeNS.CopyStringToClpBrd(pathToExePlusTL);
-
+        appDir.append("thunderbird");//exe filename
+        return appDir.path
+        //ThunderLinkChromeNS.CopyStringToClpBrd(pathToExePlusTL);
+       
     },
 
     CopyCustomTlStringToClp: function(cstrnum)
@@ -77,6 +74,7 @@ var ThunderLinkChromeNS = {
         result = result.replace(/<messageid>/ig, gDBView.hdrForFirstSelectedMessage.messageId)
         result = result.replace(/<subject>/ig, gDBView.hdrForFirstSelectedMessage.subject)
         result = result.replace(/<sender>/ig, gDBView.hdrForFirstSelectedMessage.author)
+        result = result.replace(/<tbexe>/ig, "\"" + ThunderLinkChromeNS.GetPathToExe() + "\" -thunderlink ")
         return result
     },
 

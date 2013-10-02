@@ -11,15 +11,17 @@
             oncommand="ThunderLinkChromeNS.CopyCustomTlStringToClp(3);"/>
         <key id="cpCstTlStr4" modifiers="control alt" key="4"
             oncommand="ThunderLinkChromeNS.CopyCustomTlStringToClp(4);"/>
+        <!--
         <key id="cpTlStr" modifiers="control alt" key="5"
             oncommand="ThunderLinkChromeNS.CopyMessageUrlToClp();"/>
         <key id="cpTlStrWtExe" modifiers="control alt" key="6"
             oncommand="ThunderLinkChromeNS.CopyMessageUrlToClpWithExe();"/>
+-->
     </keyset>
     <popup id="mailContext">
-        <menu id="thunderlink-options" label="ThunderLink...">
-            <menupopup>
-                <menuitem
+        <menu id="thunderlink-options" label="ThunderLink..." onpopupshowing="ThunderLinkChromeNS.OnTlMenuLoad();">
+            <menupopup id="thunderlink-custom-strings" >
+                <!--                <menuitem
                     id="thunderlink_option"
                     label="Copy plain TL to clipboard"
                     oncommand="ThunderLinkChromeNS.CopyMessageUrlToClp();"/>
@@ -30,7 +32,7 @@
                     oncommand="ThunderLinkChromeNS.CopyMessageUrlToClpWithExe();"/>
                 <menu label="Copy user-defined TL string to clipboard:" onpopupshowing="ThunderLinkChromeNS.OnTlMenuLoad();">
                     <menupopup id="thunderlink-custom-strings" />
-                </menu>
+                </menu>-->
             </menupopup>
         </menu>		
     </popup>
