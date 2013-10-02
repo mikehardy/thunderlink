@@ -53,7 +53,7 @@ var ThunderLinkChromeNS = {
         appDir.append("thunderbird");//exe filename
         return appDir.path
         //ThunderLinkChromeNS.CopyStringToClpBrd(pathToExePlusTL);
-       
+
     },
 
     CopyCustomTlStringToClp: function(cstrnum)
@@ -65,7 +65,21 @@ var ThunderLinkChromeNS = {
 
         var customTlStr = prefService.getCharPref("custom-tl-string-" + cstrnum);		
         var procCustomTlStr = ThunderLinkChromeNS.ResolvePlaceholders(customTlStr)
+        procCustomTlStr = ThunderLinkChromeNS.FixNewlines(procCustomTlStr)
         ThunderLinkChromeNS.CopyStringToClpBrd(procCustomTlStr);
+    },
+
+    FixNewlines: function(tlstring)
+    {
+        //fix for issue #1; need to fix newlines on windows
+        var osString = Components.classes["@mozilla.org/xre/app-info;1"]  
+        .getService(Components.interfaces.nsIXULRuntime).OS;
+
+        var result = tlstring
+        if (osString == 'WINNT')
+            result = tlstring.replace(/[^\r]?\n/g, "\r\n")
+        
+        return result
     },
 
     ResolvePlaceholders: function(tlstring)
@@ -107,14 +121,14 @@ var ThunderLinkChromeNS = {
 
         if (popup.hasChildNodes()){
             while (popup.firstChild) {
-                    popup.removeChild(popup.firstChild);
-                }
+                popup.removeChild(popup.firstChild);
+            }
         }
-            popup.appendChild(createCstrMenuItem(1));
-            popup.appendChild(createCstrMenuItem(2));
-            popup.appendChild(createCstrMenuItem(3));
-            popup.appendChild(createCstrMenuItem(4));
-        
+        popup.appendChild(createCstrMenuItem(1));
+        popup.appendChild(createCstrMenuItem(2));
+        popup.appendChild(createCstrMenuItem(3));
+        popup.appendChild(createCstrMenuItem(4));
+
     }
 
 }
