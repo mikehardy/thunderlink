@@ -77,7 +77,7 @@ var ThunderLinkChromeNS = {
 
         var result = tlstring
         if (osString == 'WINNT')
-            result = tlstring.replace(/[^\r]?\n/g, "\r\n")
+            result = tlstring.replace(/[\r]?\n/g, "\r\n")
         
         return result
     },
