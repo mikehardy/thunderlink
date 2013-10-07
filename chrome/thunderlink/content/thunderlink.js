@@ -84,12 +84,14 @@ var ThunderLinkChromeNS = {
 
     ResolvePlaceholders: function(tlstring)
     {
-        var result = tlstring.replace(/<thunderlink>/ig, ThunderLinkChromeNS.GetThunderlink())
-        result = result.replace(/<messageid>/ig, gDBView.hdrForFirstSelectedMessage.messageId)
-        result = result.replace(/<subject>/ig, gDBView.hdrForFirstSelectedMessage.subject)
-        result = result.replace(/<sender>/ig, gDBView.hdrForFirstSelectedMessage.author)
-        result = result.replace(/<tbexe>/ig, "\"" + ThunderLinkChromeNS.GetPathToExe() + "\" -thunderlink ")
-        return result
+        Components.utils.import("resource:///modules/gloda/utils.js");
+
+        var result = tlstring.replace(/<thunderlink>/ig, ThunderLinkChromeNS.GetThunderlink());
+        result = result.replace(/<messageid>/ig, gDBView.hdrForFirstSelectedMessage.messageId);
+        result = result.replace(/<subject>/ig, GlodaUtils.deMime(gDBView.hdrForFirstSelectedMessage.subject));
+        result = result.replace(/<sender>/ig, gDBView.hdrForFirstSelectedMessage.author);
+        result = result.replace(/<tbexe>/ig, "\"" + ThunderLinkChromeNS.GetPathToExe() + "\" -thunderlink ");
+        return result;
     },
 
     GetCustomTlStringTitle: function(cstrnum)
