@@ -22,7 +22,7 @@ var ThunderLinkChromeNS = {
     CopyStringToClpBrd: function(string)
     {
         try {
-            //   dump("CopyMessageUrlToClp mailboxMsgUrl: " + mailboxMsgUrl + "\n");
+               dump("CopyMessageUrlToClp mailboxMsgUrl: " + string + "\n");
             var clipboard = Components.classes["@mozilla.org/widget/clipboardhelper;1"]
             .getService(Components.interfaces.nsIClipboardHelper);
             clipboard.copyString(string);
