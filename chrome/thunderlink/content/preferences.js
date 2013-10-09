@@ -21,10 +21,12 @@
 
 var ThunderLinkPrefNS = {
 
-    CreateCustomStringTabs: function() {
+    
+    CreateCustomStringTabbox: function() {
         
+        var XUL_NS = "http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul";
+
         function createCstrTabPanel(cstrnum) {
-            const XUL_NS = "http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul";
             var tabpanel = window.document.createElementNS(XUL_NS, "tabpanel"); 
             var vbox = window.document.createElementNS(XUL_NS, "vbox"); 
             vbox.setAttribute("align", "left");
@@ -52,7 +54,7 @@ var ThunderLinkPrefNS = {
             vbox.appendChild(csTextbox);
 
             var tagCheckbox = window.document.createElementNS(XUL_NS, "checkbox"); 
-            tagCheckbox.setAttribute("id", "prefCustomTlString" + cstrnum + "-checkbox");
+            tagCheckbox.setAttribute("id", "prefCustomTlString" + cstrnum + "-tagcheckbox");
             tagCheckbox.setAttribute("checked", "false");
             tagCheckbox.setAttribute("label", "Tag email upon copying the ThunderLink:");
             vbox.appendChild(tagCheckbox);
@@ -69,19 +71,31 @@ var ThunderLinkPrefNS = {
            
             return tabpanel;
         }
+       
+
+        function createCstrTab(cstrnum) {
+            var tab = window.document.createElementNS(XUL_NS, "tab");
+            tab.setAttribute("label", "Custom String " + cstrnum);
+            return tab;
+        }
+    
         
-        this.LOG("create custom tabs called")
-        
-        var prefWindow = window.document.getElementById("thunderlink-custom-strings-tabs");
-        if (prefWindow.hasChildNodes()){
-            while (prefWindow.firstChild) {
-                prefWindow.removeChild(prefWindow.firstChild);
+        var tabbox = window.document.getElementById("thunderlink-custom-strings-tabbox");
+        if (tabbox.hasChildNodes()){
+            while (tabbox.firstChild) {
+                tabbox.removeChild(tabbox.firstChild);
             }
         }
-        for (let i = 1; i < 4; i++){
-            prefWindow.appendChild(createCstrTabPanel(i));
-        }
+
+        var tabs = window.document.createElementNS(XUL_NS, "tabs"); 
+        var tabpanels = window.document.createElementNS(XUL_NS, "tabpanels"); 
         
+        for (let i = 1; i < 5; i++){
+            tabs.appendChild(createCstrTab(i));
+            tabpanels.appendChild(createCstrTabPanel(i));
+        }
+        tabbox.appendChild(tabs);
+        tabbox.appendChild(tabpanels);
     },
 
     LOG: function(msg) {

@@ -17,19 +17,11 @@
         <label control="csLabel" value="You can use the following placeholders:"/>
         <label control="csLabel" value="&#60;thunderlink&#62; &#60;messageid&#62; &#60;subject&#62; &#60;sender&#62; &#60;tbexe&#62;"/>
 
-        <tabbox id="myTabList" selectedIndex="0">
-            <tabs>
-                <tab label="Custom String 1"/>
-                <tab label="Custom String 2"/>
-                <tab label="Custom String 3"/>
-                <tab label="Custom String 4"/>
-            </tabs>
-            <tabpanels id="thunderlink-custom-strings-tabs"/>
-        </tabbox>
+        <tabbox id="thunderlink-custom-strings-tabbox" selectedIndex="0"/>
     </prefpane>
 
     <script type="application/x-javascript" src="chrome://thunderlink/content/preferences.js" />
     <script type="application/x-javascript" for="window" event="onload" >
-        this.ThunderLinkPrefNS.CreateCustomStringTabs();
+        this.ThunderLinkPrefNS.CreateCustomStringTabbox();
     </script>
 </prefwindow>
