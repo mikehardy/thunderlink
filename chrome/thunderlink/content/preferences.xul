@@ -12,10 +12,10 @@
             <preference id="prefs_customTlString2title" name="extensions.thunderlink.custom-tl-string-2-title" type="string"/>
             <preference id="prefs_customTlString3title" name="extensions.thunderlink.custom-tl-string-3-title" type="string"/>
             <preference id="prefs_customTlString4title" name="extensions.thunderlink.custom-tl-string-4-title" type="string"/>
-            <preference id="prefs_customTlString1tagcheckbox" name="extensions.thunderlink.custom-tl-string-1-tagcheckbox" type="boolean"/>
-            <preference id="prefs_customTlString2tagcheckbox" name="extensions.thunderlink.custom-tl-string-2-tagcheckbox" type="boolean"/>
-            <preference id="prefs_customTlString3tagcheckbox" name="extensions.thunderlink.custom-tl-string-3-tagcheckbox" type="boolean"/>
-            <preference id="prefs_customTlString4tagcheckbox" name="extensions.thunderlink.custom-tl-string-4-tagcheckbox" type="boolean"/>
+            <preference id="prefs_customTlString1tagcheckbox" name="extensions.thunderlink.custom-tl-string-1-tagcheckbox" type="bool"/>
+            <preference id="prefs_customTlString2tagcheckbox" name="extensions.thunderlink.custom-tl-string-2-tagcheckbox" type="bool"/>
+            <preference id="prefs_customTlString3tagcheckbox" name="extensions.thunderlink.custom-tl-string-3-tagcheckbox" type="bool"/>
+            <preference id="prefs_customTlString4tagcheckbox" name="extensions.thunderlink.custom-tl-string-4-tagcheckbox" type="bool"/>
             <preference id="prefs_customTlString1tag" name="extensions.thunderlink.custom-tl-string-1-tag" type="string"/>
             <preference id="prefs_customTlString2tag" name="extensions.thunderlink.custom-tl-string-2-tag" type="string"/>
             <preference id="prefs_customTlString3tag" name="extensions.thunderlink.custom-tl-string-3-tag" type="string"/>

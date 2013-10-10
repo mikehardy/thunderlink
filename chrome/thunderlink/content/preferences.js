@@ -102,6 +102,7 @@ var ThunderLinkPrefNS = {
     },
 
     ToggleTlTagField: function(cstrnum) {
+        dump("toggling")
         function $(aID) { return document.getElementById(aID); }
         tlTagCheckbox = $("prefCustomTlString" + cstrnum + "-tagcheckbox")
         tlTagField = $("prefCustomTlString" + cstrnum + "-tag")
