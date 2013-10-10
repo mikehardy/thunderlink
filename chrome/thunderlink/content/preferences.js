@@ -21,9 +21,9 @@
 
 var ThunderLinkPrefNS = {
 
-    
+
     CreateCustomStringTabbox: function() {
-        
+
         var XUL_NS = "http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul";
 
         function createCstrTabPanel(cstrnum) {
@@ -56,30 +56,33 @@ var ThunderLinkPrefNS = {
             var tagCheckbox = window.document.createElementNS(XUL_NS, "checkbox"); 
             tagCheckbox.setAttribute("id", "prefCustomTlString" + cstrnum + "-tagcheckbox");
             tagCheckbox.setAttribute("checked", "false");
+            tagCheckbox.setAttribute("preference", "prefs_customTlString" + cstrnum + "tagcheckbox");
             tagCheckbox.setAttribute("label", "Tag email upon copying the ThunderLink:");
+            tagCheckbox.setAttribute("oncommand", "ThunderLinkPrefNS.ToggleTlTagField("+cstrnum+");");
             vbox.appendChild(tagCheckbox);
-            
+
             var tagLabel = window.document.createElementNS(XUL_NS, "label"); 
             tagLabel.setAttribute("control", "prefCustomTlString" + cstrnum + "-tag");
             tagLabel.setAttribute("value", "using tag:");
             vbox.appendChild(tagLabel);
-            
+
             var tagTextbox = window.document.createElementNS(XUL_NS, "textbox"); 
             tagTextbox.setAttribute("id", "prefCustomTlString" + cstrnum + "-tag");
-            tagTextbox.setAttribute("preference", "prefs_CustomTlString" + cstrnum + "tag");
+            tagTextbox.setAttribute("disabled", "true");
+            tagTextbox.setAttribute("preference", "prefs_customTlString" + cstrnum + "tag");
             vbox.appendChild(tagTextbox);
-           
+
             return tabpanel;
         }
-       
+
 
         function createCstrTab(cstrnum) {
             var tab = window.document.createElementNS(XUL_NS, "tab");
             tab.setAttribute("label", "Custom String " + cstrnum);
             return tab;
         }
-    
-        
+
+
         var tabbox = window.document.getElementById("thunderlink-custom-strings-tabbox");
         if (tabbox.hasChildNodes()){
             while (tabbox.firstChild) {
@@ -89,7 +92,7 @@ var ThunderLinkPrefNS = {
 
         var tabs = window.document.createElementNS(XUL_NS, "tabs"); 
         var tabpanels = window.document.createElementNS(XUL_NS, "tabpanels"); 
-        
+
         for (let i = 1; i < 5; i++){
             tabs.appendChild(createCstrTab(i));
             tabpanels.appendChild(createCstrTabPanel(i));
@@ -98,10 +101,23 @@ var ThunderLinkPrefNS = {
         tabbox.appendChild(tabpanels);
     },
 
+    ToggleTlTagField: function(cstrnum) {
+        function $(aID) { return document.getElementById(aID); }
+        tlTagCheckbox = $("prefCustomTlString" + cstrnum + "-tagcheckbox")
+        tlTagField = $("prefCustomTlString" + cstrnum + "-tag")
+        if (tlTagCheckbox.checked) {
+            tlTagField.disabled = false;
+        }
+        else {
+            tlTagField.disabled = true;
+        }
+    },
+
     LOG: function(msg) {
-          var consoleService = Components.classes["@mozilla.org/consoleservice;1"]
-                                           .getService(Components.interfaces.nsIConsoleService);
-          consoleService.logStringMessage(msg);
-    }
+        var consoleService = Components.classes["@mozilla.org/consoleservice;1"]
+        .getService(Components.interfaces.nsIConsoleService);
+        consoleService.logStringMessage(msg);
+    },
+
 
 }

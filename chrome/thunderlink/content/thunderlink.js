@@ -64,9 +64,17 @@ var ThunderLinkChromeNS = {
         prefService.QueryInterface(Components.interfaces.nsIPrefBranch2);
 
         var customTlStr = prefService.getCharPref("custom-tl-string-" + cstrnum);		
-        var procCustomTlStr = ThunderLinkChromeNS.ResolvePlaceholders(customTlStr)
-        procCustomTlStr = ThunderLinkChromeNS.FixNewlines(procCustomTlStr)
+        var tagActive = prefService.getBoolPref("custom-tl-string-" + cstrnum + "-tagcheckbox");		
+        var procCustomTlStr = ThunderLinkChromeNS.ResolvePlaceholders(customTlStr);
+        procCustomTlStr = ThunderLinkChromeNS.FixNewlines(procCustomTlStr);
+        if (tagActive)
+            this.TagEmail(prefService.getCharPref("custom-tl-string-" + cstrnum + "-tag"));
         ThunderLinkChromeNS.CopyStringToClpBrd(procCustomTlStr);
+    },
+
+    TagEmail: function(tag)
+    {       
+       dump("tag: " + tag) 
     },
 
     FixNewlines: function(tlstring)

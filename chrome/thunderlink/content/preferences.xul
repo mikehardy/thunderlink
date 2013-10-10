@@ -12,7 +12,15 @@
             <preference id="prefs_customTlString2title" name="extensions.thunderlink.custom-tl-string-2-title" type="string"/>
             <preference id="prefs_customTlString3title" name="extensions.thunderlink.custom-tl-string-3-title" type="string"/>
             <preference id="prefs_customTlString4title" name="extensions.thunderlink.custom-tl-string-4-title" type="string"/>
-        </preferences>
+            <preference id="prefs_customTlString1tagcheckbox" name="extensions.thunderlink.custom-tl-string-1-tagcheckbox" type="boolean"/>
+            <preference id="prefs_customTlString2tagcheckbox" name="extensions.thunderlink.custom-tl-string-2-tagcheckbox" type="boolean"/>
+            <preference id="prefs_customTlString3tagcheckbox" name="extensions.thunderlink.custom-tl-string-3-tagcheckbox" type="boolean"/>
+            <preference id="prefs_customTlString4tagcheckbox" name="extensions.thunderlink.custom-tl-string-4-tagcheckbox" type="boolean"/>
+            <preference id="prefs_customTlString1tag" name="extensions.thunderlink.custom-tl-string-1-tag" type="string"/>
+            <preference id="prefs_customTlString2tag" name="extensions.thunderlink.custom-tl-string-2-tag" type="string"/>
+            <preference id="prefs_customTlString3tag" name="extensions.thunderlink.custom-tl-string-3-tag" type="string"/>
+            <preference id="prefs_customTlString4tag" name="extensions.thunderlink.custom-tl-string-4-tag" type="string"/>
+       </preferences>
         <label control="csLabel" value="Custom ThunderLink string:"/>
         <label control="csLabel" value="You can use the following placeholders:"/>
         <label control="csLabel" value="&#60;thunderlink&#62; &#60;messageid&#62; &#60;subject&#62; &#60;sender&#62; &#60;tbexe&#62;"/>
