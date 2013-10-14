@@ -65,6 +65,7 @@ var ThunderLinkPrefNS = {
             var tagLabel = window.document.createElementNS(XUL_NS, "label"); 
             tagLabel.setAttribute("control", "prefCustomTlString" + cstrnum + "-tag");
             tagLabel.setAttribute("value", "using tag:");
+            tagCheckbox.setAttribute("preference", "prefs_customTlString" + cstrnum + "tagcheckbox");
             vbox.appendChild(tagLabel);
 
             function appendMenuItems(menuPopup){
@@ -75,6 +76,7 @@ var ThunderLinkPrefNS = {
                     var menuItem = window.document.createElementNS(XUL_NS, "menuitem");
 
                     menuItem.setAttribute("label", tagArray[j].tag);
+                    menuItem.setAttribute("value", j+1);
                     menuPopup.appendChild(menuItem);
                 }
             }
