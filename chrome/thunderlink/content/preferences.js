@@ -24,6 +24,7 @@ var ThunderLinkPrefNS = {
 
     CreateCustomStringTabbox: function() {
 
+        Components.utils.import("resource:///modules/mailServices.js");
         var XUL_NS = "http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul";
 
         function createCstrTabPanel(cstrnum) {
@@ -66,11 +67,25 @@ var ThunderLinkPrefNS = {
             tagLabel.setAttribute("value", "using tag:");
             vbox.appendChild(tagLabel);
 
-            var tagTextbox = window.document.createElementNS(XUL_NS, "textbox"); 
-            tagTextbox.setAttribute("id", "prefCustomTlString" + cstrnum + "-tag");
-            tagTextbox.setAttribute("disabled", "true");
-            tagTextbox.setAttribute("preference", "prefs_customTlString" + cstrnum + "tag");
-            vbox.appendChild(tagTextbox);
+            function appendMenuItems(menuPopup){
+
+                let tagArray = MailServices.tags.getAllTags({}); 
+                for (var j = 0; j < tagArray.length; ++j)
+                {
+                    var menuItem = window.document.createElementNS(XUL_NS, "menuitem");
+
+                    menuItem.setAttribute("label", tagArray[j].tag);
+                    menuPopup.appendChild(menuItem);
+                }
+            }
+            var menuList = window.document.createElementNS(XUL_NS, "menulist"); 
+            var menuPopup = window.document.createElementNS(XUL_NS, "menupopup"); 
+            //tagTextbox.setAttribute("id", "prefCustomTlString" + cstrnum + "-tag");
+            menuList.setAttribute("preference", "prefs_customTlString" + cstrnum + "tag");
+           // menuList.setAttribute("oncommand", "prefs_customTlString" + cstrnum + "tag");
+            appendMenuItems(menuPopup);
+            menuList.appendChild(menuPopup);
+            vbox.appendChild(menuList);
 
             return tabpanel;
         }
@@ -102,7 +117,6 @@ var ThunderLinkPrefNS = {
     },
 
     ToggleTlTagField: function(cstrnum) {
-        dump("toggling")
         function $(aID) { return document.getElementById(aID); }
         tlTagCheckbox = $("prefCustomTlString" + cstrnum + "-tagcheckbox")
         tlTagField = $("prefCustomTlString" + cstrnum + "-tag")

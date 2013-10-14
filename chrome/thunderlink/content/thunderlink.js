@@ -68,13 +68,41 @@ var ThunderLinkChromeNS = {
         var procCustomTlStr = ThunderLinkChromeNS.ResolvePlaceholders(customTlStr);
         procCustomTlStr = ThunderLinkChromeNS.FixNewlines(procCustomTlStr);
         if (tagActive)
-            this.TagEmail(prefService.getCharPref("custom-tl-string-" + cstrnum + "-tag"));
+            this.TagEmail(prefService.getIntPref("custom-tl-string-" + cstrnum + "-tag"));
         ThunderLinkChromeNS.CopyStringToClpBrd(procCustomTlStr);
     },
 
-    TagEmail: function(tag)
+    TagEmail: function(keywordIx)
     {       
-       dump("tag: " + tag) 
+        this.dumpln("keywordIx: " + keywordIx)
+        var hdr = gDBView.hdrForFirstSelectedMessage;
+        var keywords = hdr.getStringProperty("keywords")
+        this.dumpln("cur keywords: " + keywords)
+        function addKeywordToList(keywords, keywordIx){
+            var keyword = "$label" + keywordIx
+
+            if(keywords.contains(keyword))
+               return keywords;
+            
+            keywords += " " + keyword
+            return keywords;
+        }
+        var msg = Components.classes["@mozilla.org/array;1"]
+                               .createInstance(Components.interfaces.nsIMutableArray);
+        msg.clear();
+        msg.appendElement(hdr, false);
+        
+        //var msgUri = hdr.folder.getUriForMsg(hdr);
+        //var messageURI = Components.classes["@mozilla.org/network/io-service;1"].
+        //     getService(Components.interfaces.nsIIOService).
+        //        newURI(msgUri, null, null); // nsIURI
+        //dump(msgUri)
+        //dump(messageURI)
+        //hdr.setStringProperty("keywords", addKeywordToList(keywords,keywordIx))
+        hdr.folder.addKeywordsToMessages(msg, addKeywordToList(keywords,keywordIx));
+        hdr.folder.msgDatabase.Close(); 
+        hdr.folder.msgDatabase = null; 
+        this.dumpln("label: " + hdr.label)
     },
 
     FixNewlines: function(tlstring)
@@ -139,6 +167,10 @@ var ThunderLinkChromeNS = {
         popup.appendChild(createCstrMenuItem(3));
         popup.appendChild(createCstrMenuItem(4));
 
-    }
+    },
 
+    dumpln: function(msg)
+    {
+        dump(msg + "\n");
+    }
 }

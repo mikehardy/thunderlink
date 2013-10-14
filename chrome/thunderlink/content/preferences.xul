@@ -16,10 +16,10 @@
             <preference id="prefs_customTlString2tagcheckbox" name="extensions.thunderlink.custom-tl-string-2-tagcheckbox" type="bool"/>
             <preference id="prefs_customTlString3tagcheckbox" name="extensions.thunderlink.custom-tl-string-3-tagcheckbox" type="bool"/>
             <preference id="prefs_customTlString4tagcheckbox" name="extensions.thunderlink.custom-tl-string-4-tagcheckbox" type="bool"/>
-            <preference id="prefs_customTlString1tag" name="extensions.thunderlink.custom-tl-string-1-tag" type="string"/>
-            <preference id="prefs_customTlString2tag" name="extensions.thunderlink.custom-tl-string-2-tag" type="string"/>
-            <preference id="prefs_customTlString3tag" name="extensions.thunderlink.custom-tl-string-3-tag" type="string"/>
-            <preference id="prefs_customTlString4tag" name="extensions.thunderlink.custom-tl-string-4-tag" type="string"/>
+            <preference id="prefs_customTlString1tag" name="extensions.thunderlink.custom-tl-string-1-tag" type="int"/>
+            <preference id="prefs_customTlString2tag" name="extensions.thunderlink.custom-tl-string-2-tag" type="int"/>
+            <preference id="prefs_customTlString3tag" name="extensions.thunderlink.custom-tl-string-3-tag" type="int"/>
+            <preference id="prefs_customTlString4tag" name="extensions.thunderlink.custom-tl-string-4-tag" type="int"/>
        </preferences>
         <label control="csLabel" value="Custom ThunderLink string:"/>
         <label control="csLabel" value="You can use the following placeholders:"/>
