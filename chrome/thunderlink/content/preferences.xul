@@ -20,11 +20,15 @@
             <preference id="prefs_customTlString2tag" name="extensions.thunderlink.custom-tl-string-2-tag" type="int"/>
             <preference id="prefs_customTlString3tag" name="extensions.thunderlink.custom-tl-string-3-tag" type="int"/>
             <preference id="prefs_customTlString4tag" name="extensions.thunderlink.custom-tl-string-4-tag" type="int"/>
-       </preferences>
-        <label control="csLabel" value="Custom ThunderLink string:"/>
-        <label control="csLabel" value="You can use the following placeholders:"/>
-        <label control="csLabel" value="&#60;thunderlink&#62; &#60;messageid&#62; &#60;subject&#62; &#60;sender&#62; &#60;tbexe&#62;"/>
-
+        </preferences>
+        <vbox>
+            <label control="csLabel" value="Custom ThunderLink string settings"/>
+            <separator class="groove-thin"/>
+            <label control="csLabel" value="You can use the following placeholders:"/>
+            <spacer size="10"/>
+            <label control="csLabel" value="&#60;thunderlink&#62; &#60;messageid&#62; &#60;subject&#62; &#60;sender&#62; &#60;tbexe&#62;"/>
+            <separator class="groove-thin"/>
+        </vbox>
         <tabbox id="thunderlink-custom-strings-tabbox" selectedIndex="0"/>
     </prefpane>
 
