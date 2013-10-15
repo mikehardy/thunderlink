@@ -65,7 +65,6 @@ var ThunderLinkPrefNS = {
             var tagLabel = window.document.createElementNS(XUL_NS, "label"); 
             tagLabel.setAttribute("control", "prefCustomTlString" + cstrnum + "-tag");
             tagLabel.setAttribute("value", "using tag:");
-            tagCheckbox.setAttribute("preference", "prefs_customTlString" + cstrnum + "tagcheckbox");
             vbox.appendChild(tagLabel);
 
             function appendMenuItems(menuPopup){
@@ -81,13 +80,16 @@ var ThunderLinkPrefNS = {
                 }
             }
             var menuList = window.document.createElementNS(XUL_NS, "menulist"); 
+            menuList.setAttribute("id", "prefCustomTlString" + cstrnum + "-tag");
             var menuPopup = window.document.createElementNS(XUL_NS, "menupopup"); 
-            //tagTextbox.setAttribute("id", "prefCustomTlString" + cstrnum + "-tag");
             menuList.setAttribute("preference", "prefs_customTlString" + cstrnum + "tag");
-           // menuList.setAttribute("oncommand", "prefs_customTlString" + cstrnum + "tag");
             appendMenuItems(menuPopup);
             menuList.appendChild(menuPopup);
             vbox.appendChild(menuList);
+
+            var keyLabel = window.document.createElementNS(XUL_NS, "label"); 
+            keyLabel.setAttribute("value", "Shortcut: CTRL + ALT + " + cstrnum);
+            vbox.appendChild(keyLabel);
 
             return tabpanel;
         }
