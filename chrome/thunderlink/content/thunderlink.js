@@ -100,7 +100,7 @@ var ThunderLinkChromeNS = {
         //dump(messageURI)
         //hdr.setStringProperty("keywords", addKeywordToList(keywords,keywordIx))
         hdr.folder.addKeywordsToMessages(msg, addKeywordToList(keywords,keywordIx));
-        hdr.folder.msgDatabase.Close(); 
+        //hdr.folder.msgDatabase.Close(); 
         hdr.folder.msgDatabase = null; 
         this.dumpln("label: " + hdr.label)
     },
