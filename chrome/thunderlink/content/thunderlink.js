@@ -93,11 +93,7 @@ var ThunderLinkChromeNS = {
         msg.appendElement(hdr, false);
         
         hdr.folder.addKeywordsToMessages(msg, addKeywordToList(keywords,keywordIx));
-<<<<<<< HEAD
         hdr.folder.msgDatabase.Close(true); 
-=======
-        //hdr.folder.msgDatabase.Close(); 
->>>>>>> d56b65be703331e8efd01816ab9e4ac444b4dec6
         hdr.folder.msgDatabase = null; 
     },
 

@@ -82,7 +82,7 @@ var ThunderLinkPrefNS = {
             menuList.setAttribute("id", "prefCustomTlString" + cstrnum + "-tag");
             var menuPopup = window.document.createElementNS(XUL_NS, "menupopup"); 
             menuList.setAttribute("preference", "prefs_customTlString" + cstrnum + "tag");
-            //menuList.setAttribute("disabled", ThunderLinkPrefNS.GetPreferenceValue("extensions.thunderlink.custom-tl-string-"+cstrnum+"-tagcheckbox", "bool"));
+            menuList.setAttribute("disabled", !ThunderLinkPrefNS.GetPreferenceValue("custom-tl-string-"+cstrnum+"-tagcheckbox", "bool"));
             appendMenuItems(menuPopup);
             menuList.appendChild(menuPopup);
             
