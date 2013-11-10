@@ -65,7 +65,6 @@ var ThunderLinkPrefNS = {
             var tagLabel = window.document.createElementNS(XUL_NS, "label"); 
             tagLabel.setAttribute("control", "prefCustomTlString" + cstrnum + "-tag");
             tagLabel.setAttribute("value", "using tag:");
-            vbox.appendChild(tagLabel);
 
             function appendMenuItems(menuPopup){
 
@@ -83,9 +82,14 @@ var ThunderLinkPrefNS = {
             menuList.setAttribute("id", "prefCustomTlString" + cstrnum + "-tag");
             var menuPopup = window.document.createElementNS(XUL_NS, "menupopup"); 
             menuList.setAttribute("preference", "prefs_customTlString" + cstrnum + "tag");
+            //menuList.setAttribute("disabled", ThunderLinkPrefNS.GetPreferenceValue("extensions.thunderlink.custom-tl-string-"+cstrnum+"-tagcheckbox", "bool"));
             appendMenuItems(menuPopup);
             menuList.appendChild(menuPopup);
-            vbox.appendChild(menuList);
+            
+            var labelbox = window.document.createElementNS(XUL_NS, "hbox"); 
+            labelbox.appendChild(tagLabel);
+            labelbox.appendChild(menuList);
+            vbox.appendChild(labelbox);
 
             var keyLabel = window.document.createElementNS(XUL_NS, "label"); 
             keyLabel.setAttribute("value", "Shortcut: CTRL + ALT + " + cstrnum);
@@ -130,6 +134,17 @@ var ThunderLinkPrefNS = {
         else {
             tlTagField.disabled = true;
         }
+    },
+
+    GetPreferenceValue: function(prefname, type){
+        var prefService = Components.classes["@mozilla.org/preferences-service;1"]
+        .getService(Components.interfaces.nsIPrefService)
+        .getBranch("extensions.thunderlink.");
+        prefService.QueryInterface(Components.interfaces.nsIPrefBranch2);
+
+        //TODO
+        result = prefService.getBoolPref(prefname);
+        return result;
     },
 
     LOG: function(msg) {
