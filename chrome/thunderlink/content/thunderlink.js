@@ -92,17 +92,9 @@ var ThunderLinkChromeNS = {
         msg.clear();
         msg.appendElement(hdr, false);
         
-        //var msgUri = hdr.folder.getUriForMsg(hdr);
-        //var messageURI = Components.classes["@mozilla.org/network/io-service;1"].
-        //     getService(Components.interfaces.nsIIOService).
-        //        newURI(msgUri, null, null); // nsIURI
-        //dump(msgUri)
-        //dump(messageURI)
-        //hdr.setStringProperty("keywords", addKeywordToList(keywords,keywordIx))
         hdr.folder.addKeywordsToMessages(msg, addKeywordToList(keywords,keywordIx));
-        hdr.folder.msgDatabase.Close(); 
+        hdr.folder.msgDatabase.Close(true); 
         hdr.folder.msgDatabase = null; 
-        this.dumpln("label: " + hdr.label)
     },
 
     FixNewlines: function(tlstring)
