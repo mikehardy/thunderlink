@@ -14,3 +14,4 @@ pref("extensions.thunderlink.custom-tl-string-4-title", "Custom String 4");
 pref("extensions.thunderlink.custom-tl-string-4", "<thunderlink>");
 pref("extensions.thunderlink.custom-tl-string-4-tagcheckbox", false);
 pref("extensions.thunderlink.custom-tl-string-4-tag", 1);
+pref("extensions.thunderlink.open-tl-behaviour", "bySelecting");

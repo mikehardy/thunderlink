@@ -20,8 +20,20 @@
             <preference id="prefs_customTlString2tag" name="extensions.thunderlink.custom-tl-string-2-tag" type="int"/>
             <preference id="prefs_customTlString3tag" name="extensions.thunderlink.custom-tl-string-3-tag" type="int"/>
             <preference id="prefs_customTlString4tag" name="extensions.thunderlink.custom-tl-string-4-tag" type="int"/>
+            <preference id="prefs_openTlBehaviour" name="extensions.thunderlink.open-tl-behaviour" type="string"/>
         </preferences>
         <vbox>
+            <hbox>
+                <label control="openTlBehaviour" value="When running, open TLs "/>
+                <menulist id="openTlBehaviour" preference="prefs_openTlBehaviour">
+                    <menupopup>
+                        <menuitem label="in new tab" value="openInNewTab"/>
+                        <menuitem label="in new window" value="openInNewWindow"/>
+                        <menuitem label="by selecting in mailbox" value="bySelecting" />
+                    </menupopup>
+                </menulist>
+            </hbox>
+            <separator orient="horizontal" class="groove" /> 
             <label control="csLabel" value="Custom ThunderLink string settings"/>
             <separator class="groove-thin"/>
             <label control="csLabel" value="You can use the following placeholders:"/>

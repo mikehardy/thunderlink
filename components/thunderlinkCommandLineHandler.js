@@ -119,14 +119,23 @@ var thunderlinkCommandLineHandler =
         let wm = Cc["@mozilla.org/appshell/window-mediator;1"].
 		  getService(Ci.nsIWindowMediator);
 		let win = wm.getMostRecentWindow("mail:3pane");
+                    openTl = this.getPref("open-tl-behaviour")
+                    if('openInNewWindow' == openTl){
+                        MailUtils.openMessagesInNewWindows([msgHdr]);
+                    }else if ('openInNewTab' == openTl){
+		        MailUtils.displayMessage(msgHdr);
+                    }else{//select in 3pane window
 		if (win) {
-		  win.focus();
-		  win.gFolderTreeView.selectFolder(msgHdr.folder);
-		  win.gFolderDisplay.selectMessage(msgHdr);
-		  //dump("thunderlinkCommandLineHandler_handle: selecting " + msgHdr + "\n");
-		} else {
+                        var tabmail = win.document.getElementById("tabmail");
+                        tabmail.switchToTab(0)//will always be the mail tab
+                        win.focus();
+		        win.gFolderTreeView.selectFolder(msgHdr.folder);
+		        win.gFolderDisplay.selectMessage(msgHdr);
+		        //dump("thunderlinkCommandLineHandler_handle: selecting " + msgHdr + "\n");
+                } else {
 		  MailUtils.displayMessage(msgHdr);
 		}
+		    }
       }
       else {
         //dump("Unrecognized ThunderLink URL: " + mailURL + "\n");
@@ -136,6 +145,15 @@ var thunderlinkCommandLineHandler =
         //Components.utils.reportError("Couldn't find an email message for ThunderLink\n\n" + mailURL);
       }
     }
+  },
+
+  getPref: function(prefName) {
+       var prefService = Components.classes["@mozilla.org/preferences-service;1"]
+        .getService(Components.interfaces.nsIPrefService)
+        .getBranch("extensions.thunderlink.");
+        prefService.QueryInterface(Components.interfaces.nsIPrefBranch2);
+
+        return prefService.getCharPref(prefName);		
   },
 
   helpInfo: "  -thunderlink <URL>        Open/select the message specified by this URL.\n",

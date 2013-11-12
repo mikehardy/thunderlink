@@ -4,7 +4,7 @@
     <em:id>thunderlink@mozilla.org</em:id>
     <em:type>2</em:type>
     <em:name>ThunderLink</em:name>
-    <em:version>1.0.0</em:version>
+    <em:version>1.1.0</em:version>
     <em:creator>Christoph Zwirello</em:creator>
     <em:description>Link from your browser to your email messages!</em:description>
     <em:optionsURL>chrome://thunderlink/content/preferences.xul</em:optionsURL>

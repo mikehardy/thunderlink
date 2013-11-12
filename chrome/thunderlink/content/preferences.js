@@ -142,7 +142,6 @@ var ThunderLinkPrefNS = {
         .getBranch("extensions.thunderlink.");
         prefService.QueryInterface(Components.interfaces.nsIPrefBranch2);
 
-        //TODO
         result = prefService.getBoolPref(prefname);
         return result;
     },
