@@ -36,6 +36,7 @@ var ThunderLinkPrefNS = {
             var tTextbox = window.document.createElementNS(XUL_NS, "textbox"); 
             tTextbox.setAttribute("id", "prefCustomTlString" + cstrnum + "-title");
             tTextbox.setAttribute("preference", "prefs_customTlString" + cstrnum + "title");
+            tTextbox.setAttribute("size", 51);
             var tLabel = window.document.createElementNS(XUL_NS, "label"); 
             tLabel.setAttribute("label", "Custom String title:");
             tLabel.setAttribute("control", tTextbox.id);
@@ -101,7 +102,7 @@ var ThunderLinkPrefNS = {
 
         function createCstrTab(cstrnum) {
             var tab = window.document.createElementNS(XUL_NS, "tab");
-            tab.setAttribute("label", "Custom String " + cstrnum);
+            tab.setAttribute("label", "String " + cstrnum);
             return tab;
         }
 
@@ -116,7 +117,8 @@ var ThunderLinkPrefNS = {
         var tabs = window.document.createElementNS(XUL_NS, "tabs"); 
         var tabpanels = window.document.createElementNS(XUL_NS, "tabpanels"); 
 
-        for (let i = 1; i < 5; i++){
+        var nrOfCStrings = 8
+        for (let i = 1; i <= nrOfCStrings; i++){
             tabs.appendChild(createCstrTab(i));
             tabpanels.appendChild(createCstrTabPanel(i));
         }
