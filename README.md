@@ -9,7 +9,7 @@ Or maybe you have a Wiki running at your company and you want to link to emails 
 
 Use a ThunderLink!
 
-With version 1.0.0, It's now also easy to integrate ThunderLink with todo lists and task managers such as MyLifeOrganized, Evernote, OneNote, Nirvana, Taskwarrior, etc. 
+With version 1.0.0, It's now also easy to integrate ThunderLink with todo lists and task managers such as RememberTheMilk, MyLifeOrganized, Evernote, OneNote, Nirvana, Taskwarrior, etc. 
 You can completely customize ThunderLinks to fit your application's needs. And you can tag the emails you created a link to for advanced workflows and more productivity!
 
 ThunderLinks are based on the unique message ID generated when an email is sent. This enables the Thunderbird email client to quickly and reliably find and select an email - as long as you actually received it.
