@@ -158,6 +158,10 @@ var ThunderLinkChromeNS = {
         popup.appendChild(createCstrMenuItem(2));
         popup.appendChild(createCstrMenuItem(3));
         popup.appendChild(createCstrMenuItem(4));
+        popup.appendChild(createCstrMenuItem(5));
+        popup.appendChild(createCstrMenuItem(6));
+        popup.appendChild(createCstrMenuItem(7));
+        popup.appendChild(createCstrMenuItem(8));
 
     },
 
