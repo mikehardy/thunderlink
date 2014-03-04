@@ -11,13 +11,13 @@
             oncommand="ThunderLinkChromeNS.CopyCustomTlStringToClp(3);"/>
         <key id="cpCstTlStr4" modifiers="control alt" key="4"
             oncommand="ThunderLinkChromeNS.CopyCustomTlStringToClp(4);"/>
-        <key id="cpCstTlStr1" modifiers="control alt" key="5"
+        <key id="cpCstTlStr5" modifiers="control alt" key="5"
             oncommand="ThunderLinkChromeNS.CopyCustomTlStringToClp(5);"/>
-        <key id="cpCstTlStr2" modifiers="control alt" key="6"
+        <key id="cpCstTlStr6" modifiers="control alt" key="6"
             oncommand="ThunderLinkChromeNS.CopyCustomTlStringToClp(6);"/>
-        <key id="cpCstTlStr3" modifiers="control alt" key="7"
+        <key id="cpCstTlStr7" modifiers="control alt" key="7"
             oncommand="ThunderLinkChromeNS.CopyCustomTlStringToClp(7);"/>
-        <key id="cpCstTlStr4" modifiers="control alt" key="8"
+        <key id="cpCstTlStr8" modifiers="control alt" key="8"
             oncommand="ThunderLinkChromeNS.CopyCustomTlStringToClp(8);"/>
         <!--
         <key id="cpTlStr" modifiers="control alt" key="5"
