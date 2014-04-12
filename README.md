@@ -75,10 +75,13 @@ ThunderLinks are also recognized and turned into hyperlinks by Thunderbird itsel
 
    - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
    <code>
+   
    REGEDIT4
 
    [HKEY_CLASSES_ROOT\thunderlink]
+   
    @="URL:thunderlink Protocol"
+   
    "URL Protocol"=""
 
    [HKEY_CLASSES_ROOT\thunderlink\shell]
@@ -86,7 +89,9 @@ ThunderLinks are also recognized and turned into hyperlinks by Thunderbird itsel
    [HKEY_CLASSES_ROOT\thunderlink\shell\open]
 
    [HKEY_CLASSES_ROOT\thunderlink\shell\open\command]
-   @="\"C:\\Program Files\\Mozilla Thunderbird\\thunderbird.exe\" -thunderlink \"%1\""
+   
+   @="\"C:\\\\Program Files\\\\Mozilla Thunderbird\\\\thunderbird.exe\" -thunderlink \"%1\""
+   
    </code>
    - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 
@@ -94,10 +99,13 @@ ThunderLinks are also recognized and turned into hyperlinks by Thunderbird itsel
 
    - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
    <code>
+   
    REGEDIT4
 
    [HKEY_CLASSES_ROOT\thunderlink]
+   
    @="URL:thunderlink Protocol"
+   
    "URL Protocol"=""
 
    [HKEY_CLASSES_ROOT\thunderlink\shell]
@@ -105,7 +113,9 @@ ThunderLinks are also recognized and turned into hyperlinks by Thunderbird itsel
    [HKEY_CLASSES_ROOT\thunderlink\shell\open]
 
    [HKEY_CLASSES_ROOT\thunderlink\shell\open\command]
-   @="\"C:\\Program Files (x86)\\Mozilla Thunderbird\\thunderbird.exe\" -thunderlink \"%1\""
+   
+   @="\"C:\\\\Program Files (x86)\\\\Mozilla Thunderbird\\\\thunderbird.exe\" -thunderlink \"%1\""
+   
    </code>
    - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 
