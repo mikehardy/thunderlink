@@ -119,16 +119,21 @@ ThunderLinks are also recognized and turned into hyperlinks by Thunderbird itsel
    </code>
    - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 
+   Copy the stuff between the dashes into a file with .reg extension, changing the path to the thunderbird.exe if necessary, double-click on the file, confirm execution, done.
+
+   ------------------------------------------------------------------------------------------------
+   
    <b>on Windows 8</b>
    
    Haven't tried it myself, but this guide should help:
    http://msdn.microsoft.com/en-us/library/aa767914%28v=VS.85%29.aspx
 
-   Copy the stuff between the dashes into a file with .reg extension, changing the path to the thunderbird.exe if necessary, double-click on the file, confirm execution, done.
+   ------------------------------------------------------------------------------------------------
 
    The easiest way to find out the install location is to right-click on the shortcut to Thunderbird in your Start menu and select Properties, and then check the "Target" or "Start in" fields for the path data. (thx Sean!)
 
    ... and that's it, you're good to go!
+
 
 
    <b>Usage</b>
