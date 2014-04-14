@@ -68,7 +68,7 @@ ThunderLinks are also recognized and turned into hyperlinks by Thunderbird itsel
    </ol>
    Otherwise, the instructions are the same.
 
-   <b>on Windows 7 (32 bit) and XP (and possibly other Windows versions, too):</b>
+   <b>on Windows 7 (32 bit) and XP:</b>
    ------------------------------------------------------------------------------------------------
    there is a .reg script for registering the thunderlink protocol:
 
@@ -119,6 +119,11 @@ ThunderLinks are also recognized and turned into hyperlinks by Thunderbird itsel
    </code>
    - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 
+   <b>on Windows 8</b>
+   
+   Haven't tried it myself, but this guide should help:
+   http://msdn.microsoft.com/en-us/library/aa767914%28v=VS.85%29.aspx
+
    Copy the stuff between the dashes into a file with .reg extension, changing the path to the thunderbird.exe if necessary, double-click on the file, confirm execution, done.
 
    The easiest way to find out the install location is to right-click on the shortcut to Thunderbird in your Start menu and select Properties, and then check the "Target" or "Start in" fields for the path data. (thx Sean!)
@@ -127,14 +132,18 @@ ThunderLinks are also recognized and turned into hyperlinks by Thunderbird itsel
 
 
    <b>Usage</b>
+   
    =====
+   
    Right-click on an email and select 'Copy ThunderLink to clipboard'. You now have the ThunderLink to your email in your clipboard. You can paste it into your personal wiki, or your project teams wiki, for instance.
 
    Use ThunderLinkSpotter to turn that link into a hyperlink, making it "clickable". If you registered the thunderbird protocol correctly, a click on the ThunderLink will take you to Thunderbird and select your email immediately. If Thunderbird wasn't running yet, the email will show in a stand-alone window.
 
 
    <b>Having trouble?</b>
+   
    ===========
+   
    <b>Please note that protocol registration changed in Ubuntu Natty! </b>
    If you had to use the "natty and newer" installation instructions, you might have to tell thunderbird to use the new handler (see instructions above)
 
@@ -145,4 +154,5 @@ ThunderLinks are also recognized and turned into hyperlinks by Thunderbird itsel
    Care to contribute? https://github.com/poohsen/thunderlink
 
    For devs cloning the repo:
+   
    - use make 'makeXpi.sh <release-number>' to create distributables for Thunderbird
