@@ -141,6 +141,11 @@ var ThunderLinkChromeNS = {
     OnTlMenuLoad: function() 
     {
         function createCstrMenuItem(cstrnum) {
+            var label = ThunderLinkChromeNS.GetCustomTlStringTitle( cstrnum );
+            // Skip when title is not configured or temporary unused
+            if( !label.length || label.match( /^\./ ))
+                return null;
+
             const XUL_NS = "http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul";
             var item = window.document.createElementNS(XUL_NS, "menuitem"); // create a new XUL menuitem
             item.setAttribute("label", ThunderLinkChromeNS.GetCustomTlStringTitle(cstrnum));
@@ -154,15 +159,13 @@ var ThunderLinkChromeNS = {
                 popup.removeChild(popup.firstChild);
             }
         }
-        popup.appendChild(createCstrMenuItem(1));
-        popup.appendChild(createCstrMenuItem(2));
-        popup.appendChild(createCstrMenuItem(3));
-        popup.appendChild(createCstrMenuItem(4));
-        popup.appendChild(createCstrMenuItem(5));
-        popup.appendChild(createCstrMenuItem(6));
-        popup.appendChild(createCstrMenuItem(7));
-        popup.appendChild(createCstrMenuItem(8));
 
+        // Add only valid menuitems
+        for( var i = 1; i <= 8; i++ ) {
+            var menuitem = createCstrMenuItem( i );
+            if( menuitem )
+                popup.appendChild( menuitem );
+        }
     },
 
     dumpln: function(msg)
