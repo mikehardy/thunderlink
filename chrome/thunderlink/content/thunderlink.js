@@ -148,7 +148,7 @@ var ThunderLinkChromeNS = {
 
             const XUL_NS = "http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul";
             var item = window.document.createElementNS(XUL_NS, "menuitem"); // create a new XUL menuitem
-            item.setAttribute("label", ThunderLinkChromeNS.GetCustomTlStringTitle(cstrnum));
+            item.setAttribute("label", label );
             item.setAttribute("oncommand", "ThunderLinkChromeNS.CopyCustomTlStringToClp("+cstrnum+")");
             return item;
         }
