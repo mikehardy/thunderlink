@@ -25,7 +25,7 @@ var ThunderLinkChromeNS = {
                dump("CopyMessageUrlToClp mailboxMsgUrl: " + string + "\n");
             var clipboard = Components.classes["@mozilla.org/widget/clipboardhelper;1"]
             .getService(Components.interfaces.nsIClipboardHelper);
-            clipboard.copyString(string);
+            clipboard.copyString( ThunderLinkChromeNS.ConvertToUnicode( string ));
         }
         catch (ex) {
             dump("ex="+ex+"\n");
@@ -148,7 +148,7 @@ var ThunderLinkChromeNS = {
 
             const XUL_NS = "http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul";
             var item = window.document.createElementNS(XUL_NS, "menuitem"); // create a new XUL menuitem
-            item.setAttribute("label", label );
+            item.setAttribute("label", ThunderLinkChromeNS.ConvertToUnicode( label ));
             item.setAttribute("oncommand", "ThunderLinkChromeNS.CopyCustomTlStringToClp("+cstrnum+")");
             return item;
         }
@@ -166,6 +166,14 @@ var ThunderLinkChromeNS = {
             if( menuitem )
                 popup.appendChild( menuitem );
         }
+    },
+
+    ConvertToUnicode: function( string ) {
+        var converter = Components
+            .classes[ "@mozilla.org/intl/scriptableunicodeconverter" ]
+            .createInstance( Components.interfaces.nsIScriptableUnicodeConverter );
+        converter.charset = "UTF-8";
+        return converter.ConvertToUnicode( string );
     },
 
     dumpln: function(msg)
