@@ -60,10 +60,10 @@ ThunderLinks are also recognized and turned into hyperlinks by Thunderbird itsel
 
    Like Natty but you might have to 
    <ol>
-   <li>edit 
+   <li>in 1), edit 
    /usr/share/applications/defaults.list instead of ~/.local/share/applications/mimeapps.list
    </li>
-   <li>Also, the thunderbird.desktop file has to be copied from /usr/share/applications/, either to your ~/.local/share/applications or /usr/share/applications, depending on your preference.
+   <li>in 2), the thunderbird.desktop file has to be copied from /usr/share/applications/ to your ~/.local/share/applications
    </li>
    </ol>
    Otherwise, the instructions are the same.
