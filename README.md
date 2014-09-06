@@ -145,6 +145,30 @@ ThunderLinks are also recognized and turned into hyperlinks by Thunderbird itsel
    Use ThunderLinkSpotter to turn that link into a hyperlink, making it "clickable". If you registered the thunderbird protocol correctly, a click on the ThunderLink will take you to Thunderbird and select your email immediately. If Thunderbird wasn't running yet, the email will show in a stand-alone window.
 
 
+   <b>Usage with <a href="http://mylifeorganized.net/">MyLifeOrganized</a> (MLO)</b>
+   
+   =====
+   
+   MyLifeOrganized (MLO) is a popular task manager, organizer, project management tool, etc. Once you have ThunderLink setup such that your OS recognizes and correctly executes ThunderLinks, there is one additional detail for getting MLO to recognize ThunderLinks (within a MLO Task Note filed): You must prefix the ThunderLink with `file:`. This will indicate to the MLO software that the ThunderLink should be treated like a link. Note that `file:` works with other things as well (e.g., Evernote local links -> `file:evernote:///...`).
+   
+   If you like to use the MLO Rapid Task Entry box, you could configure your ThunderLinks like the following example:
+   ```
+   Email: <subject>   -s Tomorrow -*   @ Work;Email; 
+   file:<thunderlink>
+   ```
+   Note that the TL is on the second line. Also, I having extra spaces between some of the items can make it easier for you if you need to tweak something (eg, change the Start Date, or add a MLO Context).
+   
+   In MLO Rapid Task Entry, if you uncheck "Multiple Task Entry (1 task per line...)" then pasting the above TL result into the Rapid Task Entry box will produce the following MLO Task:
+   ```
+   Task Subject = "Email: EMAIL_SUBJECT" 
+   Start: Tomorrow 
+   Star 
+   Contexts: Work; Email; 
+   Task Note: A clickable ThunderLink, beginning with "file:"
+   ```
+   <a href="https://github.com/poohsen/thunderlink/issues/20#issuecomment-54720844">Reference for Above.</a>
+   
+
    <b>Having trouble?</b>
    
    ===========
