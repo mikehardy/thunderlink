@@ -119,7 +119,7 @@ ThunderLinks are also recognized and turned into hyperlinks by Thunderbird itsel
    </code>
    - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 
-   Copy the stuff between the dashes into a file with .reg extension, changing the path to the thunderbird.exe if necessary, double-click on the file, confirm execution, done.
+   Create a file with .reg extension, copy the stuff between the dashes into it, changing the path to the thunderbird.exe if necessary, double-click on the file, confirm execution, done.
 
    ------------------------------------------------------------------------------------------------
    
