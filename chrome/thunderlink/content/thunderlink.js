@@ -114,9 +114,18 @@ var ThunderLinkChromeNS = {
     {
         Components.utils.import("resource:///modules/gloda/utils.js");
 
-        var result = tlstring.replace(/<thunderlink>/ig, ThunderLinkChromeNS.GetThunderlink());
+        var subject = GlodaUtils.deMime(gDBView.hdrForFirstSelectedMessage.subject);
+
+	// replace a few characters that frequently cause trouble
+	// with a focus on org-mode, provided as filteredSubject
+        var protectedSubject = subject.split("[").join("(");
+        protectedSubject = protectedSubject.split("]").join(")");
+        protectedSubject = protectedSubject.replace(/[<>'\"`´]/g, "");
+
+	var result = tlstring.replace(/<thunderlink>/ig, ThunderLinkChromeNS.GetThunderlink());
         result = result.replace(/<messageid>/ig, gDBView.hdrForFirstSelectedMessage.messageId);
-        result = result.replace(/<subject>/ig, GlodaUtils.deMime(gDBView.hdrForFirstSelectedMessage.subject));
+        result = result.replace(/<subject>/ig, subject);
+        result = result.replace(/<filteredSubject>/ig, protectedSubject);
         result = result.replace(/<sender>/ig, gDBView.hdrForFirstSelectedMessage.author);
         result = result.replace(/<tbexe>/ig, "\"" + ThunderLinkChromeNS.GetPathToExe() + "\" -thunderlink ");
         return result;
