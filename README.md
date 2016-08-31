@@ -47,7 +47,7 @@ ThunderLinks are also recognized and turned into hyperlinks by Thunderbird itsel
    <li>Change the line that starts with
    Exec=thunderbird %u...
    to
-   Exec=thunderbird -thunderlink %u...</li>
+   Exec=thunderbird -thunderlink '%u'...</li>
    <li>and the line that starts with
    MimeType=...
    to
