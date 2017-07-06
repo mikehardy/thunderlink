@@ -1,6 +1,8 @@
 <b>ThunderLink</b>
 =========
 
+<b>PLEASE NOTE: This repository is no longer maintained. I won't take the time to update thunderlink so it works with newer versions of TB. My apologies.</b>
+
 ThunderLink lets you link to email messages in Thunderbird.
 
 You can place ThunderLinks on the Desktop (in batch scripts), in OpenOffice/LibreOffice documents or in a personal wiki (such as <a href="http://www.tiddlywiki.com"> "TiddlyWiki"</a>).
