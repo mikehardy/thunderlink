@@ -1,8 +1,6 @@
 <b>ThunderLink</b>
 =========
 
-<b>PLEASE NOTE: This repository is no longer maintained. I won't take the time to update thunderlink so it works with newer versions of TB. My apologies.</b>
-
 ThunderLink lets you link to email messages in Thunderbird.
 
 You can place ThunderLinks on the Desktop (in batch scripts), in OpenOffice/LibreOffice documents or in a personal wiki (such as <a href="http://www.tiddlywiki.com"> "TiddlyWiki"</a>).
@@ -144,7 +142,9 @@ ThunderLinks are also recognized and turned into hyperlinks by Thunderbird itsel
    
    Right-click on an email and select 'Copy ThunderLink to clipboard'. You now have the ThunderLink to your email in your clipboard. You can paste it into your personal wiki, or your project teams wiki, for instance.
 
-   Use ThunderLinkSpotter to turn that link into a hyperlink, making it "clickable". If you registered the thunderbird protocol correctly, a click on the ThunderLink will take you to Thunderbird and select your email immediately. If Thunderbird wasn't running yet, the email will show in a stand-alone window.
+   If you would like a clickable link to the email's subject, use a pattern like this: `<A HREF="<thunderlink>"><subject></a>` - this may be pasted into other systems that render HTML.
+
+   If you registered the thunderbird protocol correctly, a click on the ThunderLink will take you to Thunderbird and select your email immediately. If Thunderbird wasn't running yet, the email will show in a stand-alone window.
 
 
    <b>Usage with <a href="http://mylifeorganized.net/">MyLifeOrganized</a> (MLO)</b>
@@ -175,14 +175,9 @@ ThunderLinks are also recognized and turned into hyperlinks by Thunderbird itsel
    
    ===========
    
-   <b>Please note that protocol registration changed in Ubuntu Natty! </b>
-   If you had to use the "natty and newer" installation instructions, you might have to tell thunderbird to use the new handler (see instructions above)
+   In the unlikely event of a bug, please open an issue on the provided github link, taking care to include all the requested information.
 
-
-   I tested this extension with several TB installations and two other beta testers, under Linux and Windows (7 and XP). However..... in the unlikely event of a bug, please don't leave a question or "doesn't work" type message as a comment.
-   I'm keen on constructive feedback, so just describe your setup and the issue you're having and send it to: "firstname underscore lastname, provider is gmx dot de" and I'll try my best to sort you out. You can still flame me afterwards should I fail ;)
-
-   Care to contribute? https://github.com/poohsen/thunderlink
+   Care to contribute? https://github.com/mikehardy/thunderlink
 
    For devs cloning the repo:
    
