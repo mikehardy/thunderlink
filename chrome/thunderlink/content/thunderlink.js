@@ -14,13 +14,13 @@ var ThunderLinkChromeNS = {
     CopyStringToClpBrd: function(string)
     {
         try {
-               dump("CopyMessageUrlToClp mailboxMsgUrl: " + string + "\n");
+               console.log("CopyMessageUrlToClp mailboxMsgUrl: " + string + "\n");
             var clipboard = Components.classes["@mozilla.org/widget/clipboardhelper;1"]
             .getService(Components.interfaces.nsIClipboardHelper);
             clipboard.copyString( ThunderLinkChromeNS.ConvertToUnicode( string ));
         }
         catch (ex) {
-            dump("ex="+ex+"\n");
+            console.error(ex);
         }
     },
 
@@ -39,7 +39,7 @@ var ThunderLinkChromeNS = {
 
         }
         catch (ex) {
-            dump("ex="+ex+"\n");
+            console.error(ex);
         }
         // gives an [xpconnect wrapped nsILocalFile]
         appDir.append("thunderbird");//exe filename
@@ -50,15 +50,20 @@ var ThunderLinkChromeNS = {
 
     CopyCustomTlStringToClp: function(cstrnum)
     {
+        console.log("CopyCustomTlStringToClp: cstrnum: " + cstrnum + "\n");
         var prefService = Components.classes["@mozilla.org/preferences-service;1"]
         .getService(Components.interfaces.nsIPrefService)
         .getBranch("extensions.thunderlink.");
         prefService.QueryInterface(Components.interfaces.nsIPrefBranch2);
 
-        var customTlStr = prefService.getCharPref("custom-tl-string-" + cstrnum);		
-        var tagActive = prefService.getBoolPref("custom-tl-string-" + cstrnum + "-tagcheckbox");		
+        var customTlStr = prefService.getCharPref("custom-tl-string-" + cstrnum);	
+        console.log("CopyCustomTlStringToClp: customTlStr: " + customTlStr + "\n");
+        var tagActive = prefService.getBoolPref("custom-tl-string-" + cstrnum + "-tagcheckbox");
+        console.log("CopyCustomTlStringToClp: tagActive: " + tagActive + "\n");
         var procCustomTlStr = ThunderLinkChromeNS.ResolvePlaceholders(customTlStr);
+        console.log("CopyCustomTlStringToClp: procCustomTlStr resolved: " + procCustomTlStr + "\n");
         procCustomTlStr = ThunderLinkChromeNS.FixNewlines(procCustomTlStr);
+        console.log("CopyCustomTlStringToClp: procCustomTlStr newlines fixed: " + procCustomTlStr + "\n");
         if (tagActive)
             this.TagEmail(prefService.getIntPref("custom-tl-string-" + cstrnum + "-tag"));
         ThunderLinkChromeNS.CopyStringToClpBrd(procCustomTlStr);
@@ -66,10 +71,11 @@ var ThunderLinkChromeNS = {
 
     TagEmail: function(keywordIx)
     {       
-        this.dumpln("keywordIx: " + keywordIx)
+        console.log("TagEmail: keywordIx: " + keywordIx)
         var hdr = gDBView.hdrForFirstSelectedMessage;
+        console.log("TagEmail: hdr: " + hdr + "\n");
         var keywords = hdr.getStringProperty("keywords")
-        this.dumpln("cur keywords: " + keywords)
+        console.log("TagEmail: cur keywords: " + keywords)
         function addKeywordToList(keywords, keywordIx){
             var keyword = "$label" + keywordIx
 
@@ -175,10 +181,5 @@ var ThunderLinkChromeNS = {
             .createInstance( Components.interfaces.nsIScriptableUnicodeConverter );
         converter.charset = "UTF-8";
         return converter.ConvertToUnicode( string );
-    },
-
-    dumpln: function(msg)
-    {
-        dump(msg + "\n");
     }
 }

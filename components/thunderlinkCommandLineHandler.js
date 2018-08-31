@@ -22,7 +22,7 @@ var thunderlinkCommandLineHandler =
 {
   get _messenger() {
     delete this._messenger;
-    dump("getting messenger: " + Cc["@mozilla.org/messenger;1"]
+    console.log("getting messenger: " + Cc["@mozilla.org/messenger;1"]
                                .createInstance(Ci.nsIMessenger) +"\n");
     return this._messenger = Cc["@mozilla.org/messenger;1"]
                                .createInstance(Ci.nsIMessenger);
@@ -47,7 +47,7 @@ var thunderlinkCommandLineHandler =
       mailURL = aCommandLine.handleFlagWithParam("thunderlink", false);
     }
     catch (e) {
-      
+		console.error(e);
     }
 
     if (mailURL && mailURL.length > 0) {
