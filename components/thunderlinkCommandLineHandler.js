@@ -130,14 +130,14 @@ var thunderlinkCommandLineHandler =
 					      win.focus();
 				      win.gFolderTreeView.selectFolder(msgHdr.folder);
 				      win.gFolderDisplay.selectMessage(msgHdr);
-				      //dump("thunderlinkCommandLineHandler_handle: selecting " + msgHdr + "\n");
+				      //console.log("thunderlinkCommandLineHandler_handle: selecting " + msgHdr + "\n");
 			      } else {
 				      MailUtils.displayMessage(msgHdr);
 			      }
 		      }
       }
       else {
-	      //dump("Unrecognized ThunderLink URL: " + mailURL + "\n");
+	      //console.log("Unrecognized ThunderLink URL: " + mailURL + "\n");
 	      var promptService = Components.classes["@mozilla.org/embedcomp/prompt-service;1"]
 	      .getService(Components.interfaces.nsIPromptService);
 	      promptService.alert(null, "Message not found", "Couldn't find an email message for ThunderLink\n\n" + mailURL);
