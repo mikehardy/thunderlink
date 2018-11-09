@@ -57,7 +57,7 @@ var thunderlinkCommandLineHandler = {
         if (messageIDIndex !== -1) {
           // messageID parameter
           // Convert the message URI into a folder URI
-          const folderURI = mailURL.slice(0, messageIDIndex).replace("thunderlink", "mailbox");
+          // const folderURI = mailURL.slice(0, messageIDIndex).replace("thunderlink", "mailbox");
           // console.log("folderURI is " + folderURI);
           // Get the message ID
           messageID = mailURL.slice(messageIDIndex + MESSAGE_ID_PARAM.length);
@@ -69,7 +69,7 @@ var thunderlinkCommandLineHandler = {
           // Make sure the folder tree is initialized
           MailUtils.discoverFolders();
 
-          let folder = MailUtils.getFolderForURI(folderURI, true);
+          // let folder = MailUtils.getFolderForURI(folderURI, true);
           // The folder might not exist, so guard against that
           // if (folder && messageID.length > 0)
           //  msgHdr = folder.msgDatabase.getMsgHdrForMessageID(messageID);
@@ -92,7 +92,8 @@ var thunderlinkCommandLineHandler = {
         // console.log("null msgHdr but messageID exists");
         const accountManager = Cc["@mozilla.org/messenger/account-manager;1"].getService(Ci.nsIMsgAccountManager);
         const folders = accountManager.allFolders;
-        for (let msgFolder of fixIterator(folders.enumerate(), Ci.nsIMsgFolder)) {
+        // eslint-disable-next-line no-restricted-syntax
+        for (const msgFolder of fixIterator(folders.enumerate(), Ci.nsIMsgFolder)) {
           try {
             msgHdr = msgFolder.msgDatabase.getMsgHdrForMessageID(messageID);
             if (msgHdr !== null) {
@@ -150,7 +151,7 @@ var thunderlinkCommandLineHandler = {
   flags: Ci.nsIClassInfo.SINGLETON,
   getHelperForLanguage: function getHelperForLanguage(languageIgnored) { },
   getInterfaces: function getInterfaces(count) {
-    let interfaces = [Ci.nsICommandLineHandler];
+    const interfaces = [Ci.nsICommandLineHandler];
     count.value = interfaces.length;
     return interfaces;
   },

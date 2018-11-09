@@ -6,12 +6,12 @@
     <em:name>ThunderLink</em:name>
     <em:version>1.2.2-beta3</em:version>
     <em:creator>Christoph Zwirello and others</em:creator>
-    <em:description>Link from your browser to your email messages!</em:description>
+    <em:description>Create and use links to specific email messages!</em:description>
     <em:optionsURL>chrome://thunderlink/content/preferences.xul</em:optionsURL>
     <em:targetApplication>
       <Description>
         <em:id>{3550f703-e582-4d05-9a08-453d09bdfdc6}</em:id> <!-- Thunderbird -->
-        <em:minVersion>5.0</em:minVersion>
+        <em:minVersion>60.0</em:minVersion>
         <em:maxVersion>60.*</em:maxVersion>
       </Description>
     </em:targetApplication>

@@ -24,6 +24,7 @@ var ThunderLinkPrefNS = {
       tTextbox.setAttribute("id", "prefCustomTlString" + cstrnum + "-title");
       tTextbox.setAttribute("preference", "prefs_customTlString" + cstrnum + "title");
       tTextbox.setAttribute("size", 51);
+      tTextbox.setAttribute("value", ThunderLinkPrefNS.GetPreferenceValue("custom-tl-string-" + cstrnum + "-title", "string"));
       var tLabel = window.document.createElementNS(XUL_NS, "label");
       tLabel.setAttribute("label", "Custom String title:");
       tLabel.setAttribute("control", tTextbox.id);
@@ -36,6 +37,7 @@ var ThunderLinkPrefNS = {
       csTextbox.setAttribute("multiline", "true");
       csTextbox.setAttribute("cols", "50");
       csTextbox.setAttribute("rows", "5");
+      csTextbox.setAttribute("value", ThunderLinkPrefNS.GetPreferenceValue("custom-tl-string-" + cstrnum, "string"));
       var csLabel = window.document.createElementNS(XUL_NS, "label");
       csLabel.setAttribute("label", "Custom String:");
       csLabel.setAttribute("control", csTextbox.id);
@@ -124,7 +126,7 @@ var ThunderLinkPrefNS = {
     var prefService = Components.classes["@mozilla.org/preferences-service;1"]
       .getService(Components.interfaces.nsIPrefService)
       .getBranch("extensions.thunderlink.");
-    prefService.QueryInterface(Components.interfaces.nsIPrefBranch);
+    // prefService.QueryInterface(Components.interfaces.nsIPrefBranch);
 
     console.log("Looking for pref " + prefname + " / is it bool? " + bool);
     var prefValue = "";
