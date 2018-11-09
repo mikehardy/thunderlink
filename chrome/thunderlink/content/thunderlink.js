@@ -11,7 +11,7 @@
 
 var ThunderLinkChromeNS = {
 
-  CopyStringToClpBrd: (string) => {
+  CopyStringToClpBrd: function CopyStringToClpBrd(string) {
     try {
       console.log("CopyMessageUrlToClp mailboxMsgUrl: " + string + "\n");
       var clipboard = Components.classes["@mozilla.org/widget/clipboardhelper;1"]
@@ -22,16 +22,16 @@ var ThunderLinkChromeNS = {
     }
   },
 
-  CopyMessageUrlToClp: () => {
+  CopyMessageUrlToClp: function CopyMessageUrlToClp() {
     ThunderLinkChromeNS.CopyStringToClpBrd(ThunderLinkChromeNS.GetThunderlink());
   },
 
-  GetPathToExe: () => {
+  GetPathToExe: function GetPathToExe() {
     var appDir;
     try {
       appDir = Components.classes["@mozilla.org/file/directory_service;1"]
         .getService(Components.interfaces.nsIProperties)
-        .get("CurProcD", Components.interfaces.nsILocalFile);
+        .get("CurProcD", Components.interfaces.nsIFile);
     } catch (ex) {
       console.error(ex);
     }
@@ -40,12 +40,12 @@ var ThunderLinkChromeNS = {
     return appDir.path;
   },
 
-  CopyCustomTlStringToClp: (cstrnum) => {
+  CopyCustomTlStringToClp: function CopyCustomTlStringToClp(cstrnum) {
     console.log("CopyCustomTlStringToClp: cstrnum: " + cstrnum + "\n");
     var prefService = Components.classes["@mozilla.org/preferences-service;1"]
       .getService(Components.interfaces.nsIPrefService)
       .getBranch("extensions.thunderlink.");
-    prefService.QueryInterface(Components.interfaces.nsIPrefBranch2);
+    // prefService.QueryInterface(Components.interfaces.nsIPrefBranch2);
 
     var customTlStr = prefService.getCharPref("custom-tl-string-" + cstrnum);
     console.log("CopyCustomTlStringToClp: customTlStr: " + customTlStr + "\n");
@@ -55,11 +55,12 @@ var ThunderLinkChromeNS = {
     console.log("CopyCustomTlStringToClp: procCustomTlStr resolved: " + procCustomTlStr + "\n");
     procCustomTlStr = ThunderLinkChromeNS.FixNewlines(procCustomTlStr);
     console.log("CopyCustomTlStringToClp: procCustomTlStr newlines fixed: " + procCustomTlStr + "\n");
+    console.log("I'm still alive");
     if (tagActive) this.TagEmail(prefService.getIntPref("custom-tl-string-" + cstrnum + "-tag"));
     ThunderLinkChromeNS.CopyStringToClpBrd(procCustomTlStr);
   },
 
-  TagEmail: (keywordIx) => {
+  TagEmail: function TagEmail(keywordIx) {
     console.log("TagEmail: keywordIx: " + keywordIx);
     var hdr = gDBView.hdrForFirstSelectedMessage;
     console.log("TagEmail: hdr: " + hdr + "\n");
@@ -82,7 +83,7 @@ var ThunderLinkChromeNS = {
     hdr.folder.msgDatabase = null;
   },
 
-  FixNewlines: (tlstring) => {
+  FixNewlines: function FixNewlines(tlstring) {
     // fix for issue #1; need to fix newlines on windows
     var osString = Components.classes["@mozilla.org/xre/app-info;1"]
       .getService(Components.interfaces.nsIXULRuntime).OS;
@@ -92,7 +93,7 @@ var ThunderLinkChromeNS = {
     return result;
   },
 
-  ResolvePlaceholders: (tlstring) => {
+  ResolvePlaceholders: function ResolvePlaceholders(tlstring) {
     Components.utils.import("resource:///modules/gloda/utils.js");
 
     var subject = GlodaUtils.deMime(gDBView.hdrForFirstSelectedMessage.subject);
@@ -112,21 +113,21 @@ var ThunderLinkChromeNS = {
     return result;
   },
 
-  GetCustomTlStringTitle: (cstrnum) => {
+  GetCustomTlStringTitle: function GetCustomTlStringTitle(cstrnum) {
     var prefService = Components.classes["@mozilla.org/preferences-service;1"]
       .getService(Components.interfaces.nsIPrefService)
       .getBranch("extensions.thunderlink.");
-    prefService.QueryInterface(Components.interfaces.nsIPrefBranch2);
+    // prefService.QueryInterface(Components.interfaces.nsIPrefBranch2);
 
     return prefService.getCharPref("custom-tl-string-" + cstrnum + "-title");
   },
 
-  GetThunderlink: () => {
+  GetThunderlink: function GetThunderlink() {
     var hdr = gDBView.hdrForFirstSelectedMessage;
     return "thunderlink://messageid=" + hdr.messageId;
   },
 
-  OnTlMenuLoad: () => {
+  OnTlMenuLoad: function OnTlMenuLoad() {
     function createCstrMenuItem(cstrnum) {
       var label = ThunderLinkChromeNS.GetCustomTlStringTitle(cstrnum);
       // Skip when title is not configured or temporary unused
@@ -153,7 +154,7 @@ var ThunderLinkChromeNS = {
     }
   },
 
-  ConvertToUnicode: (string) => {
+  ConvertToUnicode: function ConvertToUnicode(string) {
     var converter = Components
       .classes["@mozilla.org/intl/scriptableunicodeconverter"]
       .createInstance(Components.interfaces.nsIScriptableUnicodeConverter);

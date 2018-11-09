@@ -43,20 +43,25 @@ var thunderlinkCommandLineHandler = {
 
     try {
       mailURL = aCommandLine.handleFlagWithParam("thunderlink", false);
+      console.log("thunderlink command with mailURL " + mailURL);
     } catch (e) {
       console.error(e);
     }
 
     if (mailURL && mailURL.length > 0) {
       if (/^thunderlink:\/\//.test(mailURL)) {
+        // console.log("mailURL has a thunderlink prefix");
         // This might be a standard message URI, or one with a messageID parameter
         const messageIDIndex = mailURL.toLowerCase().indexOf(MESSAGE_ID_PARAM);
+        // console.log("messageIDIndex is " + messageIDIndex);
         if (messageIDIndex !== -1) {
           // messageID parameter
           // Convert the message URI into a folder URI
           const folderURI = mailURL.slice(0, messageIDIndex).replace("thunderlink", "mailbox");
+          // console.log("folderURI is " + folderURI);
           // Get the message ID
           messageID = mailURL.slice(messageIDIndex + MESSAGE_ID_PARAM.length);
+          // console.log("messageID is " + messageID);
 
           // if on Windows, there will be an added trailing slash which we remove
           if (/\/$/.test(messageID)) messageID = messageID.slice(0, messageID.length - 1);
@@ -84,9 +89,10 @@ var thunderlinkCommandLineHandler = {
       }
 
       if (msgHdr === null && messageID) {
+        // console.log("null msgHdr but messageID exists");
         const accountManager = Cc["@mozilla.org/messenger/account-manager;1"].getService(Ci.nsIMsgAccountManager);
         const folders = accountManager.allFolders;
-        for (let msgFolder in fixIterator(folders.enumerate(), Ci.nsIMsgFolder)) {
+        for (let msgFolder of fixIterator(folders.enumerate(), Ci.nsIMsgFolder)) {
           try {
             msgHdr = msgFolder.msgDatabase.getMsgHdrForMessageID(messageID);
             if (msgHdr !== null) {
@@ -115,12 +121,12 @@ var thunderlinkCommandLineHandler = {
           win.focus();
           win.gFolderTreeView.selectFolder(msgHdr.folder);
           win.gFolderDisplay.selectMessage(msgHdr);
-          // console.log("thunderlinkCommandLineHandler_handle: selecting " + msgHdr + "\n");
+          console.log("thunderlinkCommandLineHandler_handle: selecting " + msgHdr + " in 'tabmail'\n");
         } else {
           MailUtils.displayMessage(msgHdr);
         }
       } else {
-        // console.log("Unrecognized ThunderLink URL: " + mailURL + "\n");
+        console.log("Unrecognized ThunderLink URL: " + mailURL);
         var promptService = Components.classes["@mozilla.org/embedcomp/prompt-service;1"]
           .getService(Components.interfaces.nsIPromptService);
         promptService.alert(null, "Message not found", "Couldn't find an email message for ThunderLink\n\n" + mailURL);
@@ -129,11 +135,11 @@ var thunderlinkCommandLineHandler = {
     }
   },
 
-  getPref: function (prefName) {
+  getPref: function getPref(prefName) {
     var prefService = Components.classes["@mozilla.org/preferences-service;1"]
       .getService(Components.interfaces.nsIPrefService)
       .getBranch("extensions.thunderlink.");
-    prefService.QueryInterface(Components.interfaces.nsIPrefBranch2);
+    // prefService.QueryInterface(Components.interfaces.nsIPrefBranch2);
 
     return prefService.getCharPref(prefName);
   },
@@ -142,16 +148,15 @@ var thunderlinkCommandLineHandler = {
 
   /* nsIClassInfo */
   flags: Ci.nsIClassInfo.SINGLETON,
-  implementationLanguage: Ci.nsIProgrammingLanguage.JAVASCRIPT,
-  getHelperForLanguage: function (languageIgnored) { },
-  getInterfaces: function (count) {
+  getHelperForLanguage: function getHelperForLanguage(languageIgnored) { },
+  getInterfaces: function getInterfaces(count) {
     let interfaces = [Ci.nsICommandLineHandler];
     count.value = interfaces.length;
     return interfaces;
   },
 
   /* nsIFactory */
-  createInstance: function (outer, iid) {
+  createInstance: function createInstance(outer, iid) {
     if (outer != null) throw Cr.NS_ERROR_NO_AGGREGATION;
     return this.QueryInterface(iid);
   },

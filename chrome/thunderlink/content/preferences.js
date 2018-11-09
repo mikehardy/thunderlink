@@ -11,8 +11,7 @@
 
 var ThunderLinkPrefNS = {
 
-
-  CreateCustomStringTabbox: () => {
+  CreateCustomStringTabbox: function CreateCustomStringTabbox() {
     var XUL_NS = "http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul";
     Components.utils.import("resource:///modules/mailServices.js");
     function createCstrTabPanel(cstrnum) {
@@ -85,13 +84,11 @@ var ThunderLinkPrefNS = {
       return tabpanel;
     }
 
-
     function createCstrTab(cstrnum) {
       var tab = window.document.createElementNS(XUL_NS, "tab");
       tab.setAttribute("label", "String " + cstrnum);
       return tab;
     }
-
 
     var tabbox = window.document.getElementById("thunderlink-custom-strings-tabbox");
     if (tabbox.hasChildNodes()) {
@@ -112,7 +109,7 @@ var ThunderLinkPrefNS = {
     tabbox.appendChild(tabpanels);
   },
 
-  ToggleTlTagField: (cstrnum) => {
+  ToggleTlTagField: function ToggleTlTagField(cstrnum) {
     function $(aID) { return document.getElementById(aID); }
     var tlTagCheckbox = $("prefCustomTlString" + cstrnum + "-tagcheckbox");
     var tlTagField = $("prefCustomTlString" + cstrnum + "-tag");
@@ -123,20 +120,36 @@ var ThunderLinkPrefNS = {
     }
   },
 
-  GetPreferenceValue: (prefname, argIgnored) => {
+  GetPreferenceValue: function GetPreferenceValue(prefname, bool) {
     var prefService = Components.classes["@mozilla.org/preferences-service;1"]
       .getService(Components.interfaces.nsIPrefService)
       .getBranch("extensions.thunderlink.");
-    prefService.QueryInterface(Components.interfaces.nsIPrefBranch2);
+    prefService.QueryInterface(Components.interfaces.nsIPrefBranch);
 
-    return prefService.getBoolPref(prefname);
+    console.log("Looking for pref " + prefname + " / is it bool? " + bool);
+    var prefValue = "";
+    if (bool === "bool") {
+      prefValue = prefService.getBoolPref(prefname);
+    } else {
+      prefValue = prefService.getCharPref(prefname);
+    }
+    return prefValue;
   },
 
-  LOG: (msg) => {
+  LOG: function LOG(msg) {
     var consoleService = Components.classes["@mozilla.org/consoleservice;1"]
       .getService(Components.interfaces.nsIConsoleService);
     consoleService.logStringMessage(msg);
   },
 
+  escapeHtml: function escapeHtml(unsafe) {
+    console.log(`attempting to escape ${unsafe}`);
+    return unsafe
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#039;");
+  },
 
 };
