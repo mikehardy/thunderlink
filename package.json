@@ -1,0 +1,31 @@
+{
+  "name": "thunderlink-repo",
+  "version": "1.2.2",
+  "description": "Create links to your thunderbird messages",
+  "main": "thunderlink.js",
+  "dependencies": {},
+  "devDependencies": {
+    "eslint": "^5.5.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-mozilla": "^0.16.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mikehardy/thunderlink.git"
+  },
+  "keywords": [
+    "Thunderbird",
+    "messages",
+    "link"
+  ],
+  "author": "Mike Hardy <mike@mikehardy.net>",
+  "license": "MPL-2.0",
+  "bugs": {
+    "url": "https://github.com/mikehardy/thunderlink/issues"
+  },
+  "homepage": "https://github.com/mikehardy/thunderlink#readme"
+}
