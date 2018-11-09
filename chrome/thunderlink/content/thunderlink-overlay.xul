@@ -8,52 +8,25 @@
    - 
    - This Source Code Form is subject to the terms of the Mozilla Public
    - License, v. 2.0. If a copy of the MPL was not distributed with this
-   - file, You can obtain one at http://mozilla.org/MPL/2.0/. 
+   - file, You can obtain one at http://mozilla.org/MPL/2.0/.
 -->
 
-<overlay id="thunderbird-overlay" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
-    <script type="application/x-javascript" src="chrome://thunderlink/content/thunderlink.js"/>
-    <keyset>
-        <key id="cpCstTlStr1" modifiers="control alt" key="1"
-            oncommand="ThunderLinkChromeNS.CopyCustomTlStringToClp(1);"/>
-        <key id="cpCstTlStr2" modifiers="control alt" key="2"
-            oncommand="ThunderLinkChromeNS.CopyCustomTlStringToClp(2);"/>
-        <key id="cpCstTlStr3" modifiers="control alt" key="3"
-            oncommand="ThunderLinkChromeNS.CopyCustomTlStringToClp(3);"/>
-        <key id="cpCstTlStr4" modifiers="control alt" key="4"
-            oncommand="ThunderLinkChromeNS.CopyCustomTlStringToClp(4);"/>
-        <key id="cpCstTlStr5" modifiers="control alt" key="5"
-            oncommand="ThunderLinkChromeNS.CopyCustomTlStringToClp(5);"/>
-        <key id="cpCstTlStr6" modifiers="control alt" key="6"
-            oncommand="ThunderLinkChromeNS.CopyCustomTlStringToClp(6);"/>
-        <key id="cpCstTlStr7" modifiers="control alt" key="7"
-            oncommand="ThunderLinkChromeNS.CopyCustomTlStringToClp(7);"/>
-        <key id="cpCstTlStr8" modifiers="control alt" key="8"
-            oncommand="ThunderLinkChromeNS.CopyCustomTlStringToClp(8);"/>
-        <!--
-        <key id="cpTlStr" modifiers="control alt" key="5"
-            oncommand="ThunderLinkChromeNS.CopyMessageUrlToClp();"/>
-        <key id="cpTlStrWtExe" modifiers="control alt" key="6"
-            oncommand="ThunderLinkChromeNS.CopyMessageUrlToClpWithExe();"/>
--->
-    </keyset>
-    <popup id="mailContext">
-        <menu id="thunderlink-options" label="ThunderLink..." onpopupshowing="ThunderLinkChromeNS.OnTlMenuLoad();">
-            <menupopup id="thunderlink-custom-strings" >
-                <!--                <menuitem
-                    id="thunderlink_option"
-                    label="Copy plain TL to clipboard"
-                    oncommand="ThunderLinkChromeNS.CopyMessageUrlToClp();"/>
-
-                <menuitem
-                    id="thunderlink_exe_option"
-                    label="Copy call to executable + TL to clipboard"
-                    oncommand="ThunderLinkChromeNS.CopyMessageUrlToClpWithExe();"/>
-                <menu label="Copy user-defined TL string to clipboard:" onpopupshowing="ThunderLinkChromeNS.OnTlMenuLoad();">
-                    <menupopup id="thunderlink-custom-strings" />
-                </menu>-->
-            </menupopup>
-        </menu>		
-    </popup>
-
+<overlay id="thunderbird-overlay" 
+  xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+  <script type="application/x-javascript" src="chrome://thunderlink/content/thunderlink.js"/>
+  <keyset>
+    <key id="cpCstTlStr1" modifiers="control alt" key="1" oncommand="ThunderLinkChromeNS.CopyCustomTlStringToClp(1);"/>
+    <key id="cpCstTlStr2" modifiers="control alt" key="2" oncommand="ThunderLinkChromeNS.CopyCustomTlStringToClp(2);"/>
+    <key id="cpCstTlStr3" modifiers="control alt" key="3" oncommand="ThunderLinkChromeNS.CopyCustomTlStringToClp(3);"/>
+    <key id="cpCstTlStr4" modifiers="control alt" key="4" oncommand="ThunderLinkChromeNS.CopyCustomTlStringToClp(4);"/>
+    <key id="cpCstTlStr5" modifiers="control alt" key="5" oncommand="ThunderLinkChromeNS.CopyCustomTlStringToClp(5);"/>
+    <key id="cpCstTlStr6" modifiers="control alt" key="6" oncommand="ThunderLinkChromeNS.CopyCustomTlStringToClp(6);"/>
+    <key id="cpCstTlStr7" modifiers="control alt" key="7" oncommand="ThunderLinkChromeNS.CopyCustomTlStringToClp(7);"/>
+    <key id="cpCstTlStr8" modifiers="control alt" key="8" oncommand="ThunderLinkChromeNS.CopyCustomTlStringToClp(8);"/>
+  </keyset>
+  <popup id="mailContext">
+    <menu id="thunderlink-options" label="ThunderLink..." onpopupshowing="ThunderLinkChromeNS.OnTlMenuLoad();">
+      <menupopup id="thunderlink-custom-strings" />
+    </menu>
+  </popup>
 </overlay>    

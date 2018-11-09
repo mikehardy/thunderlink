@@ -8,72 +8,72 @@
    - 
    - This Source Code Form is subject to the terms of the Mozilla Public
    - License, v. 2.0. If a copy of the MPL was not distributed with this
-   - file, You can obtain one at http://mozilla.org/MPL/2.0/. 
+   - file, You can obtain one at http://mozilla.org/MPL/2.0/.
 -->
 
 <?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
-<prefwindow id="appPreferences"
-    xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul" >
-    <prefpane id="pane1" label="Preferences">
-        <preferences>
-            <preference id="prefs_customTlString1" name="extensions.thunderlink.custom-tl-string-1" type="string"/>
-            <preference id="prefs_customTlString2" name="extensions.thunderlink.custom-tl-string-2" type="string"/>
-            <preference id="prefs_customTlString3" name="extensions.thunderlink.custom-tl-string-3" type="string"/>
-            <preference id="prefs_customTlString4" name="extensions.thunderlink.custom-tl-string-4" type="string"/>
-            <preference id="prefs_customTlString5" name="extensions.thunderlink.custom-tl-string-5" type="string"/>
-            <preference id="prefs_customTlString6" name="extensions.thunderlink.custom-tl-string-6" type="string"/>
-            <preference id="prefs_customTlString7" name="extensions.thunderlink.custom-tl-string-7" type="string"/>
-            <preference id="prefs_customTlString8" name="extensions.thunderlink.custom-tl-string-8" type="string"/>
-            <preference id="prefs_customTlString1title" name="extensions.thunderlink.custom-tl-string-1-title" type="string"/>
-            <preference id="prefs_customTlString2title" name="extensions.thunderlink.custom-tl-string-2-title" type="string"/>
-            <preference id="prefs_customTlString3title" name="extensions.thunderlink.custom-tl-string-3-title" type="string"/>
-            <preference id="prefs_customTlString4title" name="extensions.thunderlink.custom-tl-string-4-title" type="string"/>
-            <preference id="prefs_customTlString5title" name="extensions.thunderlink.custom-tl-string-5-title" type="string"/>
-            <preference id="prefs_customTlString6title" name="extensions.thunderlink.custom-tl-string-6-title" type="string"/>
-            <preference id="prefs_customTlString7title" name="extensions.thunderlink.custom-tl-string-7-title" type="string"/>
-            <preference id="prefs_customTlString8title" name="extensions.thunderlink.custom-tl-string-8-title" type="string"/>
-            <preference id="prefs_customTlString1tagcheckbox" name="extensions.thunderlink.custom-tl-string-1-tagcheckbox" type="bool"/>
-            <preference id="prefs_customTlString2tagcheckbox" name="extensions.thunderlink.custom-tl-string-2-tagcheckbox" type="bool"/>
-            <preference id="prefs_customTlString3tagcheckbox" name="extensions.thunderlink.custom-tl-string-3-tagcheckbox" type="bool"/>
-            <preference id="prefs_customTlString4tagcheckbox" name="extensions.thunderlink.custom-tl-string-4-tagcheckbox" type="bool"/>
-            <preference id="prefs_customTlString5tagcheckbox" name="extensions.thunderlink.custom-tl-string-5-tagcheckbox" type="bool"/>
-            <preference id="prefs_customTlString6tagcheckbox" name="extensions.thunderlink.custom-tl-string-6-tagcheckbox" type="bool"/>
-            <preference id="prefs_customTlString7tagcheckbox" name="extensions.thunderlink.custom-tl-string-7-tagcheckbox" type="bool"/>
-            <preference id="prefs_customTlString8tagcheckbox" name="extensions.thunderlink.custom-tl-string-8-tagcheckbox" type="bool"/>
-            <preference id="prefs_customTlString1tag" name="extensions.thunderlink.custom-tl-string-1-tag" type="int"/>
-            <preference id="prefs_customTlString2tag" name="extensions.thunderlink.custom-tl-string-2-tag" type="int"/>
-            <preference id="prefs_customTlString3tag" name="extensions.thunderlink.custom-tl-string-3-tag" type="int"/>
-            <preference id="prefs_customTlString4tag" name="extensions.thunderlink.custom-tl-string-4-tag" type="int"/>
-            <preference id="prefs_customTlString5tag" name="extensions.thunderlink.custom-tl-string-5-tag" type="int"/>
-            <preference id="prefs_customTlString6tag" name="extensions.thunderlink.custom-tl-string-6-tag" type="int"/>
-            <preference id="prefs_customTlString7tag" name="extensions.thunderlink.custom-tl-string-7-tag" type="int"/>
-            <preference id="prefs_customTlString8tag" name="extensions.thunderlink.custom-tl-string-8-tag" type="int"/>
-            <preference id="prefs_openTlBehaviour" name="extensions.thunderlink.open-tl-behaviour" type="string"/>
-        </preferences>
-        <vbox>
-            <hbox>
-                <label control="openTlBehaviour" value="When running, open TLs "/>
-                <menulist id="openTlBehaviour" preference="prefs_openTlBehaviour">
-                    <menupopup>
-                        <menuitem label="in new tab" value="openInNewTab"/>
-                        <menuitem label="in new window" value="openInNewWindow"/>
-                        <menuitem label="by selecting in mailbox" value="bySelecting" />
-                    </menupopup>
-                </menulist>
-            </hbox>
-            <separator orient="horizontal" class="groove" /> 
-            <label control="csLabel" value="Custom ThunderLink string settings"/>
-            <separator class="groove-thin"/>
-            <label control="csLabel" value="You can use the following placeholders:"/>
-            <spacer size="10"/>
-            <label control="csLabel" value="&#60;thunderlink&#62; &#60;messageid&#62; &#60;subject&#62; &#60;filteredSubject&#62; &#60;sender&#62; &#60;tbexe&#62;"/>
-            <separator class="groove-thin"/>
-        </vbox>
-        <tabbox id="thunderlink-custom-strings-tabbox" selectedIndex="0"/>
-    </prefpane>
+<prefwindow id="appPreferences" 
+  xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+  <prefpane id="pane1" label="Preferences">
+    <preferences>
+      <preference id="prefs_customTlString1" name="extensions.thunderlink.custom-tl-string-1" type="string"/>
+      <preference id="prefs_customTlString2" name="extensions.thunderlink.custom-tl-string-2" type="string"/>
+      <preference id="prefs_customTlString3" name="extensions.thunderlink.custom-tl-string-3" type="string"/>
+      <preference id="prefs_customTlString4" name="extensions.thunderlink.custom-tl-string-4" type="string"/>
+      <preference id="prefs_customTlString5" name="extensions.thunderlink.custom-tl-string-5" type="string"/>
+      <preference id="prefs_customTlString6" name="extensions.thunderlink.custom-tl-string-6" type="string"/>
+      <preference id="prefs_customTlString7" name="extensions.thunderlink.custom-tl-string-7" type="string"/>
+      <preference id="prefs_customTlString8" name="extensions.thunderlink.custom-tl-string-8" type="string"/>
+      <preference id="prefs_customTlString1title" name="extensions.thunderlink.custom-tl-string-1-title" type="string"/>
+      <preference id="prefs_customTlString2title" name="extensions.thunderlink.custom-tl-string-2-title" type="string"/>
+      <preference id="prefs_customTlString3title" name="extensions.thunderlink.custom-tl-string-3-title" type="string"/>
+      <preference id="prefs_customTlString4title" name="extensions.thunderlink.custom-tl-string-4-title" type="string"/>
+      <preference id="prefs_customTlString5title" name="extensions.thunderlink.custom-tl-string-5-title" type="string"/>
+      <preference id="prefs_customTlString6title" name="extensions.thunderlink.custom-tl-string-6-title" type="string"/>
+      <preference id="prefs_customTlString7title" name="extensions.thunderlink.custom-tl-string-7-title" type="string"/>
+      <preference id="prefs_customTlString8title" name="extensions.thunderlink.custom-tl-string-8-title" type="string"/>
+      <preference id="prefs_customTlString1tagcheckbox" name="extensions.thunderlink.custom-tl-string-1-tagcheckbox" type="bool"/>
+      <preference id="prefs_customTlString2tagcheckbox" name="extensions.thunderlink.custom-tl-string-2-tagcheckbox" type="bool"/>
+      <preference id="prefs_customTlString3tagcheckbox" name="extensions.thunderlink.custom-tl-string-3-tagcheckbox" type="bool"/>
+      <preference id="prefs_customTlString4tagcheckbox" name="extensions.thunderlink.custom-tl-string-4-tagcheckbox" type="bool"/>
+      <preference id="prefs_customTlString5tagcheckbox" name="extensions.thunderlink.custom-tl-string-5-tagcheckbox" type="bool"/>
+      <preference id="prefs_customTlString6tagcheckbox" name="extensions.thunderlink.custom-tl-string-6-tagcheckbox" type="bool"/>
+      <preference id="prefs_customTlString7tagcheckbox" name="extensions.thunderlink.custom-tl-string-7-tagcheckbox" type="bool"/>
+      <preference id="prefs_customTlString8tagcheckbox" name="extensions.thunderlink.custom-tl-string-8-tagcheckbox" type="bool"/>
+      <preference id="prefs_customTlString1tag" name="extensions.thunderlink.custom-tl-string-1-tag" type="int"/>
+      <preference id="prefs_customTlString2tag" name="extensions.thunderlink.custom-tl-string-2-tag" type="int"/>
+      <preference id="prefs_customTlString3tag" name="extensions.thunderlink.custom-tl-string-3-tag" type="int"/>
+      <preference id="prefs_customTlString4tag" name="extensions.thunderlink.custom-tl-string-4-tag" type="int"/>
+      <preference id="prefs_customTlString5tag" name="extensions.thunderlink.custom-tl-string-5-tag" type="int"/>
+      <preference id="prefs_customTlString6tag" name="extensions.thunderlink.custom-tl-string-6-tag" type="int"/>
+      <preference id="prefs_customTlString7tag" name="extensions.thunderlink.custom-tl-string-7-tag" type="int"/>
+      <preference id="prefs_customTlString8tag" name="extensions.thunderlink.custom-tl-string-8-tag" type="int"/>
+      <preference id="prefs_openTlBehaviour" name="extensions.thunderlink.open-tl-behaviour" type="string"/>
+    </preferences>
+    <vbox>
+      <hbox>
+        <label control="openTlBehaviour" value="When running, open TLs "/>
+        <menulist id="openTlBehaviour" preference="prefs_openTlBehaviour">
+          <menupopup>
+            <menuitem label="in new tab" value="openInNewTab"/>
+            <menuitem label="in new window" value="openInNewWindow"/>
+            <menuitem label="by selecting in mailbox" value="bySelecting" />
+          </menupopup>
+        </menulist>
+      </hbox>
+      <separator orient="horizontal" class="groove" />
+      <label control="csLabel" value="Custom ThunderLink string settings"/>
+      <separator class="groove-thin"/>
+      <label control="csLabel" value="You can use the following placeholders:"/>
+      <spacer size="10"/>
+      <label control="csLabel" value="&#60;thunderlink&#62; &#60;messageid&#62; &#60;subject&#62; &#60;filteredSubject&#62; &#60;sender&#62; &#60;tbexe&#62;"/>
+      <separator class="groove-thin"/>
+    </vbox>
+    <tabbox id="thunderlink-custom-strings-tabbox" selectedIndex="0"/>
+  </prefpane>
 
-    <script type="application/x-javascript" src="chrome://thunderlink/content/preferences.js" />
-    <script type="application/x-javascript" for="window" event="onload" >
+  <script type="application/x-javascript" src="chrome://thunderlink/content/preferences.js" />
+  <script type="application/x-javascript" for="window" event="onload">
         this.ThunderLinkPrefNS.CreateCustomStringTabbox();
-    </script>
+  </script>
 </prefwindow>
