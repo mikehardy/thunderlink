@@ -67,11 +67,12 @@ var ThunderLinkChromeNS = {
     var keywords = hdr.getStringProperty("keywords");
     console.log("TagEmail: cur keywords: " + keywords);
 
-    function addKeywordToList(keywords, keywordIx) {
-      var keyword = "$label" + keywordIx;
-      if (keywords.contains(keyword)) return keywords;
-      keywords += " " + keyword;
-      return keywords;
+    function addKeywordToList(addKeywords, addKeywordIx) {
+      var keyword = "$label" + addKeywordIx;
+      if (addKeywords.contains(keyword)) return addKeywords;
+      // eslint-disable-next-line no-param-reassign
+      addKeywords += " " + keyword;
+      return addKeywords;
     }
     var msg = Components.classes["@mozilla.org/array;1"]
       .createInstance(Components.interfaces.nsIMutableArray);

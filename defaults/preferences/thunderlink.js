@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 /*
    ThunderLink.
    Link from your browser to your email messages!
@@ -6,7 +7,7 @@
 
    This Source Code Form is subject to the terms of the Mozilla Public
    License, v. 2.0. If a copy of the MPL was not distributed with this
-   file, You can obtain one at http://mozilla.org/MPL/2.0/. 
+   file, You can obtain one at http://mozilla.org/MPL/2.0/.
 */
 pref("extensions.thunderlink.custom-tl-string-1-title", "thunderlink");
 pref("extensions.thunderlink.custom-tl-string-1", "<thunderlink>");
