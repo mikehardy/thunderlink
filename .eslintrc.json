@@ -1,0 +1,32 @@
+{
+    "extends": [
+        "airbnb-base"
+    ],
+    "globals": {
+        "Components": false,
+        "document": false,
+        "fixIterator": false,
+        "gDBView": false,
+        "GlodaUtils": false,
+        "MailServices": false,
+        "MailUtils": false,
+        "window": false,
+        "XPCOMUtils": false
+    },
+    "rules": {
+        "camelcase": 0,
+        "prefer-template": 0,
+        "no-console": 0,
+        "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }],
+        "no-param-reassign": ["error", { "props": true, "ignorePropertyModificationsFor": ["aCommandLine", "count"] }],
+        "no-underscore-dangle": ["error", { "allowAfterThis": true }],
+        "no-unused-vars": ["error", { 
+            "varsIgnorePattern": "NSGetFactory|MAPI_STARTUP_ARG",
+            "argsIgnorePattern": "[iI]gnored"
+        }],
+        "no-var": 0,
+        "object-shorthand": 0,
+        "quotes": 0,
+        "vars-on-top": 0
+    }
+}
