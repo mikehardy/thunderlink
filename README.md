@@ -95,7 +95,7 @@ ThunderLinks are also recognized and turned into hyperlinks by Thunderbird itsel
    </code>
    - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 
-   <b>on Windows 7 64 bit:</b>
+   <b>on Windows 7 64 bit and Windows 10 64 bit (Thunderbird 32 bit):</b>
 
    - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
    <code>
