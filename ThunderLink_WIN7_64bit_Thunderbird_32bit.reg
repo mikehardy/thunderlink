@@ -1,6 +1,6 @@
 REGEDIT4
 
-;Thunderlink Windows 7 64-bit with Thunderbird 32-bit
+;Thunderlink on Windows 7 64-bit with Thunderbird 32-bit
 
 [HKEY_CLASSES_ROOT\thunderlink]
 @="URL:thunderlink Protocol"
