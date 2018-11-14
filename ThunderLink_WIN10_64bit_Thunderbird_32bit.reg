@@ -1,0 +1,14 @@
+REGEDIT4
+
+;Thunderlink on Windows 10 64-bit with Thunderbird 32-bit
+
+[HKEY_CLASSES_ROOT\thunderlink]
+@="URL:thunderlink Protocol"
+"URL Protocol"=""
+
+[HKEY_CLASSES_ROOT\thunderlink\shell]
+
+[HKEY_CLASSES_ROOT\thunderlink\shell\open]
+
+[HKEY_CLASSES_ROOT\thunderlink\shell\open\command]
+@="\"C:\\Program Files (x86)\\Mozilla Thunderbird\\thunderbird.exe\" -thunderlink \"%1\""
