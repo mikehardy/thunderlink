@@ -1,0 +1,14 @@
+REGEDIT4
+
+;Thunderlink Windows XP and Windows 7 32-bit with Thunderbird 32-bit
+
+[HKEY_CLASSES_ROOT\thunderlink]
+@="URL:thunderlink Protocol"
+"URL Protocol"=""
+
+[HKEY_CLASSES_ROOT\thunderlink\shell]
+
+[HKEY_CLASSES_ROOT\thunderlink\shell\open]
+
+[HKEY_CLASSES_ROOT\thunderlink\shell\open\command]
+@=""C:\\Program Files\\Mozilla Thunderbird\\thunderbird.exe" -thunderlink "%1""
