@@ -68,74 +68,17 @@ ThunderLinks are also recognized and turned into hyperlinks by Thunderbird itsel
    </ol>
    Otherwise, the instructions are the same.
 
-   <b>on Windows 7 (32 bit) and XP:</b>
+   <b>For Windows:</b>
    ------------------------------------------------------------------------------------------------
-   there is a .reg script for registering the thunderlink protocol:
-
-
-   - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
-   <code>
+   You need to download the "raw" version of the file that matches your version of Windows and Thunderbird, then double-click + confirm the registry script to merge it in to your registry and enable the thunderlink protocol:
+   - [Windows 7 and XP 32bit with Thunderbird 32bit](ThunderLink_WINXP_WIN7_32bit_Thunderbird_32bit.reg)
+   - [Windows 7 64bit with Thunderbird 32bit](ThunderLink_WIN7_64bit_Thunderbird_32bit.reg)
+   - [Windows 10 64bit with Thunderbird 32bit](ThunderLink_WIN10_64bit_Thunderbird_32bit.reg)
    
-   REGEDIT4
-
-   [HKEY_CLASSES_ROOT\thunderlink]
+   These .reg files were generously provided by @mobileartur - please feel free to provide others or open pull requests to help other windows users
    
-   @="URL:thunderlink Protocol"
    
-   "URL Protocol"=""
-
-   [HKEY_CLASSES_ROOT\thunderlink\shell]
-
-   [HKEY_CLASSES_ROOT\thunderlink\shell\open]
-
-   [HKEY_CLASSES_ROOT\thunderlink\shell\open\command]
    
-   @="\"C:\\\\Program Files\\\\Mozilla Thunderbird\\\\thunderbird.exe\" -thunderlink \"%1\""
-   
-   </code>
-   - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
-
-   <b>on Windows 7 64 bit and Windows 10 64 bit (Thunderbird 32 bit):</b>
-
-   - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
-   <code>
-   
-   REGEDIT4
-
-   [HKEY_CLASSES_ROOT\thunderlink]
-   
-   @="URL:thunderlink Protocol"
-   
-   "URL Protocol"=""
-
-   [HKEY_CLASSES_ROOT\thunderlink\shell]
-
-   [HKEY_CLASSES_ROOT\thunderlink\shell\open]
-
-   [HKEY_CLASSES_ROOT\thunderlink\shell\open\command]
-   
-   @="\"C:\\\\Program Files (x86)\\\\Mozilla Thunderbird\\\\thunderbird.exe\" -thunderlink \"%1\""
-   
-   </code>
-   - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
-
-   Create a file with .reg extension, copy the stuff between the dashes into it, changing the path to the thunderbird.exe if necessary, double-click on the file, confirm execution, done.
-
-   ------------------------------------------------------------------------------------------------
-   
-   <b>on Windows 8</b>
-   
-   Haven't tried it myself, but this guide should help:
-   http://msdn.microsoft.com/en-us/library/aa767914%28v=VS.85%29.aspx
-
-   ------------------------------------------------------------------------------------------------
-
-   The easiest way to find out the install location is to right-click on the shortcut to Thunderbird in your Start menu and select Properties, and then check the "Target" or "Start in" fields for the path data. (thx Sean!)
-
-   ... and that's it, you're good to go!
-
-
-
    <b>Usage</b>
    
    =====
