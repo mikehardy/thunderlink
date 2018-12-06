@@ -21,6 +21,15 @@ ThunderLinks are based on the unique message ID generated when an email is sent.
 </ol>
  </b>
 
+   <b>Windows:</b>
+   ------------------------------------------------------------------------------------------------
+   You need to download the "raw" version of the file that matches your version of Windows and Thunderbird, then double-click + confirm the registry script to merge it in to your registry and enable the thunderlink protocol:
+   - [Windows 7 and XP 32bit with Thunderbird 32bit](ThunderLink_WINXP_WIN7_32bit_Thunderbird_32bit.reg)
+   - [Windows 7 64bit with Thunderbird 32bit](ThunderLink_WIN7_64bit_Thunderbird_32bit.reg)
+   - [Windows 10 64bit with Thunderbird 32bit](ThunderLink_WIN10_64bit_Thunderbird_32bit.reg)
+   
+   These .reg files were generously provided by @mobileartur - please feel free to provide others or open pull requests to help other windows users
+
    <b>Linux (Tested on Ubuntu 18.04LTS):</b>
    --------------------------
    <ol>
@@ -45,15 +54,6 @@ ThunderLinks are based on the unique message ID generated when an email is sent.
    <li>in Thunderbird, you might have to explicitly select the new handler: Go to edit->preferences->attachments. In the "incoming" tab, you will have to select as the action for thunderlink whatever name you chose for the handler in the thunderbird-tl.desktop file</li>
    </ol>
    </ol>
-
-   <b>Windows:</b>
-   ------------------------------------------------------------------------------------------------
-   You need to download the "raw" version of the file that matches your version of Windows and Thunderbird, then double-click + confirm the registry script to merge it in to your registry and enable the thunderlink protocol:
-   - [Windows 7 and XP 32bit with Thunderbird 32bit](ThunderLink_WINXP_WIN7_32bit_Thunderbird_32bit.reg)
-   - [Windows 7 64bit with Thunderbird 32bit](ThunderLink_WIN7_64bit_Thunderbird_32bit.reg)
-   - [Windows 10 64bit with Thunderbird 32bit](ThunderLink_WIN10_64bit_Thunderbird_32bit.reg)
-   
-   These .reg files were generously provided by @mobileartur - please feel free to provide others or open pull requests to help other windows users
 
    <b>Mac:</b>
    ------------------------------------------------------------------------------------------------
