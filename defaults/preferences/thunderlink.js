@@ -41,4 +41,4 @@ pref("extensions.thunderlink.custom-tl-string-8-title", "Custom String 8");
 pref("extensions.thunderlink.custom-tl-string-8", "<thunderlink>");
 pref("extensions.thunderlink.custom-tl-string-8-tagcheckbox", false);
 pref("extensions.thunderlink.custom-tl-string-8-tag", 1);
-pref("extensions.thunderlink.open-tl-behaviour", "bySelecting");
+pref("extensions.thunderlink.open-tl-behaviour", "openInNewWindow");
