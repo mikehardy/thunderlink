@@ -1,49 +1,38 @@
-<b>ThunderLink</b>
+<b>ThunderLink - clickable links to specific messages</b>
 =========
 
-ThunderLink lets you link to email messages in Thunderbird.
+ThunderLinks are customizable hyperlinks to specific email messages.
 
-You can place ThunderLinks on the Desktop (in batch scripts), in OpenOffice/LibreOffice documents or in a personal wiki (such as <a href="http://www.tiddlywiki.com"> "TiddlyWiki"</a>).
+Create a thunderlink for any message, using a default format or a format you specify.
 
-Or maybe you have a Wiki running at your company and you want to link to emails sent to a mailing list so that your colleagues can quickly access them without having to search their inboxes first?
+Click on a thunderlink later to open that specific message in Thunderbird.
 
-Use a ThunderLink!
+With thunderlink you can quickly file important emails away while still preserving immediate access to the message in external knowledge systems - for example in a task tracking application, a wiki, or documents so that you or others can immediately pull up a specific email related to the task.
 
-With version 1.0.0, It's now also easy to integrate ThunderLink with todo lists and task managers such as RememberTheMilk, MyLifeOrganized, Evernote, OneNote, Nirvana, Taskwarrior, etc. 
-You can completely customize ThunderLinks to fit your application's needs. And you can tag the emails you created a link to for advanced workflows and more productivity!
+You may completely customize ThunderLinks to fit your application's needs. And you can tag the emails you created a link to for advanced workflows and more productivity!
 
-ThunderLinks are based on the unique message ID generated when an email is sent. This enables the Thunderbird email client to quickly and reliably find and select an email - as long as you actually received it.
-
-With the companion extension ThunderLinkSpotter for the Firefox webbrowser you can make Firefox "ThunderLink-aware", so that it will automatically turn ThunderLinks into hyperlinks. One click and you can read the email you were looking for.
-
-ThunderLinks are also recognized and turned into hyperlinks by Thunderbird itself, so you can use them in emails, too.
-
+ThunderLinks are based on the unique message ID generated when an email is sent. This enables the Thunderbird email client to quickly and reliably find and select any email in your Thunderbird mail store.
 
 <b>Installation</b>
 ========
 <ol>
-<li>install ThunderLink in Thunderbird
-   (use "all versions" link below for Thunderbird versions older than 5.0)</li>
-   <li>install ThunderLinkSpotter in Firefox</li>
-   <li>register the 'thunderlink' protocol in your OS following the instructions below:</li>
-   </ol>
-   </b>
+<li>install ThunderLink in Thunderbird</li>
+<li>register the 'thunderlink' protocol in your OS following the instructions below:</li>
+</ol>
+ </b>
 
-   <b>on Linux (ubuntu):</b>
+   <b>Linux (Tested on Ubuntu 18.04LTS):</b>
    --------------------------
-   <b>pre-Natty:</b>
-   follow these instructions: http://kb.mozillazine.org/Register_protocol
-   Make sure you use the <b>-thunderlink</b> command line option when invoking Thunderbird, e.g. for Linux: 
-   <code>/gconftool-2 -s /desktop/gnome/url-handlers/thunderlink/command '/usr/bin/thunderbird -thunderlink %s' --type String </code>
-
-   <b>Natty and newer:</b>
    <ol>
-   <li>You'll need to update your ~/.local/share/applications/mimeapps.list:
-   under [Added Associations], add the line
-   x-scheme-handler/thunderlink=thunderbird-tl.desktop;</li>
-
-   <li>then, make a copy of your ~/.local/share/applications/thunderbird.desktop and name it thunderbird-tl.desktop </li>
-
+   <li>Connect the "thunderlink" URL type to a launcher file 
+   <ol>
+   <li>find and open either ~/.local/share/applications/mimeapps.list or /usr/share/applications/defaults.list for edit</li>
+   <li>find the [Added Associations] section</li>
+   <li>add the line x-scheme-handler/thunderlink=thunderbird-tl.desktop;</li>
+   </ol>
+   <li>Create a thunderlink launcher</li>
+   <ol>
+   <li>Find and copy the current thunderbird launcher (should be /usr/share/applications/thunderbird.desktop) to ~/.local/share/applications/thunderbird-tl.desktop </li>
    <li>Change the line that starts with
    Exec=thunderbird %u...
    to
@@ -55,20 +44,9 @@ ThunderLinks are also recognized and turned into hyperlinks by Thunderbird itsel
    this entry for Thunderbird will thus serve only for handling ThunderLinks.</li>
    <li>in Thunderbird, you might have to explicitly select the new handler: Go to edit->preferences->attachments. In the "incoming" tab, you will have to select as the action for thunderlink whatever name you chose for the handler in the thunderbird-tl.desktop file</li>
    </ol>
-
-   <b>Oneiric and newer:</b>
-
-   Like Natty but you might have to 
-   <ol>
-   <li>in 1), edit 
-   /usr/share/applications/defaults.list instead of ~/.local/share/applications/mimeapps.list
-   </li>
-   <li>in 2), the thunderbird.desktop file has to be copied from /usr/share/applications/ to your ~/.local/share/applications
-   </li>
    </ol>
-   Otherwise, the instructions are the same.
 
-   <b>For Windows:</b>
+   <b>Windows:</b>
    ------------------------------------------------------------------------------------------------
    You need to download the "raw" version of the file that matches your version of Windows and Thunderbird, then double-click + confirm the registry script to merge it in to your registry and enable the thunderlink protocol:
    - [Windows 7 and XP 32bit with Thunderbird 32bit](ThunderLink_WINXP_WIN7_32bit_Thunderbird_32bit.reg)
@@ -76,12 +54,13 @@ ThunderLinks are also recognized and turned into hyperlinks by Thunderbird itsel
    - [Windows 10 64bit with Thunderbird 32bit](ThunderLink_WIN10_64bit_Thunderbird_32bit.reg)
    
    These .reg files were generously provided by @mobileartur - please feel free to provide others or open pull requests to help other windows users
-   
-   
+
+   <b>Mac:</b>
+   ------------------------------------------------------------------------------------------------
+   macOS has evolved recently and made it quite difficult to register new protocol handlers. If anyone discovers how to register thunderlinks in macOS, please explain how in a Github issue or pull request (thanks!). It is however possible to configure thunderlink to create links compatible with Mail.app, and if you register those links correctly in other environments you may still use Thunderbird to create links that work everywhere, while on the Mac they will still pull up specific messages in Mail.app so information retrieval works.
    
    <b>Usage</b>
-   
-   =====
+   ---------------------------
    
    Right-click on an email and select 'Copy ThunderLink to clipboard'. You now have the ThunderLink to your email in your clipboard. You can paste it into your personal wiki, or your project teams wiki, for instance.
 
@@ -89,30 +68,19 @@ ThunderLinks are also recognized and turned into hyperlinks by Thunderbird itsel
 
    If you registered the thunderbird protocol correctly, a click on the ThunderLink will take you to Thunderbird and select your email immediately. If Thunderbird wasn't running yet, the email will show in a stand-alone window.
 
-
-   <b>Usage with <a href="http://mylifeorganized.net/">MyLifeOrganized</a> (MLO)</b>
    
+   <b>Notes:</b>
    =====
-   
-   MyLifeOrganized (MLO) is a popular task manager, organizer, project management tool, etc. Once you have ThunderLink setup such that your OS recognizes and correctly executes ThunderLinks, there is one additional detail for getting MLO to recognize ThunderLinks (within a MLO Task Note filed): You must prefix the ThunderLink with `file:`. This will indicate to the MLO software that the ThunderLink should be treated like a link. Note that `file:` works with other things as well (e.g., Evernote local links -> `file:evernote:///...`).
-   
-   If you like to use the MLO Rapid Task Entry box, you could configure your ThunderLinks like the following example:
+   <ul>
+   <li>Some task managers (for example, MyLifeOrganized (MLO)) require you to prefix the ThunderLink with `file:` to be treated like a link</li>
+   <li>You can configure very complicated thunderlinks if you like. For example:
    ```
    Email: <subject>   -s Tomorrow -*   @ Work;Email; 
    file:<thunderlink>
    ```
-   Note that the TL is on the second line. Also, I having extra spaces between some of the items can make it easier for you if you need to tweak something (eg, change the Start Date, or add a MLO Context).
-   
-   In MLO Rapid Task Entry, if you uncheck "Multiple Task Entry (1 task per line...)" then pasting the above TL result into the Rapid Task Entry box will produce the following MLO Task:
-   ```
-   Task Subject = "Email: EMAIL_SUBJECT" 
-   Start: Tomorrow 
-   Star 
-   Contexts: Work; Email; 
-   Task Note: A clickable ThunderLink, beginning with "file:"
-   ```
-   <a href="https://github.com/poohsen/thunderlink/issues/20#issuecomment-54720844">Reference for Above.</a>
-   
+   </li>
+   </ul>
+
 
    <b>Having trouble?</b>
    
