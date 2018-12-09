@@ -24,9 +24,9 @@ ThunderLinks are based on the unique message ID generated when an email is sent.
    <b>Windows:</b>
    ------------------------------------------------------------------------------------------------
    You need to download the "raw" version of the file that matches your version of Windows and Thunderbird, then double-click + confirm the registry script to merge it in to your registry and enable the thunderlink protocol:
-   - https://github.com/mikehardy/thunderlink/blob/master/ThunderLink_WINXP_WIN7_32bit_Thunderbird_32bit.reg
-   - https://github.com/mikehardy/thunderlink/blob/master/ThunderLink_WIN7_64bit_Thunderbird_32bit.reg
-   - https://github.com/mikehardy/thunderlink/blob/master/ThunderLink_WIN10_64bit_Thunderbird_32bit.reg
+   - https://github.com/mikehardy/thunderlink/blob/master/integration/ThunderLink_WINXP_WIN7_32bit_Thunderbird_32bit.reg
+   - https://github.com/mikehardy/thunderlink/blob/master/integration/ThunderLink_WIN7_64bit_Thunderbird_32bit.reg
+   - https://github.com/mikehardy/thunderlink/blob/master/integration/ThunderLink_WIN10_64bit_Thunderbird_32bit.reg
    
    These .reg files were generously provided by @mobileartur - please feel free to provide others or open pull requests to help other windows users
 
