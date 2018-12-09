@@ -69,7 +69,7 @@ var ThunderLinkPrefNS = {
 
           menuItem.setAttribute("label", tagArray[j].tag);
           menuItem.setAttribute("value", j + 1);
-          if (selectedIndex === (j + 1)) {
+          if (selectedIndex === (j + 1) && ThunderLinkPrefNS.GetPreferenceValue("custom-tl-string-" + cstrnum + "-tagcheckbox", "bool")) {
             menuItem.setAttribute("selected", true);
           }
           menuPopup.appendChild(menuItem);
@@ -123,8 +123,8 @@ var ThunderLinkPrefNS = {
 
   ToggleTlTagField: function ToggleTlTagField(cstrnum) {
     function $(aID) { return document.getElementById(aID); }
-    var tlTagCheckbox = $("prefCustomTlString" + cstrnum + "-tagcheckbox");
-    var tlTagField = $("prefCustomTlString" + cstrnum + "-tag");
+    var tlTagCheckbox = $("thunderlink-prefCustomTlString" + cstrnum + "-tagcheckbox");
+    var tlTagField = $("thunderlink-prefCustomTlString" + cstrnum + "-tag");
     if (tlTagCheckbox.checked) {
       tlTagField.disabled = false;
     } else {
