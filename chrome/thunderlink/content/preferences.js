@@ -11,9 +11,14 @@
 
 var ThunderLinkPrefNS = {
 
+  prefs: null,
+
   CreateCustomStringTabbox: function CreateCustomStringTabbox() {
     var XUL_NS = "http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul";
     Components.utils.import("resource:///modules/mailServices.js");
+
+    this.startup();
+
     function createCstrTabPanel(cstrnum) {
       var tabpanel = window.document.createElementNS(XUL_NS, "tabpanel");
       var vbox = window.document.createElementNS(XUL_NS, "vbox");
@@ -46,7 +51,7 @@ var ThunderLinkPrefNS = {
 
       var tagCheckbox = window.document.createElementNS(XUL_NS, "checkbox");
       tagCheckbox.setAttribute("id", "prefCustomTlString" + cstrnum + "-tagcheckbox");
-      tagCheckbox.setAttribute("checked", "false");
+      tagCheckbox.setAttribute("checked", ThunderLinkPrefNS.GetPreferenceValue("custom-tl-string-" + cstrnum + "-tagcheckbox", "bool"));
       tagCheckbox.setAttribute("preference", "prefs_customTlString" + cstrnum + "tagcheckbox");
       tagCheckbox.setAttribute("label", "Tag email upon copying the ThunderLink:");
       tagCheckbox.setAttribute("oncommand", "ThunderLinkPrefNS.ToggleTlTagField(" + cstrnum + ");");
@@ -120,21 +125,29 @@ var ThunderLinkPrefNS = {
     } else {
       tlTagField.disabled = true;
     }
+    console.log("toggling tag field " + cstrnum + " to " + tlTagCheckbox.checked);
+  },
+
+  startup: function startup() {
+    this.prefs = Components.classes["@mozilla.org/preferences-service;1"]
+      .getService(Components.interfaces.nsIPrefService)
+      .getBranch("extensions.thunderlink.");
   },
 
   GetPreferenceValue: function GetPreferenceValue(prefname, bool) {
-    var prefService = Components.classes["@mozilla.org/preferences-service;1"]
-      .getService(Components.interfaces.nsIPrefService)
-      .getBranch("extensions.thunderlink.");
+    // var prefService = Components.classes["@mozilla.org/preferences-service;1"]
+    //   .getService(Components.interfaces.nsIPrefService)
+    //   .getBranch("extensions.thunderlink.");
     // prefService.QueryInterface(Components.interfaces.nsIPrefBranch);
 
     console.log("Looking for pref " + prefname + " / is it bool? " + bool);
     var prefValue = "";
     if (bool === "bool") {
-      prefValue = prefService.getBoolPref(prefname);
+      prefValue = this.prefs.getBoolPref(prefname);
     } else {
-      prefValue = prefService.getCharPref(prefname);
+      prefValue = this.prefs.getCharPref(prefname);
     }
+    console.log("pref " + prefname + " is " + prefValue);
     return prefValue;
   },
 
@@ -142,6 +155,48 @@ var ThunderLinkPrefNS = {
     var consoleService = Components.classes["@mozilla.org/consoleservice;1"]
       .getService(Components.interfaces.nsIConsoleService);
     consoleService.logStringMessage(msg);
+  },
+
+  onUnload: function onUnload(prefwindow) {
+    console.log("unloading preferences window " + prefwindow + " / " + prefwindow.id);
+
+    if (this.prefs.getPrefType('open-tl-behaviour')) {
+      console.log("key exists: " + this.prefs.getCharPref('open-tl-behaviour'));
+      if (this.prefs.prefHasUserValue('open-tl-behaviour')) {
+        console.log("key has user-specific value");
+      }
+
+      var openTlBehaviourElement = prefwindow.getElementById("openTlBehaviour");
+      console.log("tl behavior value is: " + openTlBehaviourElement.value);
+      this.prefs.setCharPref("open-tl-behaviour", openTlBehaviourElement.value);
+    }
+
+    for (var cstrnum = 1; cstrnum <= 8; cstrnum++) {
+      // Save the title
+      var titleElement = prefwindow.getElementById("prefCustomTlString" + cstrnum + "-title");
+      console.log("setting title " + cstrnum + " to " + titleElement.value);
+      this.prefs.setCharPref("custom-tl-string-" + cstrnum + "-title", titleElement.value);
+
+      // Save the content
+      var linkElement = prefwindow.getElementById("prefCustomTlString" + cstrnum + "-textbox");
+      console.log("setting link " + cstrnum + " to " + linkElement.value);
+      this.prefs.setCharPref("custom-tl-string-" + cstrnum, linkElement.value);
+
+      // Save whether we should tag or not
+      var tagEnabledEl = prefwindow.getElementById("prefCustomTlString" + cstrnum + "-tagcheckbox");
+      console.log("We should tag email for " + cstrnum + "? " + tagEnabledEl.checked);
+      this.prefs.setBoolPref("custom-tl-string-" + cstrnum + "-tagcheckbox", tagEnabledEl.checked);
+
+      // Save the tag
+      var tagElement = prefwindow.getElementById("prefCustomTlString" + cstrnum + "-tag");
+      console.log("We should tag " + cstrnum + " with " + tagElement.value);
+      this.prefs.setIntPref("custom-tl-string-" + cstrnum + "-tag", tagElement.value);
+    }
+
+    var prefService = Components.classes["@mozilla.org/preferences-service;1"]
+      .getService(Components.interfaces.nsIPrefService);
+    prefService.savePrefFile(null);
+    return true;
   },
 
   escapeHtml: function escapeHtml(unsafe) {
