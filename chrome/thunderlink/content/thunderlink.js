@@ -64,14 +64,15 @@ var ThunderLinkChromeNS = {
     console.log("TagEmail: keywordIx: " + keywordIx);
     var hdr = gDBView.hdrForFirstSelectedMessage;
     console.log("TagEmail: hdr: " + hdr + "\n");
-    var keywords = hdr.getStringProperty("keywords");
-    console.log("TagEmail: cur keywords: " + keywords);
+    var keywords = "" + hdr.getStringProperty("keywords");
+    console.log("TagEmail: current keywords: " + keywords);
 
     function addKeywordToList(addKeywords, addKeywordIx) {
       var keyword = "$label" + addKeywordIx;
-      if (addKeywords.contains(keyword)) return addKeywords;
+      if (addKeywords.includes(keyword)) return addKeywords;
       // eslint-disable-next-line no-param-reassign
       addKeywords += " " + keyword;
+      console.log("TagEmail: keywords after processing: " + addKeywords);
       return addKeywords;
     }
     var msg = Components.classes["@mozilla.org/array;1"]
