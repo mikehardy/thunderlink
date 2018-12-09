@@ -3,6 +3,7 @@
    Link from your browser to your email messages!
 
    Copyright (C) 2011 Christoph Zwirello
+   Copyright (C) 2018 Mike Hardy <mike@mikehardy.net>
 
    This Source Code Form is subject to the terms of the Mozilla Public
    License, v. 2.0. If a copy of the MPL was not distributed with this
@@ -45,7 +46,6 @@ var ThunderLinkChromeNS = {
     var prefService = Components.classes["@mozilla.org/preferences-service;1"]
       .getService(Components.interfaces.nsIPrefService)
       .getBranch("extensions.thunderlink.");
-    // prefService.QueryInterface(Components.interfaces.nsIPrefBranch2);
 
     var customTlStr = prefService.getCharPref("custom-tl-string-" + cstrnum);
     console.log("CopyCustomTlStringToClp: customTlStr: " + customTlStr + "\n");
@@ -55,7 +55,6 @@ var ThunderLinkChromeNS = {
     console.log("CopyCustomTlStringToClp: procCustomTlStr resolved: " + procCustomTlStr + "\n");
     procCustomTlStr = ThunderLinkChromeNS.FixNewlines(procCustomTlStr);
     console.log("CopyCustomTlStringToClp: procCustomTlStr newlines fixed: " + procCustomTlStr + "\n");
-    console.log("I'm still alive");
     if (tagActive) this.TagEmail(prefService.getIntPref("custom-tl-string-" + cstrnum + "-tag"));
     ThunderLinkChromeNS.CopyStringToClpBrd(procCustomTlStr);
   },
@@ -86,7 +85,6 @@ var ThunderLinkChromeNS = {
   },
 
   FixNewlines: function FixNewlines(tlstring) {
-    // fix for issue #1; need to fix newlines on windows
     var osString = Components.classes["@mozilla.org/xre/app-info;1"]
       .getService(Components.interfaces.nsIXULRuntime).OS;
 
@@ -119,7 +117,6 @@ var ThunderLinkChromeNS = {
     var prefService = Components.classes["@mozilla.org/preferences-service;1"]
       .getService(Components.interfaces.nsIPrefService)
       .getBranch("extensions.thunderlink.");
-    // prefService.QueryInterface(Components.interfaces.nsIPrefBranch2);
 
     return prefService.getCharPref("custom-tl-string-" + cstrnum + "-title");
   },
@@ -136,7 +133,7 @@ var ThunderLinkChromeNS = {
       if (!label.length || label.match(/^\./)) return null;
 
       const XUL_NS = "http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul";
-      var item = window.document.createElementNS(XUL_NS, "menuitem"); // create a new XUL menuitem
+      var item = window.document.createElementNS(XUL_NS, "menuitem");
       item.setAttribute("label", ThunderLinkChromeNS.ConvertToUnicode(label));
       item.addEventListener("command", () => { ThunderLinkChromeNS.CopyCustomTlStringToClp(cstrnum); }, false);
       return item;

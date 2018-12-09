@@ -3,6 +3,7 @@
    Link from your browser to your email messages!
 
    Copyright (C) 2011 Christoph Zwirello
+   Copyright (C) 2018 Mike Hardy <mike@mikehardy.net>
 
    This Source Code Form is subject to the terms of the Mozilla Public
    License, v. 2.0. If a copy of the MPL was not distributed with this
@@ -26,8 +27,6 @@ var thunderlinkCommandLineHandler = {
     return this._messenger;
   },
 
-  /* thunderlinkCommandLineHandler */
-
   /**
    * Handles the following command line arguments:
    * - -thunderlink: opens the mail folder view
@@ -50,16 +49,10 @@ var thunderlinkCommandLineHandler = {
 
     if (mailURL && mailURL.length > 0) {
       if (/^thunderlink:\/\//.test(mailURL)) {
-        // console.log("mailURL has a thunderlink prefix");
         // This might be a standard message URI, or one with a messageID parameter
         const messageIDIndex = mailURL.toLowerCase().indexOf(MESSAGE_ID_PARAM);
-        // console.log("messageIDIndex is " + messageIDIndex);
         if (messageIDIndex !== -1) {
-          // messageID parameter
-          // Convert the message URI into a folder URI
-          // const folderURI = mailURL.slice(0, messageIDIndex).replace("thunderlink", "mailbox");
-          // console.log("folderURI is " + folderURI);
-          // Get the message ID
+          // Convert the messageID URI into a folder URI
           messageID = mailURL.slice(messageIDIndex + MESSAGE_ID_PARAM.length);
           // console.log("messageID is " + messageID);
 
@@ -68,13 +61,6 @@ var thunderlinkCommandLineHandler = {
 
           // Make sure the folder tree is initialized
           MailUtils.discoverFolders();
-
-          // let folder = MailUtils.getFolderForURI(folderURI, true);
-          // The folder might not exist, so guard against that
-          // if (folder && messageID.length > 0)
-          //  msgHdr = folder.msgDatabase.getMsgHdrForMessageID(messageID);
-
-          // No message in this folder? Search through all folders:
         }
       } else if (/^\w*:/.test(mailURL)) {
         // handle pontential protocols followed by messageId such as RFC 2392 or macOS message://
@@ -89,7 +75,6 @@ var thunderlinkCommandLineHandler = {
       }
 
       if (msgHdr === null && messageID) {
-        // console.log("null msgHdr but messageID exists");
         const accountManager = Cc["@mozilla.org/messenger/account-manager;1"].getService(Ci.nsIMsgAccountManager);
         const folders = accountManager.allFolders;
         // eslint-disable-next-line no-restricted-syntax
@@ -131,7 +116,6 @@ var thunderlinkCommandLineHandler = {
         var promptService = Components.classes["@mozilla.org/embedcomp/prompt-service;1"]
           .getService(Components.interfaces.nsIPromptService);
         promptService.alert(null, "Message not found", "Couldn't find an email message for ThunderLink\n\n" + mailURL);
-        // Components.utils.reportError("Couldn't find message for ThunderLink\n\n" + mailURL);
       }
     }
   },
@@ -140,8 +124,6 @@ var thunderlinkCommandLineHandler = {
     var prefService = Components.classes["@mozilla.org/preferences-service;1"]
       .getService(Components.interfaces.nsIPrefService)
       .getBranch("extensions.thunderlink.");
-    // prefService.QueryInterface(Components.interfaces.nsIPrefBranch2);
-
     return prefService.getCharPref(prefName);
   },
 
@@ -167,27 +149,10 @@ var thunderlinkCommandLineHandler = {
 
 function thunderlinkCommandLineHandlerModule() { }
 thunderlinkCommandLineHandlerModule.prototype = {
-  // XPCOM registration now done in manifest
-  // classDescription: "ThunderLink Commandline Handler",
   classID: Components.ID("{547bfe26-688b-4e63-a1da-07da0e8367e1}"),
-  // contractID: "@mozilla.org/commandlinehandler/general-startup;1?type=thunderlink",
-
   QueryInterface: XPCOMUtils.generateQI([Components.interfaces.nsIModule]),
-
-  // _xpcom_categories: [{
-  //  category: "command-line-handler",
-  //  entry: "m-thunderlink"
-  // }],
-
   _xpcom_factory: thunderlinkCommandLineHandler,
 };
-
-// NSGetModule: Return the nsIModule object.
-// function NSGetModule(compMgr, fileSpec)
-// {
-//   return XPCOMUtils.generateModule([thunderlinkCommandLineHandlerModule]);
-// }
-
 
 var components = [thunderlinkCommandLineHandlerModule];
 var NSGetFactory = XPCOMUtils.generateNSGetFactory(components);
