@@ -54,7 +54,7 @@ var ThunderLinkPrefNS = {
       tagCheckbox.setAttribute("checked", ThunderLinkPrefNS.GetPreferenceValue("custom-tl-string-" + cstrnum + "-tagcheckbox", "bool"));
       tagCheckbox.setAttribute("preference", "prefs_customTlString" + cstrnum + "tagcheckbox");
       tagCheckbox.setAttribute("label", "Tag email upon copying the ThunderLink:");
-      tagCheckbox.setAttribute("oncommand", "ThunderLinkPrefNS.ToggleTlTagField(" + cstrnum + ");");
+      tagCheckbox.addEventListener("command", () => { ThunderLinkPrefNS.ToggleTlTagField(cstrnum); }, false);
       vbox.appendChild(tagCheckbox);
 
       var tagLabel = window.document.createElementNS(XUL_NS, "label");
