@@ -63,11 +63,15 @@ var ThunderLinkPrefNS = {
 
       function appendMenuItems(menuPopup) {
         var tagArray = MailServices.tags.getAllTags({});
+        var selectedIndex = ThunderLinkPrefNS.GetPreferenceValue("custom-tl-string-" + cstrnum + "-tag", "int");
         for (let j = 0; j < tagArray.length; ++j) {
           var menuItem = window.document.createElementNS(XUL_NS, "menuitem");
 
           menuItem.setAttribute("label", tagArray[j].tag);
           menuItem.setAttribute("value", j + 1);
+          if (selectedIndex === (j + 1)) {
+            menuItem.setAttribute("selected", true);
+          }
           menuPopup.appendChild(menuItem);
         }
       }
@@ -134,18 +138,24 @@ var ThunderLinkPrefNS = {
       .getBranch("extensions.thunderlink.");
   },
 
-  GetPreferenceValue: function GetPreferenceValue(prefname, bool) {
+  GetPreferenceValue: function GetPreferenceValue(prefname, type) {
     // var prefService = Components.classes["@mozilla.org/preferences-service;1"]
     //   .getService(Components.interfaces.nsIPrefService)
     //   .getBranch("extensions.thunderlink.");
     // prefService.QueryInterface(Components.interfaces.nsIPrefBranch);
 
-    console.log("Looking for pref " + prefname + " / is it bool? " + bool);
+    console.log("Looking for pref " + prefname + " / what type? " + type);
     var prefValue = "";
-    if (bool === "bool") {
-      prefValue = this.prefs.getBoolPref(prefname);
-    } else {
-      prefValue = this.prefs.getCharPref(prefname);
+    switch (type) {
+      case "bool":
+        prefValue = this.prefs.getBoolPref(prefname);
+        break;
+      case "int":
+        prefValue = this.prefs.getIntPref(prefname);
+        break;
+      default:
+        prefValue = this.prefs.getCharPref(prefname);
+        break;
     }
     console.log("pref " + prefname + " is " + prefValue);
     return prefValue;
