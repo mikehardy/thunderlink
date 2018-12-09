@@ -1,0 +1,13 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=Message Link Opener
+Comment=Open specific Message-ID Thunderbird
+Exec=sh -c "\$HOME/bin/open-message-uri.sh '%u'"
+Terminal=false
+X-MultipleArgs=false
+Type=Application
+Icon=thunderbird
+Categories=Application;Network;Email;
+MimeType=x-scheme-handler/thunderlink;
+StartupNotify=true
+Actions=Compose;Contacts
