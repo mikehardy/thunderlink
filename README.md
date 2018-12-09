@@ -1,5 +1,5 @@
 <b>ThunderLink - clickable links to specific messages</b>
-=========
+=====================================================
 
 ThunderLinks are customizable hyperlinks to specific email messages.
 
@@ -14,7 +14,7 @@ You may completely customize ThunderLinks to fit your application's needs. And y
 ThunderLinks are based on the unique message ID generated when an email is sent. This enables the Thunderbird email client to quickly and reliably find and select any email in your Thunderbird mail store.
 
 <b>Installation</b>
-========
+==============
 <ol>
 <li>install ThunderLink in Thunderbird</li>
 <li>register the 'thunderlink' protocol in your OS following the instructions below:</li>
@@ -24,9 +24,9 @@ ThunderLinks are based on the unique message ID generated when an email is sent.
    <b>Windows:</b>
    ------------------------------------------------------------------------------------------------
    You need to download the "raw" version of the file that matches your version of Windows and Thunderbird, then double-click + confirm the registry script to merge it in to your registry and enable the thunderlink protocol:
-   - [Windows 7 and XP 32bit with Thunderbird 32bit](ThunderLink_WINXP_WIN7_32bit_Thunderbird_32bit.reg)
-   - [Windows 7 64bit with Thunderbird 32bit](ThunderLink_WIN7_64bit_Thunderbird_32bit.reg)
-   - [Windows 10 64bit with Thunderbird 32bit](ThunderLink_WIN10_64bit_Thunderbird_32bit.reg)
+   - https://github.com/mikehardy/thunderlink/blob/master/ThunderLink_WINXP_WIN7_32bit_Thunderbird_32bit.reg
+   - https://github.com/mikehardy/thunderlink/blob/master/ThunderLink_WIN7_64bit_Thunderbird_32bit.reg
+   - https://github.com/mikehardy/thunderlink/blob/master/ThunderLink_WIN10_64bit_Thunderbird_32bit.reg
    
    These .reg files were generously provided by @mobileartur - please feel free to provide others or open pull requests to help other windows users
 
@@ -70,7 +70,7 @@ ThunderLinks are based on the unique message ID generated when an email is sent.
 
    
    <b>Notes:</b>
-   =====
+   ========
    <ul>
    <li>Some task managers (for example, MyLifeOrganized (MLO)) require you to prefix the ThunderLink with `file:` to be treated like a link</li>
    <li>You can configure very complicated thunderlinks if you like. For example:
@@ -84,7 +84,7 @@ ThunderLinks are based on the unique message ID generated when an email is sent.
 
    <b>Having trouble?</b>
    
-   ===========
+   ================
    
    In the unlikely event of a bug, please open an issue on the provided github link, taking care to include all the requested information.
 
