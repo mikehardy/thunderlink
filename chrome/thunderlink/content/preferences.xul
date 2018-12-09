@@ -55,7 +55,7 @@
     <vbox>
       <hbox>
         <label control="openTlBehaviour" value="When running, open TLs "/>
-        <menulist id="openTlBehaviour" preference="prefs_openTlBehaviour">
+        <menulist id="thunderlink-openTlBehaviour" preference="prefs_openTlBehaviour">
           <menupopup>
             <menuitem label="in new tab" value="openInNewTab"/>
             <menuitem label="in new window" value="openInNewWindow"/>

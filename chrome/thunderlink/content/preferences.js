@@ -26,7 +26,7 @@ var ThunderLinkPrefNS = {
       tabpanel.appendChild(vbox);
 
       var tTextbox = window.document.createElementNS(XUL_NS, "textbox");
-      tTextbox.setAttribute("id", "prefCustomTlString" + cstrnum + "-title");
+      tTextbox.setAttribute("id", "thunderlink-prefCustomTlString" + cstrnum + "-title");
       tTextbox.setAttribute("preference", "prefs_customTlString" + cstrnum + "title");
       tTextbox.setAttribute("size", 51);
       tTextbox.setAttribute("value", ThunderLinkPrefNS.GetPreferenceValue("custom-tl-string-" + cstrnum + "-title", "string"));
@@ -37,7 +37,7 @@ var ThunderLinkPrefNS = {
       vbox.appendChild(tTextbox);
 
       var csTextbox = window.document.createElementNS(XUL_NS, "textbox");
-      csTextbox.setAttribute("id", "prefCustomTlString" + cstrnum + "-textbox");
+      csTextbox.setAttribute("id", "thunderlink-prefCustomTlString" + cstrnum + "-textbox");
       csTextbox.setAttribute("preference", "prefs_customTlString" + cstrnum);
       csTextbox.setAttribute("multiline", "true");
       csTextbox.setAttribute("cols", "50");
@@ -50,7 +50,7 @@ var ThunderLinkPrefNS = {
       vbox.appendChild(csTextbox);
 
       var tagCheckbox = window.document.createElementNS(XUL_NS, "checkbox");
-      tagCheckbox.setAttribute("id", "prefCustomTlString" + cstrnum + "-tagcheckbox");
+      tagCheckbox.setAttribute("id", "thunderlink-prefCustomTlString" + cstrnum + "-tagcheckbox");
       tagCheckbox.setAttribute("checked", ThunderLinkPrefNS.GetPreferenceValue("custom-tl-string-" + cstrnum + "-tagcheckbox", "bool"));
       tagCheckbox.setAttribute("preference", "prefs_customTlString" + cstrnum + "tagcheckbox");
       tagCheckbox.setAttribute("label", "Tag email upon copying the ThunderLink:");
@@ -58,7 +58,7 @@ var ThunderLinkPrefNS = {
       vbox.appendChild(tagCheckbox);
 
       var tagLabel = window.document.createElementNS(XUL_NS, "label");
-      tagLabel.setAttribute("control", "prefCustomTlString" + cstrnum + "-tag");
+      tagLabel.setAttribute("control", "thunderlink-prefCustomTlString" + cstrnum + "-tag");
       tagLabel.setAttribute("value", "using tag:");
 
       function appendMenuItems(menuPopup) {
@@ -76,11 +76,12 @@ var ThunderLinkPrefNS = {
         }
       }
       var menuList = window.document.createElementNS(XUL_NS, "menulist");
-      menuList.setAttribute("id", "prefCustomTlString" + cstrnum + "-tag");
+      menuList.setAttribute("id", "thunderlink-prefCustomTlString" + cstrnum + "-tag");
       var menuPopup = window.document.createElementNS(XUL_NS, "menupopup");
       menuList.setAttribute("preference", "prefs_customTlString" + cstrnum + "tag");
       menuList.setAttribute("disabled", !ThunderLinkPrefNS.GetPreferenceValue("custom-tl-string-" + cstrnum + "-tagcheckbox", "bool"));
       appendMenuItems(menuPopup);
+
       menuList.appendChild(menuPopup);
 
       var labelbox = window.document.createElementNS(XUL_NS, "hbox");
@@ -176,29 +177,29 @@ var ThunderLinkPrefNS = {
         console.log("key has user-specific value");
       }
 
-      var openTlBehaviourElement = prefwindow.getElementById("openTlBehaviour");
+      var openTlBehaviourElement = prefwindow.getElementById("thunderlink-openTlBehaviour");
       console.log("tl behavior value is: " + openTlBehaviourElement.value);
       this.prefs.setCharPref("open-tl-behaviour", openTlBehaviourElement.value);
     }
 
     for (var cstrnum = 1; cstrnum <= 8; cstrnum++) {
       // Save the title
-      var titleElement = prefwindow.getElementById("prefCustomTlString" + cstrnum + "-title");
+      var titleElement = prefwindow.getElementById("thunderlink-prefCustomTlString" + cstrnum + "-title");
       console.log("setting title " + cstrnum + " to " + titleElement.value);
       this.prefs.setCharPref("custom-tl-string-" + cstrnum + "-title", titleElement.value);
 
       // Save the content
-      var linkElement = prefwindow.getElementById("prefCustomTlString" + cstrnum + "-textbox");
+      var linkElement = prefwindow.getElementById("thunderlink-prefCustomTlString" + cstrnum + "-textbox");
       console.log("setting link " + cstrnum + " to " + linkElement.value);
       this.prefs.setCharPref("custom-tl-string-" + cstrnum, linkElement.value);
 
       // Save whether we should tag or not
-      var tagEnabledEl = prefwindow.getElementById("prefCustomTlString" + cstrnum + "-tagcheckbox");
+      var tagEnabledEl = prefwindow.getElementById("thunderlink-prefCustomTlString" + cstrnum + "-tagcheckbox");
       console.log("We should tag email for " + cstrnum + "? " + tagEnabledEl.checked);
       this.prefs.setBoolPref("custom-tl-string-" + cstrnum + "-tagcheckbox", tagEnabledEl.checked);
 
       // Save the tag
-      var tagElement = prefwindow.getElementById("prefCustomTlString" + cstrnum + "-tag");
+      var tagElement = prefwindow.getElementById("thunderlink-prefCustomTlString" + cstrnum + "-tag");
       console.log("We should tag " + cstrnum + " with " + tagElement.value);
       this.prefs.setIntPref("custom-tl-string-" + cstrnum + "-tag", tagElement.value);
     }
