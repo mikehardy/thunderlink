@@ -1,0 +1,13 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=Thunderlink Opener
+Comment=Open specific Message-ID Thunderbird
+Exec=/usr/lib/thunderbird/thunderbird -thunderlink '%u'
+Terminal=false
+X-MultipleArgs=false
+Type=Application
+Icon=thunderbird
+Categories=Application;Network;Email;
+MimeType=x-scheme-handler/thunderlink;
+StartupNotify=true
+Actions=Compose;Contacts
