@@ -22,7 +22,7 @@ const MESSAGE_ID_PARAM = "messageid=";
 var thunderlinkCommandLineHandler = {
   get _messenger() {
     delete this._messenger;
-    console.log("getting messenger: " + Cc["@mozilla.org/messenger;1"].createInstance(Ci.nsIMessenger) + "\n");
+    dump("getting messenger: " + Cc["@mozilla.org/messenger;1"].createInstance(Ci.nsIMessenger) + "\n");
     this._messenger = Cc["@mozilla.org/messenger;1"].createInstance(Ci.nsIMessenger);
     return this._messenger;
   },
@@ -42,7 +42,7 @@ var thunderlinkCommandLineHandler = {
 
     try {
       mailURL = aCommandLine.handleFlagWithParam("thunderlink", false);
-      console.log("thunderlink command with mailURL " + mailURL);
+      dump("thunderlink command with mailURL " + mailURL);
     } catch (e) {
       console.error(e);
     }
@@ -54,7 +54,7 @@ var thunderlinkCommandLineHandler = {
         if (messageIDIndex !== -1) {
           // Convert the messageID URI into a folder URI
           messageID = mailURL.slice(messageIDIndex + MESSAGE_ID_PARAM.length);
-          // console.log("messageID is " + messageID);
+          // dump("messageID is " + messageID);
 
           // if on Windows, there will be an added trailing slash which we remove
           if (/\/$/.test(messageID)) messageID = messageID.slice(0, messageID.length - 1);
@@ -78,7 +78,7 @@ var thunderlinkCommandLineHandler = {
         const accountManager = Cc["@mozilla.org/messenger/account-manager;1"].getService(Ci.nsIMsgAccountManager);
         const folders = accountManager.allFolders;
         // eslint-disable-next-line no-restricted-syntax
-        for (const msgFolder of fixIterator(folders.enumerate(), Ci.nsIMsgFolder)) {
+        for (var msgFolder of fixIterator(folders.enumerate(), Ci.nsIMsgFolder)) {
           try {
             msgHdr = msgFolder.msgDatabase.getMsgHdrForMessageID(messageID);
             if (msgHdr !== null) {
@@ -107,12 +107,12 @@ var thunderlinkCommandLineHandler = {
           win.focus();
           win.gFolderTreeView.selectFolder(msgHdr.folder);
           win.gFolderDisplay.selectMessage(msgHdr);
-          console.log("thunderlinkCommandLineHandler_handle: selecting " + msgHdr + " in 'tabmail'\n");
+          dump("thunderlinkCommandLineHandler_handle: selecting " + msgHdr + " in 'tabmail'\n");
         } else {
           MailUtils.displayMessage(msgHdr);
         }
       } else {
-        console.log("Unrecognized ThunderLink URL: " + mailURL);
+        dump("Unrecognized ThunderLink URL: " + mailURL);
         var promptService = Components.classes["@mozilla.org/embedcomp/prompt-service;1"]
           .getService(Components.interfaces.nsIPromptService);
         promptService.alert(null, "Message not found", "Couldn't find an email message for ThunderLink\n\n" + mailURL);
