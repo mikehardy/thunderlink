@@ -144,6 +144,7 @@ var thunderlinkCommandLineHandler = {
     return this.QueryInterface(iid);
   },
 
+  // Use ChromeUtils instead of XPCOMUtils here and line 154 for TB64+ (or earlier?)
   QueryInterface: XPCOMUtils.generateQI([Ci.nsICommandLineHandler, Ci.nsIClassInfo, Ci.nsIFactory]),
 };
 
