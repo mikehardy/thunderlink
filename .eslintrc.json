@@ -11,6 +11,7 @@
         "MailServices": false,
         "MailUtils": false,
         "window": false,
+        "dump": false,
         "XPCOMUtils": false
     },
     "rules": {
