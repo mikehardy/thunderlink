@@ -12,7 +12,8 @@
         "MailUtils": false,
         "window": false,
         "dump": false,
-        "XPCOMUtils": false
+        "XPCOMUtils": false,
+        "ChromeUtils": false
     },
     "rules": {
         "camelcase": 0,
