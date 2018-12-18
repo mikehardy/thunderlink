@@ -2,7 +2,7 @@
   "manifest_version": 2,
   "name": "thunderlink",
   "description": "Create clickable links to specific email messages!",
-  "version": "1.2.5-beta1",
+  "version": "1.2.5",
   "author": "Mike Hardy and Christopher Zwirello",
   "homepage_url": "https://github.com/mikehardy/thunderlink",
   "legacy": {
@@ -14,6 +14,6 @@
   "applications": {
     "gecko": {
       "id": "thunderlink@mozilla.org",
-      "strict_min_version": "38.0"
+      "strict_min_version": "42.0"
     }
   }}
