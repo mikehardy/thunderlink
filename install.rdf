@@ -4,14 +4,14 @@
     <em:id>thunderlink@mozilla.org</em:id>
     <em:type>2</em:type>
     <em:name>ThunderLink</em:name>
-    <em:version>1.2.3</em:version>
+    <em:version>1.2.4</em:version>
     <em:creator>Mike Hardy and Christopher Zwirello</em:creator>
     <em:description>Create clickable links to specific email messages!</em:description>
     <em:optionsURL>chrome://thunderlink/content/preferences.xul</em:optionsURL>
     <em:targetApplication>
       <Description>
         <em:id>{3550f703-e582-4d05-9a08-453d09bdfdc6}</em:id> <!-- Thunderbird -->
-        <em:minVersion>60.0</em:minVersion>
+        <em:minVersion>52.*</em:minVersion>
         <em:maxVersion>60.*</em:maxVersion>
       </Description>
     </em:targetApplication>
