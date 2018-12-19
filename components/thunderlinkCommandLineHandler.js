@@ -145,13 +145,18 @@ var thunderlinkCommandLineHandler = {
   },
 
   // Use ChromeUtils instead of XPCOMUtils here and line 154 for TB64+ (or earlier?)
-  QueryInterface: XPCOMUtils.generateQI([Ci.nsICommandLineHandler, Ci.nsIClassInfo, Ci.nsIFactory]),
+  QueryInterface:
+    (XPCOMUtils.generateQI
+      && XPCOMUtils.generateQI([Ci.nsICommandLineHandler, Ci.nsIClassInfo, Ci.nsIFactory]))
+     || ChromeUtils.generateQI([Ci.nsICommandLineHandler, Ci.nsIClassInfo, Ci.nsIFactory]),
 };
 
 function thunderlinkCommandLineHandlerModule() { }
 thunderlinkCommandLineHandlerModule.prototype = {
   classID: Components.ID("{547bfe26-688b-4e63-a1da-07da0e8367e1}"),
-  QueryInterface: XPCOMUtils.generateQI([Components.interfaces.nsIModule]),
+  QueryInterface:
+    (XPCOMUtils.generateQI && XPCOMUtils.generateQI([Components.interfaces.nsIModule]))
+    || ChromeUtils.generateQI([Components.interfaces.nsIModule]),
   _xpcom_factory: thunderlinkCommandLineHandler,
 };
 
