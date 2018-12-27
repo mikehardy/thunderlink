@@ -110,6 +110,11 @@ var ThunderLinkChromeNS = {
     result = result.replace(/<filteredSubject>/ig, protectedSubject);
     result = result.replace(/<sender>/ig, gDBView.hdrForFirstSelectedMessage.author);
     result = result.replace(/<tbexe>/ig, "\"" + ThunderLinkChromeNS.GetPathToExe() + "\" -thunderlink ");
+
+    date = new Date(gDBView.hdrForFirstSelectedMessage.date/1000);
+    dateString = date.toLocaleDateString() + " - " + date.toLocaleTimeString();   
+    result = result.replace(/<time>/ig, dateString);            
+                                       
     return result;
   },
 
