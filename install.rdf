@@ -4,7 +4,7 @@
     <em:id>thunderlink@mozilla.org</em:id>
     <em:type>2</em:type>
     <em:name>ThunderLink</em:name>
-    <em:version>1.2.6</em:version>
+    <em:version>1.2.7</em:version>
     <em:creator>Mike Hardy and Christopher Zwirello</em:creator>
     <em:description>Create clickable links to specific email messages!</em:description>
     <em:optionsURL>chrome://thunderlink/content/preferences.xul</em:optionsURL>

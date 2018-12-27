@@ -1,0 +1,23 @@
+INSTALL APP
+
+1. Copy ThunderlinkOpener.app script as app in Application folder
+2. System Preferences -> Security & Privacy -> Privacy tab -> Acessibility -> add ThunderlinkOpener.app
+
+
+EDIT AND UPDATE APP
+
+1. Save ThunderlinkOpener.scpt script as app
+2. Right click on ThunderlinkOpener.app -> Show Package Contents
+2. In Contents/Resources copy ThunderlinkOpenerJS.scpt
+3. In Contents/Info.plist add:
+        <key>CFBundleURLTypes</key>
+        <array>
+                <dict>
+                        <key>CFBundleURLName</key>
+                        <string>Thunderlink</string>
+                        <key>CFBundleURLSchemes</key>
+                        <array>
+                                <string>thunderlink</string>
+                        </array>
+                </dict>
+        </array>
