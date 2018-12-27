@@ -81,6 +81,31 @@ var ThunderLinkChromeNS = {
     return result;
   },
 
+  ResolvePlaceholders: function ResolvePlaceholders(tlstring) {
+    Components.utils.import("resource:///modules/gloda/utils.js");
+
+    var subject = GlodaUtils.deMime(gDBView.hdrForFirstSelectedMessage.subject);
+
+    // replace a few characters that frequently cause trouble
+    // with a focus on org-mode, provided as filteredSubject
+    var protectedSubject = subject.split("[").join("(");
+    protectedSubject = protectedSubject.split("]").join(")");
+    protectedSubject = protectedSubject.replace(/[<>'"`´]/g, "");
+
+    var result = tlstring.replace(/<thunderlink>/ig, ThunderLinkChromeNS.GetThunderlink());
+    result = result.replace(/<messageid>/ig, gDBView.hdrForFirstSelectedMessage.messageId);
+    result = result.replace(/<subject>/ig, subject);
+    result = result.replace(/<filteredSubject>/ig, protectedSubject);
+    result = result.replace(/<sender>/ig, gDBView.hdrForFirstSelectedMessage.author);
+    result = result.replace(/<tbexe>/ig, "\"" + ThunderLinkChromeNS.GetPathToExe() + "\" -thunderlink ");
+
+    date = new Date(gDBView.hdrForFirstSelectedMessage.date/1000);
+    dateString = date.toLocaleDateString() + " - " + date.toLocaleTimeString();   
+    result = result.replace(/<time>/ig, dateString);            
+                                       
+    return result;
+  },
+
   GetCustomTlStringTitle: function GetCustomTlStringTitle(cstrnum) {
     var prefService = Components.classes["@mozilla.org/preferences-service;1"]
       .getService(Components.interfaces.nsIPrefService)
