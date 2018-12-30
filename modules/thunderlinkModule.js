@@ -1,4 +1,4 @@
-var EXPORTED_SYMBOLS = ["openThunderlink"];
+var EXPORTED_SYMBOLS = ["openThunderlink", "executeThunderlinkTemplate", "getThunderlinkPathToExe"];
 
 const MESSAGE_ID_PARAM = "messageid=";
 
@@ -94,3 +94,47 @@ function getPref(prefName) {
     
     return prefService.getCharPref(prefName);		
 }  
+
+function executeThunderlinkTemplate(template, hdr) {
+    Components.utils.import("resource:///modules/gloda/utils.js");
+    var subject = GlodaUtils.deMime(hdr.subject);
+
+    // replace a few characters that frequently cause trouble
+    // with a focus on org-mode, provided as filteredSubject
+    var protectedSubject = subject.split("[").join("(");
+    protectedSubject = protectedSubject.split("]").join(")");
+    protectedSubject = protectedSubject.replace(/[<>'"`´]/g, "");
+
+    var result = template.replace(/<thunderlink>/ig, getThunderlinkForHdr(hdr));
+    result = result.replace(/<messageid>/ig, hdr.messageId);
+    result = result.replace(/<subject>/ig, subject);
+    result = result.replace(/<filteredSubject>/ig, protectedSubject);
+    result = result.replace(/<sender>/ig, hdr.author);
+    result = result.replace(/<tbexe>/ig, "\"" + getThunderlinkPathToExe() + "\" -thunderlink ");
+
+    var date = new Date(hdr.date/1000);
+    var dateString = date.toLocaleDateString() + " - " + date.toLocaleTimeString();   
+    result = result.replace(/<time>/ig, dateString);            
+
+    return result;
+}
+
+function   getThunderlinkForHdr(hdr) {
+    return "thunderlink://messageid=" + hdr.messageId;
+}
+
+function getThunderlinkPathToExe() {
+    var appDir;
+    try {
+        appDir = Components.classes["@mozilla.org/file/directory_service;1"]
+            .getService(Components.interfaces.nsIProperties)
+            .get("CurProcD", Components.interfaces.nsIFile);
+    } catch (ex) {
+        console.error(ex);
+    }
+    // gives an [xpconnect wrapped nsILocalFile]
+    appDir.append("thunderbird"); // exe filename
+    return appDir.path;
+}
+
+
