@@ -6,19 +6,12 @@ INSTALL APP
 
 EDIT AND UPDATE APP
 
-<<<<<<< HEAD
 If you need to edit app
 
 1. Save ThunderlinkOpener.scpt script as app
 2. Right click on ThunderlinkOpener.app -> Show Package Contents
 3. In Contents/Resources copy ThunderlinkOpenerJS.scpt
 4. In Contents/Info.plist add:
-=======
-1. Save ThunderlinkOpener.scpt script as app
-2. Right click on ThunderlinkOpener.app -> Show Package Contents
-2. In Contents/Resources copy ThunderlinkOpenerJS.scpt
-3. In Contents/Info.plist add:
->>>>>>> Added support for mac
         <key>CFBundleURLTypes</key>
         <array>
                 <dict>
