@@ -46,7 +46,6 @@ var thunderlinkCommandLineHandler = {
       console.error(e);
     }
 
-    // eslint-disable-next-line no-undef
     openThunderlink(mailURL);
   },
 
