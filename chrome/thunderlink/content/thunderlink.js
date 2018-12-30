@@ -127,7 +127,10 @@ var ThunderLinkChromeNS = {
   },
 
   GetThunderlink: function GetThunderlink() {
-    var hdr = gDBView.hdrForFirstSelectedMessage;
+    return ThunderLinkChromeNS.GetThunderlinkForHdr(gDBView.hdrForFirstSelectedMessage)
+  },
+
+  GetThunderlinkForHdr: function GetThunderlinkForHdr(hdr) {
     return "thunderlink://messageid=" + hdr.messageId;
   },
 
