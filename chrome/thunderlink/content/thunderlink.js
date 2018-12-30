@@ -114,6 +114,14 @@ var ThunderLinkChromeNS = {
     return prefService.getCharPref("custom-tl-string-" + cstrnum + "-title");
   },
 
+  GetThunderlink: function GetThunderlink() {
+    return ThunderLinkChromeNS.GetThunderlinkForHdr(gDBView.hdrForFirstSelectedMessage)
+  },
+
+  GetThunderlinkForHdr: function GetThunderlinkForHdr(hdr) {
+    return "thunderlink://messageid=" + hdr.messageId;
+  },
+
   OnTlMenuLoad: function OnTlMenuLoad() {
     function createCstrMenuItem(cstrnum) {
       var label = ThunderLinkChromeNS.GetCustomTlStringTitle(cstrnum);
