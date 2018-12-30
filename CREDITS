@@ -7,5 +7,6 @@ If you have contributed and would like credit here, just ask! (or send a PR)
 
 Christoph Zwirello - original author - he created this thing! Awesome
 Anonymous contributors - prior to October 2018 I was not a maintainer so I'm unaware, sorry :-)
-Mike Hardy - current maintainer, ported to Thunderbird 60+
+Mike Hardy - current maintainer, ported to Thunderbird 64+
 @mobileartur - contributing ready-to-use Windows registry files
+@MarioKusek - Mac support (complete with helper AppleScript)

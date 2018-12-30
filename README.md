@@ -50,8 +50,10 @@ ThunderLinks are based on the unique message ID generated when an email is sent.
 
    <b>Mac:</b>
    ----------
-   macOS makes it quite difficult to register new protocol handlers. If anyone discovers how to tell macOS to open thunderlinks correctly, please explain how in a Github issue or pull request (thanks!). 
-   It is possible to interoperate well though, using Mail.app on macOS and Thunderbird on (for example) Windows with the same links, following these instructions: https://github.com/mikehardy/thunderlink/wiki/macOS-compatibility---interoperability
+   You may integrate directly with thunderbird using helper scripts as described here:
+   https://github.com/mikehardy/thunderlink/blob/master/integration/macosx/install.txt
+   
+   Separately, it is possible to interoperate with Mail.app on macOS and Thunderbird on (for example) Windows with the same links, following these instructions: https://github.com/mikehardy/thunderlink/wiki/macOS-compatibility---interoperability
    
    <b>Usage</b>
    -------------
