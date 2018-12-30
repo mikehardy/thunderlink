@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 /*
    ThunderLink.
    Link from your browser to your email messages!
@@ -28,10 +29,6 @@ var ThunderLinkChromeNS = {
     ThunderLinkChromeNS.CopyStringToClpBrd(ThunderLinkChromeNS.GetThunderlink());
   },
 
-  GetPathToExe: function GetPathToExe() {
-    return getThunderlinkPathToExe();
-  },
-
   CopyCustomTlStringToClp: function CopyCustomTlStringToClp(cstrnum) {
     console.log("CopyCustomTlStringToClp: cstrnum: " + cstrnum + "\n");
     var prefService = Components.classes["@mozilla.org/preferences-service;1"]
@@ -42,7 +39,7 @@ var ThunderLinkChromeNS = {
     console.log("CopyCustomTlStringToClp: customTlStr: " + customTlStr + "\n");
     var tagActive = prefService.getBoolPref("custom-tl-string-" + cstrnum + "-tagcheckbox");
     console.log("CopyCustomTlStringToClp: tagActive: " + tagActive + "\n");
-    var procCustomTlStr = ThunderLinkChromeNS.ResolvePlaceholders(customTlStr);
+    var procCustomTlStr = replaceVariables(customTlStr, gDBView.hdrForFirstSelectedMessage);
     console.log("CopyCustomTlStringToClp: procCustomTlStr resolved: " + procCustomTlStr + "\n");
     procCustomTlStr = ThunderLinkChromeNS.FixNewlines(procCustomTlStr);
     console.log("CopyCustomTlStringToClp: procCustomTlStr newlines fixed: " + procCustomTlStr + "\n");
@@ -84,10 +81,6 @@ var ThunderLinkChromeNS = {
     return result;
   },
 
-  ResolvePlaceholders: function ResolvePlaceholders(tlstring) {
-    return executeThunderlinkTemplate(tlstring, gDBView.hdrForFirstSelectedMessage);
-  },
-
   GetCustomTlStringTitle: function GetCustomTlStringTitle(cstrnum) {
     var prefService = Components.classes["@mozilla.org/preferences-service;1"]
       .getService(Components.interfaces.nsIPrefService)
@@ -96,17 +89,13 @@ var ThunderLinkChromeNS = {
     return prefService.getCharPref("custom-tl-string-" + cstrnum + "-title");
   },
 
-  GetThunderlink: function GetThunderlink() {
-    return getThunderlinkForHdr(gDBView.hdrForFirstSelectedMessage);
-  },
-
   OnTlMenuLoad: function OnTlMenuLoad() {
     function createCstrMenuItem(cstrnum) {
       var label = ThunderLinkChromeNS.GetCustomTlStringTitle(cstrnum);
       // Skip when title is not configured or temporary unused
       if (!label.length || label.match(/^\./)) return null;
 
-      const XUL_NS = "http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul";
+      var XUL_NS = "http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul";
       var item = window.document.createElementNS(XUL_NS, "menuitem");
       item.setAttribute("label", ThunderLinkChromeNS.ConvertToUnicode(label));
       item.addEventListener("command", () => { ThunderLinkChromeNS.CopyCustomTlStringToClp(cstrnum); }, false);
@@ -139,15 +128,11 @@ var ThunderLinkChromeNS = {
   OpenThunderlinkFromClipboard: function OpenThunderlinkFromClipboard() {
     var trans = Cc["@mozilla.org/widget/transferable;1"].createInstance(Ci.nsITransferable);
     trans.init(null); trans.addDataFlavor("text/unicode");
-    Services.clipboard.getData(trans, Services.clipboard.kGlobalClipboard)
+    Services.clipboard.getData(trans, Services.clipboard.kGlobalClipboard);
     var str = {};
     var strLength = {};
     trans.getTransferData("text/unicode", str, strLength);
     var pastetext = str.value.QueryInterface(Ci.nsISupportsString).data;
     openThunderlink(pastetext);
   },
-
-  OpenMessage: function OpenMessage(mailURL) {
-    openThunderlink(mailURL);
-  }
 };
