@@ -120,6 +120,9 @@ function replaceVariables(template, hdr) {
   protectedSubject = protectedSubject.split("]").join(")");
   protectedSubject = protectedSubject.replace(/[<>'"`´]/g, "");
 
+  // convert escape characters like \t to tabs
+  template = JSON.parse("\"" + template + "\"");
+
   var result = template.replace(/<thunderlink>/ig, getThunderlinkForHdr(hdr));
   result = result.replace(/<messageid>/ig, hdr.messageId);
   result = result.replace(/<subject>/ig, subject);
