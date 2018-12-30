@@ -2,7 +2,7 @@
   "manifest_version": 2,
   "name": "thunderlink",
   "description": "Create clickable links to specific email messages!",
-  "version": "1.2.6",
+  "version": "1.2.7-beta",
   "author": "Mike Hardy and Christopher Zwirello",
   "homepage_url": "https://github.com/mikehardy/thunderlink",
   "legacy": {

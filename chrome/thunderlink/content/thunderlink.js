@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 /*
    ThunderLink.
    Link from your browser to your email messages!
@@ -9,6 +10,7 @@
    License, v. 2.0. If a copy of the MPL was not distributed with this
    file, You can obtain one at http://mozilla.org/MPL/2.0/.
 */
+Components.utils.import("resource://thunderlinkModules/thunderlinkModule.js");
 
 var ThunderLinkChromeNS = {
 
@@ -27,20 +29,6 @@ var ThunderLinkChromeNS = {
     ThunderLinkChromeNS.CopyStringToClpBrd(ThunderLinkChromeNS.GetThunderlink());
   },
 
-  GetPathToExe: function GetPathToExe() {
-    var appDir;
-    try {
-      appDir = Components.classes["@mozilla.org/file/directory_service;1"]
-        .getService(Components.interfaces.nsIProperties)
-        .get("CurProcD", Components.interfaces.nsIFile);
-    } catch (ex) {
-      console.error(ex);
-    }
-    // gives an [xpconnect wrapped nsILocalFile]
-    appDir.append("thunderbird"); // exe filename
-    return appDir.path;
-  },
-
   CopyCustomTlStringToClp: function CopyCustomTlStringToClp(cstrnum) {
     console.log("CopyCustomTlStringToClp: cstrnum: " + cstrnum + "\n");
     var prefService = Components.classes["@mozilla.org/preferences-service;1"]
@@ -51,7 +39,7 @@ var ThunderLinkChromeNS = {
     console.log("CopyCustomTlStringToClp: customTlStr: " + customTlStr + "\n");
     var tagActive = prefService.getBoolPref("custom-tl-string-" + cstrnum + "-tagcheckbox");
     console.log("CopyCustomTlStringToClp: tagActive: " + tagActive + "\n");
-    var procCustomTlStr = ThunderLinkChromeNS.ResolvePlaceholders(customTlStr);
+    var procCustomTlStr = replaceVariables(customTlStr, gDBView.hdrForFirstSelectedMessage);
     console.log("CopyCustomTlStringToClp: procCustomTlStr resolved: " + procCustomTlStr + "\n");
     procCustomTlStr = ThunderLinkChromeNS.FixNewlines(procCustomTlStr);
     console.log("CopyCustomTlStringToClp: procCustomTlStr newlines fixed: " + procCustomTlStr + "\n");
@@ -93,26 +81,6 @@ var ThunderLinkChromeNS = {
     return result;
   },
 
-  ResolvePlaceholders: function ResolvePlaceholders(tlstring) {
-    Components.utils.import("resource:///modules/gloda/utils.js");
-
-    var subject = GlodaUtils.deMime(gDBView.hdrForFirstSelectedMessage.subject);
-
-    // replace a few characters that frequently cause trouble
-    // with a focus on org-mode, provided as filteredSubject
-    var protectedSubject = subject.split("[").join("(");
-    protectedSubject = protectedSubject.split("]").join(")");
-    protectedSubject = protectedSubject.replace(/[<>'"`´]/g, "");
-
-    var result = tlstring.replace(/<thunderlink>/ig, ThunderLinkChromeNS.GetThunderlink());
-    result = result.replace(/<messageid>/ig, gDBView.hdrForFirstSelectedMessage.messageId);
-    result = result.replace(/<subject>/ig, subject);
-    result = result.replace(/<filteredSubject>/ig, protectedSubject);
-    result = result.replace(/<sender>/ig, gDBView.hdrForFirstSelectedMessage.author);
-    result = result.replace(/<tbexe>/ig, "\"" + ThunderLinkChromeNS.GetPathToExe() + "\" -thunderlink ");
-    return result;
-  },
-
   GetCustomTlStringTitle: function GetCustomTlStringTitle(cstrnum) {
     var prefService = Components.classes["@mozilla.org/preferences-service;1"]
       .getService(Components.interfaces.nsIPrefService)
@@ -121,18 +89,13 @@ var ThunderLinkChromeNS = {
     return prefService.getCharPref("custom-tl-string-" + cstrnum + "-title");
   },
 
-  GetThunderlink: function GetThunderlink() {
-    var hdr = gDBView.hdrForFirstSelectedMessage;
-    return "thunderlink://messageid=" + hdr.messageId;
-  },
-
   OnTlMenuLoad: function OnTlMenuLoad() {
     function createCstrMenuItem(cstrnum) {
       var label = ThunderLinkChromeNS.GetCustomTlStringTitle(cstrnum);
       // Skip when title is not configured or temporary unused
       if (!label.length || label.match(/^\./)) return null;
 
-      const XUL_NS = "http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul";
+      var XUL_NS = "http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul";
       var item = window.document.createElementNS(XUL_NS, "menuitem");
       item.setAttribute("label", ThunderLinkChromeNS.ConvertToUnicode(label));
       item.addEventListener("command", () => { ThunderLinkChromeNS.CopyCustomTlStringToClp(cstrnum); }, false);
@@ -160,5 +123,16 @@ var ThunderLinkChromeNS = {
     converter.charset = "UTF-8";
     // FIXME This can throw exceptions? NS_ERROR_ILLEGAL_INPUT if there are Spanish accents etc
     return converter.ConvertToUnicode(string);
+  },
+
+  OpenThunderlinkFromClipboard: function OpenThunderlinkFromClipboard() {
+    var trans = Cc["@mozilla.org/widget/transferable;1"].createInstance(Ci.nsITransferable);
+    trans.init(null); trans.addDataFlavor("text/unicode");
+    Services.clipboard.getData(trans, Services.clipboard.kGlobalClipboard);
+    var str = {};
+    var strLength = {};
+    trans.getTransferData("text/unicode", str, strLength);
+    var pastetext = str.value.QueryInterface(Ci.nsISupportsString).data;
+    openThunderlink(pastetext);
   },
 };
