@@ -1,4 +1,9 @@
-var EXPORTED_SYMBOLS = ["openThunderlink", "executeThunderlinkTemplate", "getThunderlinkPathToExe"];
+var EXPORTED_SYMBOLS = [
+    "openThunderlink", 
+    "executeThunderlinkTemplate", 
+    "getThunderlinkPathToExe", 
+    "getThunderlinkForHdr"
+];
 
 const MESSAGE_ID_PARAM = "messageid=";
 
@@ -60,21 +65,22 @@ function openThunderlink(mailURL) {
             let wm = Cc["@mozilla.org/appshell/window-mediator;1"].
                 getService(Ci.nsIWindowMediator);
             let win = wm.getMostRecentWindow("mail:3pane");
-            let openTl = getPref("open-tl-behaviour")
+            let openTl = getPref("open-tl-behaviour");
+
             if('openInNewWindow' == openTl){
                 MailUtils.openMessagesInNewWindows([msgHdr]);
             } else if ('openInNewTab' == openTl) {
                 MailUtils.displayMessage(msgHdr);	
             } else {//select in 3pane window
                 if (win) {
-                var tabmail = win.document.getElementById("tabmail");
-                tabmail.switchToTab(0)//will always be the mail tab
-                win.focus();
-                win.gFolderTreeView.selectFolder(msgHdr.folder);
-                win.gFolderDisplay.selectMessage(msgHdr);
-                //console.log("thunderlinkCommandLineHandler_handle: selecting " + msgHdr + "\n");
+                    var tabmail = win.document.getElementById("tabmail");
+                    tabmail.switchToTab(0)//will always be the mail tab
+                    win.focus();
+                    win.gFolderTreeView.selectFolder(msgHdr.folder);
+                    win.gFolderDisplay.selectMessage(msgHdr);
+                    //console.log("thunderlinkCommandLineHandler_handle: selecting " + msgHdr + "\n");
                 } else {
-                MailUtils.displayMessage(msgHdr);
+                    MailUtils.displayMessage(msgHdr);
                 }
             }
         } else {

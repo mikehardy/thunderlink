@@ -85,8 +85,7 @@ var ThunderLinkChromeNS = {
   },
 
   ResolvePlaceholders: function ResolvePlaceholders(tlstring) {
-    var hdr = gDBView.hdrForFirstSelectedMessage;
-    return executeThunderlinkTemplate(tlstring, hdr);
+    return executeThunderlinkTemplate(tlstring, gDBView.hdrForFirstSelectedMessage);
   },
 
   GetCustomTlStringTitle: function GetCustomTlStringTitle(cstrnum) {
@@ -98,11 +97,7 @@ var ThunderLinkChromeNS = {
   },
 
   GetThunderlink: function GetThunderlink() {
-    return ThunderLinkChromeNS.GetThunderlinkForHdr(gDBView.hdrForFirstSelectedMessage)
-  },
-
-  GetThunderlinkForHdr: function GetThunderlinkForHdr(hdr) {
-    return "thunderlink://messageid=" + hdr.messageId;
+    return getThunderlinkForHdr(gDBView.hdrForFirstSelectedMessage);
   },
 
   OnTlMenuLoad: function OnTlMenuLoad() {
@@ -149,7 +144,7 @@ var ThunderLinkChromeNS = {
     var strLength = {};
     trans.getTransferData("text/unicode", str, strLength);
     var pastetext = str.value.QueryInterface(Ci.nsISupportsString).data;
-    this.OpenMessage(pastetext);
+    openThunderlink(pastetext);
   },
 
   OpenMessage: function OpenMessage(mailURL) {
