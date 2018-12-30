@@ -179,8 +179,6 @@ var ThunderLinkChromeNS = {
   },
 
   OpenMessage: function OpenMessage(mailURL) {
-    console.log("openning thunderlink URL: ", mailURL);
-    
     Components.utils.import("resource://thunderlinkModules/thunderlinkModule.js");
     openThunderlink(mailURL);
   }
