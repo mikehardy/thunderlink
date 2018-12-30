@@ -1,4 +1,5 @@
 content   thunderlink                 chrome/thunderlink/content/
+resource  thunderlinkModules          modules/
 
 overlay chrome://messenger/content/messenger.xul	chrome://thunderlink/content/thunderlink-overlay.xul
 
