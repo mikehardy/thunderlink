@@ -10,14 +10,13 @@
    file, You can obtain one at http://mozilla.org/MPL/2.0/.
 */
 
-const Cc = Components.classes;
-const Ci = Components.interfaces;
-const Cr = Components.results;
+var Cc = Components.classes;
+var Ci = Components.interfaces;
+var Cr = Components.results;
 
 Components.utils.import("resource://gre/modules/XPCOMUtils.jsm");
 
-const MAPI_STARTUP_ARG = "MapiStartup";
-const MESSAGE_ID_PARAM = "messageid=";
+var MAPI_STARTUP_ARG = "MapiStartup";
 
 var thunderlinkCommandLineHandler = {
   get _messenger() {
@@ -39,8 +38,6 @@ var thunderlinkCommandLineHandler = {
 
     // -thunderlink <URL>
     let mailURL = null;
-    let msgHdr = null;
-    let messageID = null;
 
     try {
       mailURL = aCommandLine.handleFlagWithParam("thunderlink", false);
@@ -49,6 +46,7 @@ var thunderlinkCommandLineHandler = {
       console.error(e);
     }
 
+    // eslint-disable-next-line no-undef
     openThunderlink(mailURL);
   },
 
@@ -58,7 +56,7 @@ var thunderlinkCommandLineHandler = {
   flags: Ci.nsIClassInfo.SINGLETON,
   getHelperForLanguage: function getHelperForLanguage(languageIgnored) { },
   getInterfaces: function getInterfaces(count) {
-    const interfaces = [Ci.nsICommandLineHandler];
+    var interfaces = [Ci.nsICommandLineHandler];
     count.value = interfaces.length;
     return interfaces;
   },
