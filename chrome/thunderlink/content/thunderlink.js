@@ -9,6 +9,7 @@
    License, v. 2.0. If a copy of the MPL was not distributed with this
    file, You can obtain one at http://mozilla.org/MPL/2.0/.
 */
+Components.utils.import("resource://thunderlinkModules/thunderlinkModule.js");
 
 var ThunderLinkChromeNS = {
 
@@ -28,17 +29,7 @@ var ThunderLinkChromeNS = {
   },
 
   GetPathToExe: function GetPathToExe() {
-    var appDir;
-    try {
-      appDir = Components.classes["@mozilla.org/file/directory_service;1"]
-        .getService(Components.interfaces.nsIProperties)
-        .get("CurProcD", Components.interfaces.nsIFile);
-    } catch (ex) {
-      console.error(ex);
-    }
-    // gives an [xpconnect wrapped nsILocalFile]
-    appDir.append("thunderbird"); // exe filename
-    return appDir.path;
+    return getThunderlinkPathToExe();
   },
 
   CopyCustomTlStringToClp: function CopyCustomTlStringToClp(cstrnum) {
@@ -94,28 +85,8 @@ var ThunderLinkChromeNS = {
   },
 
   ResolvePlaceholders: function ResolvePlaceholders(tlstring) {
-    Components.utils.import("resource:///modules/gloda/utils.js");
-
-    var subject = GlodaUtils.deMime(gDBView.hdrForFirstSelectedMessage.subject);
-
-    // replace a few characters that frequently cause trouble
-    // with a focus on org-mode, provided as filteredSubject
-    var protectedSubject = subject.split("[").join("(");
-    protectedSubject = protectedSubject.split("]").join(")");
-    protectedSubject = protectedSubject.replace(/[<>'"`´]/g, "");
-
-    var result = tlstring.replace(/<thunderlink>/ig, ThunderLinkChromeNS.GetThunderlink());
-    result = result.replace(/<messageid>/ig, gDBView.hdrForFirstSelectedMessage.messageId);
-    result = result.replace(/<subject>/ig, subject);
-    result = result.replace(/<filteredSubject>/ig, protectedSubject);
-    result = result.replace(/<sender>/ig, gDBView.hdrForFirstSelectedMessage.author);
-    result = result.replace(/<tbexe>/ig, "\"" + ThunderLinkChromeNS.GetPathToExe() + "\" -thunderlink ");
-
-    date = new Date(gDBView.hdrForFirstSelectedMessage.date/1000);
-    dateString = date.toLocaleDateString() + " - " + date.toLocaleTimeString();   
-    result = result.replace(/<time>/ig, dateString);            
-                                       
-    return result;
+    var hdr = gDBView.hdrForFirstSelectedMessage;
+    return executeThunderlinkTemplate(tlstring, hdr);
   },
 
   GetCustomTlStringTitle: function GetCustomTlStringTitle(cstrnum) {
@@ -182,7 +153,6 @@ var ThunderLinkChromeNS = {
   },
 
   OpenMessage: function OpenMessage(mailURL) {
-    Components.utils.import("resource://thunderlinkModules/thunderlinkModule.js");
     openThunderlink(mailURL);
   }
 };
