@@ -19,7 +19,7 @@ var ThunderLinkChromeNS = {
       console.log("CopyMessageUrlToClp mailboxMsgUrl: " + string + "\n");
       var clipboard = Components.classes["@mozilla.org/widget/clipboardhelper;1"]
         .getService(Components.interfaces.nsIClipboardHelper);
-      clipboard.copyString(ThunderLinkChromeNS.ConvertToUnicode(string));
+      clipboard.copyString(string);
     } catch (ex) {
       console.error(ex);
     }
