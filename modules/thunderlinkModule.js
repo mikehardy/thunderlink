@@ -112,7 +112,7 @@ function openThunderlink(mailURL) {
 // eslint-disable-next-line no-unused-vars
 function replaceVariables(template, hdr) {
   Components.utils.import("resource:///modules/gloda/utils.js");
-  var subject = GlodaUtils.deMime(hdr.subject);
+  const subject = GlodaUtils.deMime(hdr.subject);
 
   // replace a few characters that frequently cause trouble
   // with a focus on org-mode, provided as filteredSubject
@@ -121,17 +121,17 @@ function replaceVariables(template, hdr) {
   protectedSubject = protectedSubject.replace(/[<>'"`´]/g, "");
 
   // convert escape characters like \t to tabs
-  template = JSON.parse("\"" + template + "\"");
+  const convertedEscapeCharacters = JSON.parse("\"" + template + "\"");
 
-  var result = template.replace(/<thunderlink>/ig, getThunderlinkForHdr(hdr));
+  var result = convertedEscapeCharacters.replace(/<thunderlink>/ig, getThunderlinkForHdr(hdr));
   result = result.replace(/<messageid>/ig, hdr.messageId);
   result = result.replace(/<subject>/ig, subject);
   result = result.replace(/<filteredSubject>/ig, protectedSubject);
   result = result.replace(/<sender>/ig, GlodaUtils.deMime(hdr.author));
   result = result.replace(/<tbexe>/ig, "\"" + getThunderlinkPathToExe() + "\" -thunderlink ");
 
-  var date = new Date(hdr.date / 1000);
-  var dateString = date.toLocaleDateString() + " - " + date.toLocaleTimeString();
+  const date = new Date(hdr.date / 1000);
+  const dateString = date.toLocaleDateString() + " - " + date.toLocaleTimeString();
   result = result.replace(/<time>/ig, dateString);
 
   return result;
