@@ -34,6 +34,14 @@
       <preference id="prefs_customTlString6title" name="extensions.thunderlink.custom-tl-string-6-title" type="string"/>
       <preference id="prefs_customTlString7title" name="extensions.thunderlink.custom-tl-string-7-title" type="string"/>
       <preference id="prefs_customTlString8title" name="extensions.thunderlink.custom-tl-string-8-title" type="string"/>
+      <preference id="prefs_customTlString1clipboardcheckbox" name="extensions.thunderlink.custom-tl-string-1-clipboard-checkbox" type="bool"/>
+      <preference id="prefs_customTlString2clipboardcheckbox" name="extensions.thunderlink.custom-tl-string-2-clipboard-checkbox" type="bool"/>
+      <preference id="prefs_customTlString3clipboardcheckbox" name="extensions.thunderlink.custom-tl-string-3-clipboard-checkbox" type="bool"/>
+      <preference id="prefs_customTlString4clipboardcheckbox" name="extensions.thunderlink.custom-tl-string-4-clipboard-checkbox" type="bool"/>
+      <preference id="prefs_customTlString5clipboardcheckbox" name="extensions.thunderlink.custom-tl-string-5-clipboard-checkbox" type="bool"/>
+      <preference id="prefs_customTlString6clipboardcheckbox" name="extensions.thunderlink.custom-tl-string-6-clipboard-checkbox" type="bool"/>
+      <preference id="prefs_customTlString7clipboardcheckbox" name="extensions.thunderlink.custom-tl-string-7-clipboard-checkbox" type="bool"/>
+      <preference id="prefs_customTlString8clipboardcheckbox" name="extensions.thunderlink.custom-tl-string-8-clipboard-checkbox" type="bool"/>
       <preference id="prefs_customTlString1tagcheckbox" name="extensions.thunderlink.custom-tl-string-1-tagcheckbox" type="bool"/>
       <preference id="prefs_customTlString2tagcheckbox" name="extensions.thunderlink.custom-tl-string-2-tagcheckbox" type="bool"/>
       <preference id="prefs_customTlString3tagcheckbox" name="extensions.thunderlink.custom-tl-string-3-tagcheckbox" type="bool"/>
@@ -50,6 +58,22 @@
       <preference id="prefs_customTlString6tag" name="extensions.thunderlink.custom-tl-string-6-tag" type="int"/>
       <preference id="prefs_customTlString7tag" name="extensions.thunderlink.custom-tl-string-7-tag" type="int"/>
       <preference id="prefs_customTlString8tag" name="extensions.thunderlink.custom-tl-string-8-tag" type="int"/>
+      <preference id="prefs_customTlString1appendtofilecheckbox" name="extensions.thunderlink.custom-tl-string-1-appendtofile-checkbox" type="bool"/>
+      <preference id="prefs_customTlString2appendtofilecheckbox" name="extensions.thunderlink.custom-tl-string-2-appendtofile-checkbox" type="bool"/>
+      <preference id="prefs_customTlString3appendtofilecheckbox" name="extensions.thunderlink.custom-tl-string-3-appendtofile-checkbox" type="bool"/>
+      <preference id="prefs_customTlString4appendtofilecheckbox" name="extensions.thunderlink.custom-tl-string-4-appendtofile-checkbox" type="bool"/>
+      <preference id="prefs_customTlString5appendtofilecheckbox" name="extensions.thunderlink.custom-tl-string-5-appendtofile-checkbox" type="bool"/>
+      <preference id="prefs_customTlString6appendtofilecheckbox" name="extensions.thunderlink.custom-tl-string-6-appendtofile-checkbox" type="bool"/>
+      <preference id="prefs_customTlString7appendtofilecheckbox" name="extensions.thunderlink.custom-tl-string-7-appendtofile-checkbox" type="bool"/>
+      <preference id="prefs_customTlString8appendtofilecheckbox" name="extensions.thunderlink.custom-tl-string-8-appendtofile-checkbox" type="bool"/>
+      <preference id="prefs_customTlString1appendtofilepath" name="extensions.thunderlink.custom-tl-string-1-appendtofile-path" type="string"/>
+      <preference id="prefs_customTlString2appendtofilepath" name="extensions.thunderlink.custom-tl-string-2-appendtofile-path" type="string"/>
+      <preference id="prefs_customTlString3appendtofilepath" name="extensions.thunderlink.custom-tl-string-3-appendtofile-path" type="string"/>
+      <preference id="prefs_customTlString4appendtofilepath" name="extensions.thunderlink.custom-tl-string-4-appendtofile-path" type="string"/>
+      <preference id="prefs_customTlString5appendtofilepath" name="extensions.thunderlink.custom-tl-string-5-appendtofile-path" type="string"/>
+      <preference id="prefs_customTlString6appendtofilepath" name="extensions.thunderlink.custom-tl-string-6-appendtofile-path" type="string"/>
+      <preference id="prefs_customTlString7appendtofilepath" name="extensions.thunderlink.custom-tl-string-7-appendtofile-path" type="string"/>
+      <preference id="prefs_customTlString8appendtofilepath" name="extensions.thunderlink.custom-tl-string-8-appendtofile-path" type="string"/>
       <preference id="prefs_openTlBehaviour" name="extensions.thunderlink.open-tl-behaviour" type="string"/>
     </preferences>
     <vbox>

@@ -49,10 +49,25 @@ var ThunderLinkPrefNS = {
       vbox.appendChild(csLabel);
       vbox.appendChild(csTextbox);
 
+      var clipboardCheckbox = window.document.createElementNS(XUL_NS, "checkbox");
+      clipboardCheckbox.setAttribute("id", "thunderlink-prefCustomTlString" + cstrnum + "-clipboard-checkbox");
+      clipboardCheckbox.setAttribute("checked", ThunderLinkPrefNS.GetPreferenceValue("custom-tl-string-" + cstrnum + "-clipboard-checkbox", "bool"));
+      clipboardCheckbox.setAttribute("preference", "prefs_customTlString" + cstrnum + "tagcheckbox");
+      clipboardCheckbox.setAttribute("label", "Copy ThunderLink to clipboard");
+      clipboardCheckbox.addEventListener("command", () => { ThunderLinkPrefNS.ToggleTlTagField(cstrnum); }, false);
+      vbox.appendChild(clipboardCheckbox);
+
+      function addHorizontalSeparator() {
+        var horizontalSeparator = window.document.createElementNS(XUL_NS, "separator");
+        horizontalSeparator.setAttribute("orient", "horizontal");
+        vbox.appendChild(horizontalSeparator);
+      }
+      addHorizontalSeparator();
+
       var tagCheckbox = window.document.createElementNS(XUL_NS, "checkbox");
       tagCheckbox.setAttribute("id", "thunderlink-prefCustomTlString" + cstrnum + "-tagcheckbox");
       tagCheckbox.setAttribute("checked", ThunderLinkPrefNS.GetPreferenceValue("custom-tl-string-" + cstrnum + "-tagcheckbox", "bool"));
-      tagCheckbox.setAttribute("preference", "prefs_customTlString" + cstrnum + "tagcheckbox");
+      tagCheckbox.setAttribute("preference", "prefs_customTlString" + cstrnum + "clipboardcheckbox");
       tagCheckbox.setAttribute("label", "Tag email upon copying the ThunderLink:");
       tagCheckbox.addEventListener("command", () => { ThunderLinkPrefNS.ToggleTlTagField(cstrnum); }, false);
       vbox.appendChild(tagCheckbox);
@@ -89,6 +104,38 @@ var ThunderLinkPrefNS = {
       labelbox.appendChild(menuList);
       vbox.appendChild(labelbox);
 
+      addHorizontalSeparator();
+
+      // Append to file checkbox
+      var appendToFileCheckbox = window.document.createElementNS(XUL_NS, "checkbox");
+      appendToFileCheckbox.setAttribute("id", "thunderlink-prefCustomTlString" + cstrnum + "-appendtofile-checkbox");
+      appendToFileCheckbox.setAttribute("checked", ThunderLinkPrefNS.GetPreferenceValue("custom-tl-string-" + cstrnum + "-appendtofile-checkbox", "bool"));
+      appendToFileCheckbox.setAttribute("preference", "prefs_customTlString" + cstrnum + "appendtofilecheckbox");
+      appendToFileCheckbox.setAttribute("label", "Append Thunderlink to file:");
+      appendToFileCheckbox.addEventListener("command", () => { ThunderLinkPrefNS.ToggleTlTagField(cstrnum); }, false);
+      vbox.appendChild(appendToFileCheckbox);
+
+      // Append to file label and path
+      var fileLabelBox = window.document.createElementNS(XUL_NS, "hbox");
+
+      var appendToFileTextbox = window.document.createElementNS(XUL_NS, "textbox");
+      appendToFileTextbox.setAttribute("id", "thunderlink-prefCustomTlString" + cstrnum + "-appendtofile-path");
+      appendToFileTextbox.setAttribute("preference", "prefs_customTlString" + cstrnum + "appendtofilepath");
+      appendToFileTextbox.setAttribute("size", 51);
+      appendToFileTextbox.setAttribute("value", ThunderLinkPrefNS.GetPreferenceValue("custom-tl-string-" + cstrnum + "-appendtofile-path", "string"));
+
+      var appendToFileLabel = window.document.createElementNS(XUL_NS, "label");
+      appendToFileLabel.setAttribute("value", "Path to file:");
+      // appendToFileLabel.setAttribute("label", "Custom String title:");
+      appendToFileLabel.setAttribute("control", appendToFileTextbox.id);
+
+      fileLabelBox.appendChild(appendToFileLabel);
+      fileLabelBox.appendChild(appendToFileTextbox);
+      vbox.appendChild(fileLabelBox);
+
+      addHorizontalSeparator();
+
+      // shortcut
       var keyLabel = window.document.createElementNS(XUL_NS, "label");
       keyLabel.setAttribute("value", "Shortcut: CTRL + ALT + " + cstrnum);
       vbox.appendChild(keyLabel);
@@ -193,6 +240,11 @@ var ThunderLinkPrefNS = {
       console.log("setting link " + cstrnum + " to " + linkElement.value);
       this.prefs.setCharPref("custom-tl-string-" + cstrnum, linkElement.value);
 
+      // Save whether we should copy thunderlink to clipboard
+      var clipboardEnabledEl = prefwindow.getElementById("thunderlink-prefCustomTlString" + cstrnum + "-clipboard-checkbox");
+      console.log("We should copy thunderlink for " + cstrnum + "? " + clipboardEnabledEl.checked);
+      this.prefs.setBoolPref("custom-tl-string-" + cstrnum + "-clipboard-checkbox", clipboardEnabledEl.checked);
+
       // Save whether we should tag or not
       var tagEnabledEl = prefwindow.getElementById("thunderlink-prefCustomTlString" + cstrnum + "-tagcheckbox");
       console.log("We should tag email for " + cstrnum + "? " + tagEnabledEl.checked);
@@ -202,6 +254,16 @@ var ThunderLinkPrefNS = {
       var tagElement = prefwindow.getElementById("thunderlink-prefCustomTlString" + cstrnum + "-tag");
       console.log("We should tag " + cstrnum + " with " + tagElement.value);
       this.prefs.setIntPref("custom-tl-string-" + cstrnum + "-tag", tagElement.value);
+
+      // Save whether we should append thunderlink to file
+      var appendEnabledEl = prefwindow.getElementById("thunderlink-prefCustomTlString" + cstrnum + "-appendtofile-checkbox");
+      console.log("We should append thunderlink for " + cstrnum + "? " + appendEnabledEl.checked);
+      this.prefs.setBoolPref("custom-tl-string-" + cstrnum + "-appendtofile-checkbox", appendEnabledEl.checked);
+
+      // Append path
+      var pathElement = prefwindow.getElementById("thunderlink-prefCustomTlString" + cstrnum + "-appendtofile-path");
+      console.log("Setting append path " + cstrnum + " to " + pathElement.value);
+      this.prefs.setCharPref("custom-tl-string-" + cstrnum + "-appendtofile-path", pathElement.value);
     }
 
     var prefService = Components.classes["@mozilla.org/preferences-service;1"]
