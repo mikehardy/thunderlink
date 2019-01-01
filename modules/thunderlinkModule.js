@@ -7,7 +7,7 @@ var EXPORTED_SYMBOLS = [
   "appendThunderlinkToFile",
 ];
 
-var MESSAGE_ID_PARAM = "messageid=";
+const MESSAGE_ID_PARAM = "messageid=";
 
 Components.utils.import("resource:///modules/MailUtils.js");
 Components.utils.import("resource:///modules/iteratorUtils.jsm");
@@ -21,7 +21,7 @@ function getPref(prefName) {
 }
 
 function getThunderlinkForHdr(hdr) {
-  return "thunderlink://messageid=" + hdr.messageId;
+  return "thunderlink://" + MESSAGE_ID_PARAM + "=" + hdr.messageId;
 }
 
 function getThunderlinkPathToExe() {
