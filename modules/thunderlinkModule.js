@@ -4,6 +4,7 @@ var EXPORTED_SYMBOLS = [
   "replaceVariables",
   "getThunderlinkPathToExe",
   "getThunderlinkForHdr",
+  "appendThunderlinkToFile",
 ];
 
 var MESSAGE_ID_PARAM = "messageid=";
@@ -135,4 +136,36 @@ function replaceVariables(template, hdr) {
   result = result.replace(/<time>/ig, dateString);
 
   return result;
+}
+
+// eslint-disable-next-line no-unused-vars
+function appendThunderlinkToFile(hdr, messageTemplate, alertTemplate, filePath) {
+  try {
+    // create file object
+    var file = Components.classes["@mozilla.org/file/local;1"]
+      .createInstance(Components.interfaces.nsILocalFile);
+    file.initWithPath(filePath);
+
+    // write to file
+    // file is nsIFile, data is a string
+    var foStream = Components.classes["@mozilla.org/network/file-output-stream;1"]
+      .createInstance(Components.interfaces.nsIFileOutputStream);
+
+    // eslint-disable-next-line no-bitwise, no-undef
+    foStream.init(file, PR_WRONLY | PR_CREATE_FILE | PR_APPEND, /* 0666 */ 438, 0);
+
+    var converter = Components.classes["@mozilla.org/intl/converter-output-stream;1"]
+      .createInstance(Components.interfaces.nsIConverterOutputStream);
+    converter.init(foStream, "UTF-8", 0, 0);
+    var messageText = replaceVariables(messageTemplate, hdr);
+    converter.writeString(messageText);
+    converter.close(); // this closes foStream
+
+    var alertText = replaceVariables(alertTemplate, hdr);
+    // eslint-disable-next-line no-undef, no-alert
+    alert("Mail written to file: " + filePath + "\n\n" + alertText);
+  } catch (err) {
+    // eslint-disable-next-line no-undef, no-alert
+    alert(err);
+  }
 }
