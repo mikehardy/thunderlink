@@ -1,7 +1,7 @@
-<b>ThunderLink - clickable links to specific messages</b>
-=============================================
+<b>ThunderLink - clickable, durable links to specific messages</b>
+======================================================
 
-ThunderLinks are hyperlinks to specific email messages.
+ThunderLinks are durable hyperlinks to specific email messages.
 
 Make a reference to the ThunderLink anywhere you want immediate access to the original message contents in full. For example, wikis, task trackers, etc.
 
@@ -11,7 +11,7 @@ You may customize ThunderLink formats to fit your needs.
 
 You may even configure ThunderLink to tag the email while creating the link, enabling advanced workflows and more productivity!
 
-ThunderLinks are based on the unique message ID generated when an email is sent. This enables the Thunderbird email client to quickly and reliably find and select any email that exists in your Thunderbird mail store.
+ThunderLinks are durable even if you file the message. They are based on the unique message ID generated when an email is sent. This enables the Thunderbird email client to quickly and reliably find and select any email that exists in your Thunderbird mail store.
 
 <b>Installation</b>
 ===========
