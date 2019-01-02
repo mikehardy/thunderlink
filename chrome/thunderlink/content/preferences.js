@@ -54,7 +54,6 @@ var ThunderLinkPrefNS = {
       clipboardCheckbox.setAttribute("checked", ThunderLinkPrefNS.GetPreferenceValue("custom-tl-string-" + cstrnum + "-clipboard-checkbox", "bool"));
       clipboardCheckbox.setAttribute("preference", "prefs_customTlString" + cstrnum + "clipboardcheckbox");
       clipboardCheckbox.setAttribute("label", "Copy ThunderLink to clipboard");
-      clipboardCheckbox.addEventListener("command", () => { ThunderLinkPrefNS.ToggleTlTagField(cstrnum); }, false);
       vbox.appendChild(clipboardCheckbox);
 
       function addHorizontalSeparator() {
@@ -112,7 +111,6 @@ var ThunderLinkPrefNS = {
       appendToFileCheckbox.setAttribute("checked", ThunderLinkPrefNS.GetPreferenceValue("custom-tl-string-" + cstrnum + "-appendtofile-checkbox", "bool"));
       appendToFileCheckbox.setAttribute("preference", "prefs_customTlString" + cstrnum + "appendtofilecheckbox");
       appendToFileCheckbox.setAttribute("label", "Append Thunderlink to file:");
-      appendToFileCheckbox.addEventListener("command", () => { ThunderLinkPrefNS.ToggleTlTagField(cstrnum); }, false);
       vbox.appendChild(appendToFileCheckbox);
 
       // Append to file label and path
