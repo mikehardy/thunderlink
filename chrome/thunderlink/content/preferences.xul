@@ -99,7 +99,6 @@
       <label control="csLabel" value="Some characters need to be escaped with baskslash:"/>
       <spacer size="10"/>
       <html:ul>
-        <html:li>double quote &quot; -> \&quot;</html:li>
         <html:li>tab -> \t</html:li>
         <html:li>new line -> \n</html:li>
         <html:li>carriage return -> \r</html:li>
