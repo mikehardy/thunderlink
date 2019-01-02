@@ -42,7 +42,7 @@ pref("extensions.thunderlink.custom-tl-string-4-appendtofile-checkbox", false);
 pref("extensions.thunderlink.custom-tl-string-4-appendtofile-path", "");
 
 pref("extensions.thunderlink.custom-tl-string-5-title", "clickable subject");
-pref("extensions.thunderlink.custom-tl-string-5", "<A HREF=\\\"<thunderlink>\\\"><subject></A>");
+pref("extensions.thunderlink.custom-tl-string-5", "<A HREF=\"<thunderlink>\"><subject></A>");
 pref("extensions.thunderlink.custom-tl-string-5-clipboard-checkbox", true);
 pref("extensions.thunderlink.custom-tl-string-5-tagcheckbox", false);
 pref("extensions.thunderlink.custom-tl-string-5-tag", 1);
@@ -50,7 +50,7 @@ pref("extensions.thunderlink.custom-tl-string-5-appendtofile-checkbox", false);
 pref("extensions.thunderlink.custom-tl-string-5-appendtofile-path", "");
 
 pref("extensions.thunderlink.custom-tl-string-6-title", "clickable subject macOS");
-pref("extensions.thunderlink.custom-tl-string-6", "<A HREF=\\\"message://%3c<messageid>%3e\\\"><subject></A>");
+pref("extensions.thunderlink.custom-tl-string-6", "<A HREF=\"message://%3c<messageid>%3e\"><subject></A>");
 pref("extensions.thunderlink.custom-tl-string-6-clipboard-checkbox", true);
 pref("extensions.thunderlink.custom-tl-string-6-tagcheckbox", false);
 pref("extensions.thunderlink.custom-tl-string-6-tag", 1);

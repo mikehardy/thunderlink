@@ -121,8 +121,10 @@ function replaceVariables(template, hdr) {
   protectedSubject = protectedSubject.split("]").join(")");
   protectedSubject = protectedSubject.replace(/[<>'"`´]/g, "");
 
+  // replacing double quotes so they are escaped for JSON.parse
+  var convertedEscapeCharacters = template.replace(/["]/g, "\\\"");
   // convert escape characters like \t to tabs
-  const convertedEscapeCharacters = JSON.parse("\"" + template + "\"");
+  convertedEscapeCharacters = JSON.parse("\"" + convertedEscapeCharacters + "\"");
 
   var result = convertedEscapeCharacters.replace(/<thunderlink>/ig, getThunderlinkForHdr(hdr));
   result = result.replace(/<messageid>/ig, hdr.messageId);
