@@ -14,6 +14,7 @@
 <?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
 <prefwindow id="thunderlink_prefs"
   xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+  xmlns:html="http://www.w3.org/1999/xhtml"
   title="Thunderlink Preferences"
   onunload="this.ThunderLinkPrefNS.onUnload(event.target)">
   <prefpane id="tl_prefs_pane" label="Thunderlink Settings">
@@ -92,7 +93,18 @@
       <separator class="groove-thin"/>
       <label control="csLabel" value="You can use the following placeholders:"/>
       <spacer size="10"/>
-      <label control="csLabel" value="&#60;thunderlink&#62; &#60;messageid&#62; &#60;subject&#62; &#60;filteredSubject&#62; &#60;sender&#62; &#60;tbexe&#62; &#60;time&#62;"/>
+      <label control="csLabel" value="&#60;thunderlink&#62; &#60;messageid&#62; &#60;subject&#62; &#60;filteredSubject&#62;"/>
+      <label control="csLabel" value="&#60;sender&#62; &#60;tbexe&#62; &#60;time&#62;"/>
+      <separator class="groove-thin"/>
+      <label control="csLabel" value="Some characters need to be escaped with baskslash:"/>
+      <spacer size="10"/>
+      <html:ul>
+        <html:li>double quote &quot; -> \&quot;</html:li>
+        <html:li>tab -> \t</html:li>
+        <html:li>new line -> \n</html:li>
+        <html:li>carriage return -> \r</html:li>
+        <html:li>unicode characters -> \uXXXX e.g. omega = \u03A9</html:li>
+      </html:ul>
       <separator class="groove-thin"/>
     </vbox>
     <tabbox id="thunderlink-custom-strings-tabbox" selectedIndex="0"/>
