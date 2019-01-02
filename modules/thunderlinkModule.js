@@ -4,9 +4,10 @@ var EXPORTED_SYMBOLS = [
   "replaceVariables",
   "getThunderlinkPathToExe",
   "getThunderlinkForHdr",
+  "appendThunderlinkToFile",
 ];
 
-var MESSAGE_ID_PARAM = "messageid=";
+const MESSAGE_ID_PARAM = "messageid=";
 
 Components.utils.import("resource:///modules/MailUtils.js");
 Components.utils.import("resource:///modules/iteratorUtils.jsm");
@@ -20,7 +21,7 @@ function getPref(prefName) {
 }
 
 function getThunderlinkForHdr(hdr) {
-  return "thunderlink://messageid=" + hdr.messageId;
+  return "thunderlink://" + MESSAGE_ID_PARAM + hdr.messageId;
 }
 
 function getThunderlinkPathToExe() {
@@ -112,7 +113,7 @@ function openThunderlink(mailURL) {
 // eslint-disable-next-line no-unused-vars
 function replaceVariables(template, hdr) {
   Components.utils.import("resource:///modules/gloda/utils.js");
-  var subject = GlodaUtils.deMime(hdr.subject);
+  const subject = GlodaUtils.deMime(hdr.subject);
 
   // replace a few characters that frequently cause trouble
   // with a focus on org-mode, provided as filteredSubject
@@ -120,19 +121,51 @@ function replaceVariables(template, hdr) {
   protectedSubject = protectedSubject.split("]").join(")");
   protectedSubject = protectedSubject.replace(/[<>'"`´]/g, "");
 
+  // replacing double quotes so they are escaped for JSON.parse
+  var convertedEscapeCharacters = template.replace(/["]/g, "\\\"");
   // convert escape characters like \t to tabs
-  template = JSON.parse("\"" + template + "\"");
+  convertedEscapeCharacters = JSON.parse("\"" + convertedEscapeCharacters + "\"");
 
-  var result = template.replace(/<thunderlink>/ig, getThunderlinkForHdr(hdr));
+  var result = convertedEscapeCharacters.replace(/<thunderlink>/ig, getThunderlinkForHdr(hdr));
   result = result.replace(/<messageid>/ig, hdr.messageId);
   result = result.replace(/<subject>/ig, subject);
   result = result.replace(/<filteredSubject>/ig, protectedSubject);
   result = result.replace(/<sender>/ig, GlodaUtils.deMime(hdr.author));
   result = result.replace(/<tbexe>/ig, "\"" + getThunderlinkPathToExe() + "\" -thunderlink ");
 
-  var date = new Date(hdr.date / 1000);
-  var dateString = date.toLocaleDateString() + " - " + date.toLocaleTimeString();
+  const date = new Date(hdr.date / 1000);
+  const dateString = date.toLocaleDateString() + " - " + date.toLocaleTimeString();
   result = result.replace(/<time>/ig, dateString);
 
   return result;
+}
+
+// eslint-disable-next-line no-unused-vars
+function appendThunderlinkToFile(hdr, messageTemplate, alertTemplate, filePath) {
+  // create file object
+  Components.utils.import("resource://gre/modules/FileUtils.jsm");
+  // eslint-disable-next-line no-undef
+  var file = new FileUtils.File(filePath);
+
+  // write to file
+  // file is nsIFile, data is a string
+  var foStream = Components.classes["@mozilla.org/network/file-output-stream;1"]
+    .createInstance(Components.interfaces.nsIFileOutputStream);
+
+  // https://developer.mozilla.org/en-US/docs/Mozilla/Projects/NSPR/Reference/PR_Open#Parameters
+  foStream.init(file,
+    // eslint-disable-next-line no-bitwise
+    /* PR_WRONLY 0x02 */ 0x02 | /* PR_CREATE_FILE 0x08 */ 0x08 | /* PR_APPEND */ 0x10,
+    0o666, 0);
+
+  var converter = Components.classes["@mozilla.org/intl/converter-output-stream;1"]
+    .createInstance(Components.interfaces.nsIConverterOutputStream);
+  converter.init(foStream, "UTF-8", 0, 0);
+  var messageText = replaceVariables(messageTemplate, hdr);
+  converter.writeString(messageText);
+  converter.close(); // this closes foStream
+
+  var alertText = replaceVariables(alertTemplate, hdr);
+  // eslint-disable-next-line no-undef, no-alert
+  return "Mail written to file: " + filePath + "\n\n" + alertText;
 }

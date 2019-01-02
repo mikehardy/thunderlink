@@ -1,0 +1,30 @@
+1.2.7
+-----
+- Mac Support (thanks @MarioKusek)
+- Date in templates (thanks @MarioKusek)
+- Append to file if wanted (thanks @MarioKusek)
+- Special characters in templates (thanks @MarioKusek)
+
+1.2.6
+-----
+- Compatibility up to Thunderbird 64.0b4 (@mikehardy)
+
+1.2.5
+-----
+- Compatibility down to Thunderbird 38.0 (@mikehardy)
+
+1.2.4
+-----
+- Compatibility down to Thunderbird 52.9 (@mikehardy)
+
+1.2.3
+-----
+- Improved OS integration scripts and documentation (@mikehardy)
+
+1.2.2
+-----
+- Compatibility up to Thunderbird 60 (@mikehardy)
+- Address add-ons code review issues (@mikehardy)
+- Add clickable links / Mail.app format (@mikehardy)
+- Integration / Documentation updates for new OS versions (@mikehardy @mobileartur)
+- Windows registry files (thanks @mobileartur)

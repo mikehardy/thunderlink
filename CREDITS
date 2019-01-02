@@ -10,3 +10,6 @@ Anonymous contributors - prior to October 2018 I was not a maintainer so I'm una
 Mike Hardy - current maintainer, ported to Thunderbird 64+
 @mobileartur - contributing ready-to-use Windows registry files
 @MarioKusek - Mac support (complete with helper AppleScript)
+@MarioKusek - Support for <date> in templates
+@MarioKusek - Support for some special characters in templates
+@MarioKusek - Add feature to append links to file

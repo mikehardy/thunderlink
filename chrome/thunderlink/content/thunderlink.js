@@ -29,22 +29,52 @@ var ThunderLinkChromeNS = {
     ThunderLinkChromeNS.CopyStringToClpBrd(ThunderLinkChromeNS.GetThunderlink());
   },
 
-  CopyCustomTlStringToClp: function CopyCustomTlStringToClp(cstrnum) {
+  ActivateCustomTlString: function ActivateCustomTlString(cstrnum) {
     console.log("CopyCustomTlStringToClp: cstrnum: " + cstrnum + "\n");
     var prefService = Components.classes["@mozilla.org/preferences-service;1"]
       .getService(Components.interfaces.nsIPrefService)
       .getBranch("extensions.thunderlink.");
 
     var customTlStr = prefService.getCharPref("custom-tl-string-" + cstrnum);
-    console.log("CopyCustomTlStringToClp: customTlStr: " + customTlStr + "\n");
+    console.log("ActivateCustomTlString: customTlStr: " + customTlStr + "\n");
+    var copyToClipboardActive = prefService.getBoolPref("custom-tl-string-" + cstrnum + "-clipboard-checkbox");
+    console.log("ActivateCustomTlString: copyToClipboardActive: " + copyToClipboardActive + "\n");
     var tagActive = prefService.getBoolPref("custom-tl-string-" + cstrnum + "-tagcheckbox");
-    console.log("CopyCustomTlStringToClp: tagActive: " + tagActive + "\n");
-    var procCustomTlStr = replaceVariables(customTlStr, gDBView.hdrForFirstSelectedMessage);
-    console.log("CopyCustomTlStringToClp: procCustomTlStr resolved: " + procCustomTlStr + "\n");
-    procCustomTlStr = ThunderLinkChromeNS.FixNewlines(procCustomTlStr);
-    console.log("CopyCustomTlStringToClp: procCustomTlStr newlines fixed: " + procCustomTlStr + "\n");
-    if (tagActive) this.TagEmail(prefService.getIntPref("custom-tl-string-" + cstrnum + "-tag"));
-    ThunderLinkChromeNS.CopyStringToClpBrd(procCustomTlStr);
+    console.log("ActivateCustomTlString: tagActive: " + tagActive + "\n");
+    var appendToFileActive = prefService.getBoolPref("custom-tl-string-" + cstrnum + "-appendtofile-checkbox");
+    console.log("ActivateCustomTlString: appendToFileActive: " + appendToFileActive + "\n");
+
+    // activate
+    if (tagActive) {
+      this.TagEmail(prefService.getIntPref("custom-tl-string-" + cstrnum + "-tag"));
+    }
+    if (copyToClipboardActive) {
+      var procCustomTlStr = replaceVariables(customTlStr, gDBView.hdrForFirstSelectedMessage);
+      console.log("ActivateCustomTlString: procCustomTlStr resolved: " + procCustomTlStr + "\n");
+      procCustomTlStr = ThunderLinkChromeNS.FixNewlines(procCustomTlStr);
+      console.log("ActivateCustomTlString: procCustomTlStr newlines fixed: " + procCustomTlStr + "\n");
+      ThunderLinkChromeNS.CopyStringToClpBrd(procCustomTlStr);
+    }
+    if (appendToFileActive) {
+      var filePath = prefService.getCharPref("custom-tl-string-" + cstrnum + "-appendtofile-path");
+      console.log("ActivateCustomTlString: filePath: " + customTlStr + "\n");
+      ThunderLinkChromeNS.AppendToFile(gDBView.hdrForFirstSelectedMessage, customTlStr, filePath);
+    }
+  },
+
+  AppendToFile: function AppendToFile(hdr, messageTemplate, filePath) {
+    var prompts = Components.classes["@mozilla.org/embedcomp/prompt-service;1"]
+      .getService(Components.interfaces.nsIPromptService);
+
+    var alertTemplate = "Subject: <subject>\\nFrom: <sender> on <time>\\nTL: <thunderlink>\\n\\n";
+
+    try {
+      var alertText = appendThunderlinkToFile(hdr, messageTemplate, alertTemplate, filePath);
+      prompts.alert(null, "Thunderlink", alertText);
+    } catch (err) {
+      console.log(err);
+      prompts.alert(null, "Thunderlink Error", "There is an error appending to file: \"" + filePath + "\".\nReason:\n" + err);
+    }
   },
 
   TagEmail: function TagEmail(keywordIx) {
@@ -98,7 +128,7 @@ var ThunderLinkChromeNS = {
       var XUL_NS = "http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul";
       var item = window.document.createElementNS(XUL_NS, "menuitem");
       item.setAttribute("label", ThunderLinkChromeNS.ConvertToUnicode(label));
-      item.addEventListener("command", () => { ThunderLinkChromeNS.CopyCustomTlStringToClp(cstrnum); }, false);
+      item.addEventListener("command", () => { ThunderLinkChromeNS.ActivateCustomTlString(cstrnum); }, false);
       return item;
     }
     var popup = window.document.getElementById("thunderlink-custom-strings");
