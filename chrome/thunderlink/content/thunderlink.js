@@ -73,7 +73,7 @@ var ThunderLinkChromeNS = {
       prompts.alert(null, "Thunderlink", alertText);
     } catch (err) {
       console.log(err);
-      prompts.alert(null, "Thunderlink Error", err);
+      prompts.alert(null, "Thunderlink Error", "There is an error appending to file: \"" + filePath + "\".\nReason:\n" + err);
     }
   },
 
