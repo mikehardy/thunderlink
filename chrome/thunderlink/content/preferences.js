@@ -52,7 +52,7 @@ var ThunderLinkPrefNS = {
       var clipboardCheckbox = window.document.createElementNS(XUL_NS, "checkbox");
       clipboardCheckbox.setAttribute("id", "thunderlink-prefCustomTlString" + cstrnum + "-clipboard-checkbox");
       clipboardCheckbox.setAttribute("checked", ThunderLinkPrefNS.GetPreferenceValue("custom-tl-string-" + cstrnum + "-clipboard-checkbox", "bool"));
-      clipboardCheckbox.setAttribute("preference", "prefs_customTlString" + cstrnum + "tagcheckbox");
+      clipboardCheckbox.setAttribute("preference", "prefs_customTlString" + cstrnum + "clipboardcheckbox");
       clipboardCheckbox.setAttribute("label", "Copy ThunderLink to clipboard");
       clipboardCheckbox.addEventListener("command", () => { ThunderLinkPrefNS.ToggleTlTagField(cstrnum); }, false);
       vbox.appendChild(clipboardCheckbox);
@@ -67,7 +67,7 @@ var ThunderLinkPrefNS = {
       var tagCheckbox = window.document.createElementNS(XUL_NS, "checkbox");
       tagCheckbox.setAttribute("id", "thunderlink-prefCustomTlString" + cstrnum + "-tagcheckbox");
       tagCheckbox.setAttribute("checked", ThunderLinkPrefNS.GetPreferenceValue("custom-tl-string-" + cstrnum + "-tagcheckbox", "bool"));
-      tagCheckbox.setAttribute("preference", "prefs_customTlString" + cstrnum + "clipboardcheckbox");
+      tagCheckbox.setAttribute("preference", "prefs_customTlString" + cstrnum + "tagcheckbox");
       tagCheckbox.setAttribute("label", "Tag email upon copying the ThunderLink:");
       tagCheckbox.addEventListener("command", () => { ThunderLinkPrefNS.ToggleTlTagField(cstrnum); }, false);
       vbox.appendChild(tagCheckbox);
