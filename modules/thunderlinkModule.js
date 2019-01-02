@@ -21,7 +21,7 @@ function getPref(prefName) {
 }
 
 function getThunderlinkForHdr(hdr) {
-  return "thunderlink://" + MESSAGE_ID_PARAM + "=" + hdr.messageId;
+  return "thunderlink://" + MESSAGE_ID_PARAM + hdr.messageId;
 }
 
 function getThunderlinkPathToExe() {
