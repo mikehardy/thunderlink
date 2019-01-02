@@ -262,6 +262,13 @@ var ThunderLinkPrefNS = {
       var pathElement = prefwindow.getElementById("thunderlink-prefCustomTlString" + cstrnum + "-appendtofile-path");
       console.log("Setting append path " + cstrnum + " to " + pathElement.value);
       this.prefs.setCharPref("custom-tl-string-" + cstrnum + "-appendtofile-path", pathElement.value);
+
+      if (appendEnabledEl.checked && pathElement.value === "") {
+        var prompts = Components.classes["@mozilla.org/embedcomp/prompt-service;1"]
+          .getService(Components.interfaces.nsIPromptService);
+        prompts.alert(null, "Thunderlink Error", "In String " + cstrnum + " you have checked append thunderlink to file, but the path is empty.\nThunderlink will uncheck it!!!!");
+        this.prefs.setBoolPref("custom-tl-string-" + cstrnum + "-appendtofile-checkbox", false);
+      }
     }
 
     var prefService = Components.classes["@mozilla.org/preferences-service;1"]
