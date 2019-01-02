@@ -44,32 +44,48 @@ var ThunderLinkChromeNS = {
     var appendToFileActive = prefService.getBoolPref("custom-tl-string-" + cstrnum + "-appendtofile-checkbox");
     console.log("ActivateCustomTlString: appendToFileActive: " + appendToFileActive + "\n");
 
+    var selectedMsgHeaders = gDBView.getSelectedMsgHdrs();
+    var selectionDelimiter = prefService.getCharPref("custom-tl-string-" + cstrnum + "-selection-delimiter");
+    var i = 0;
+
     // activate
     if (tagActive) {
-      this.TagEmail(prefService.getIntPref("custom-tl-string-" + cstrnum + "-tag"));
+      for (i = 0; i < selectedMsgHeaders.length; i++) {
+        this.TagEmail(prefService.getIntPref("custom-tl-string-" + cstrnum + "-tag"), selectedMsgHeaders[i]);
+      }
     }
+
     if (copyToClipboardActive) {
-      var procCustomTlStr = replaceVariables(customTlStr, gDBView.hdrForFirstSelectedMessage);
-      console.log("ActivateCustomTlString: procCustomTlStr resolved: " + procCustomTlStr + "\n");
+      var procCustomTlStr = "";
+      for (i = 0; i < selectedMsgHeaders.length; i++) {
+        procCustomTlStr += replaceVariables(customTlStr, selectedMsgHeaders[0]);
+        console.log("ActivateCustomTlString: procCustomTlStr resolved[" + i + "]: " + procCustomTlStr + "\n");
+        if ((i + 1) !== selectedMsgHeaders.length) {
+          procCustomTlStr += convertEscapeCharacters(selectionDelimiter);
+        }
+      }
       procCustomTlStr = ThunderLinkChromeNS.FixNewlines(procCustomTlStr);
       console.log("ActivateCustomTlString: procCustomTlStr newlines fixed: " + procCustomTlStr + "\n");
       ThunderLinkChromeNS.CopyStringToClpBrd(procCustomTlStr);
     }
+
     if (appendToFileActive) {
       var filePath = prefService.getCharPref("custom-tl-string-" + cstrnum + "-appendtofile-path");
       console.log("ActivateCustomTlString: filePath: " + customTlStr + "\n");
-      ThunderLinkChromeNS.AppendToFile(gDBView.hdrForFirstSelectedMessage, customTlStr, filePath);
+      // eslint-disable-next-line max-len
+      ThunderLinkChromeNS.AppendToFile(selectedMsgHeaders, customTlStr, filePath, selectionDelimiter);
     }
   },
 
-  AppendToFile: function AppendToFile(hdr, messageTemplate, filePath) {
+  AppendToFile: function AppendToFile(hdrs, messageTemplate, filePath, selectionDelimiter) {
     var prompts = Components.classes["@mozilla.org/embedcomp/prompt-service;1"]
       .getService(Components.interfaces.nsIPromptService);
 
-    var alertTemplate = "Subject: <subject>\\nFrom: <sender> on <time>\\nTL: <thunderlink>\\n\\n";
+    var alertTemplate = "Subject: <subject>\\nFrom: <sender> on <time>\\n\\n";
 
     try {
-      var alertText = appendThunderlinkToFile(hdr, messageTemplate, alertTemplate, filePath);
+      // eslint-disable-next-line max-len
+      var alertText = appendThunderlinkToFile(hdrs, messageTemplate, alertTemplate, filePath, selectionDelimiter);
       prompts.alert(null, "Thunderlink", alertText);
     } catch (err) {
       console.log(err);
@@ -77,10 +93,8 @@ var ThunderLinkChromeNS = {
     }
   },
 
-  TagEmail: function TagEmail(keywordIx) {
+  TagEmail: function TagEmail(keywordIx, hdr) {
     console.log("TagEmail: keywordIx: " + keywordIx);
-    var hdr = gDBView.hdrForFirstSelectedMessage;
-    console.log("TagEmail: hdr: " + hdr + "\n");
     var keywords = "" + hdr.getStringProperty("keywords");
     console.log("TagEmail: current keywords: " + keywords);
 
@@ -99,6 +113,7 @@ var ThunderLinkChromeNS = {
 
     hdr.folder.addKeywordsToMessages(msg, addKeywordToList(keywords, keywordIx));
     hdr.folder.msgDatabase.Close(true);
+    // eslint-disable-next-line no-param-reassign
     hdr.folder.msgDatabase = null;
   },
 
