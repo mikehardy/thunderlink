@@ -32,7 +32,21 @@ var thunderlinkCommandLineHandler = {
    */
   handle: function thunderlinkCommandLineHandler_handle(aCommandLine) {
     // Do this here because xpcshell isn't too happy with this at startup
-    Components.utils.import("resource:///modules/MailUtils.js");
+
+    // MailUtils.js import moves to MailUtils.jsm and is deprecated past Thunderbird 60
+    var version;
+    if ("@mozilla.org/xre/app-info;1" in Components.classes) {
+      version = Components.classes["@mozilla.org/xre/app-info;1"].getService(Components.interfaces.nsIXULAppInfo).version;
+    } else {
+      version = Components.classes["@mozilla.org/preferences-service;1"].getService(Components.interfaces.nsIPrefBranch).getCharPref("app.version");
+    }
+    var versionChecker = Components.classes["@mozilla.org/xpcom/version-comparator;1"].getService(Components.interfaces.nsIVersionComparator);
+    if (version && versionChecker && versionChecker.compare(version, "60.0") > 0) {
+      Components.utils.import("resource:///modules/MailUtils.jsm");
+    } else {
+      Components.utils.import("resource:///modules/MailUtils.js");
+    }
+
     Components.utils.import("resource:///modules/iteratorUtils.jsm");
     Components.utils.import("resource://thunderlinkModules/thunderlinkModule.js");
 
