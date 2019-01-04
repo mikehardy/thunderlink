@@ -58,8 +58,9 @@ var ThunderLinkChromeNS = {
     if (copyToClipboardActive) {
       var procCustomTlStr = "";
       for (i = 0; i < selectedMsgHeaders.length; i++) {
-        procCustomTlStr += replaceVariables(customTlStr, selectedMsgHeaders[i]);
-        console.log("ActivateCustomTlString: procCustomTlStr resolved[" + i + "]: " + procCustomTlStr + "\n");
+        var currentHeaderText = replaceVariables(customTlStr, selectedMsgHeaders[i]);
+        procCustomTlStr += currentHeaderText;
+        console.log("ActivateCustomTlString: procCustomTlStr resolved[" + i + "]: " + currentHeaderText + "\n");
         if ((i + 1) !== selectedMsgHeaders.length) {
           procCustomTlStr += convertEscapeCharacters(selectionDelimiter);
         }
