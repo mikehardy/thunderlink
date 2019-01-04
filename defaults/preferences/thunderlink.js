@@ -65,7 +65,7 @@ pref("extensions.thunderlink.custom-tl-string-6-appendtofile-path", "");
 
 pref("extensions.thunderlink.custom-tl-string-7-title", "Custom String 7");
 pref("extensions.thunderlink.custom-tl-string-7", "<thunderlink>");
-pref("extensions.thunderlink.custom-tl-string-7-selection-delimiter", "");
+pref("extensions.thunderlink.custom-tl-string-7-selection-delimiter", " / ");
 pref("extensions.thunderlink.custom-tl-string-7-clipboard-checkbox", true);
 pref("extensions.thunderlink.custom-tl-string-7-tagcheckbox", false);
 pref("extensions.thunderlink.custom-tl-string-7-tag", 1);
@@ -74,7 +74,7 @@ pref("extensions.thunderlink.custom-tl-string-7-appendtofile-path", "");
 
 pref("extensions.thunderlink.custom-tl-string-8-title", "Custom String 8");
 pref("extensions.thunderlink.custom-tl-string-8", "<thunderlink>");
-pref("extensions.thunderlink.custom-tl-string-8-selection-delimiter", "");
+pref("extensions.thunderlink.custom-tl-string-8-selection-delimiter", " / ");
 pref("extensions.thunderlink.custom-tl-string-8-clipboard-checkbox", true);
 pref("extensions.thunderlink.custom-tl-string-8-tagcheckbox", false);
 pref("extensions.thunderlink.custom-tl-string-8-tag", 1);
