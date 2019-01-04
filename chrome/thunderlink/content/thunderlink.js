@@ -58,7 +58,7 @@ var ThunderLinkChromeNS = {
     if (copyToClipboardActive) {
       var procCustomTlStr = "";
       for (i = 0; i < selectedMsgHeaders.length; i++) {
-        procCustomTlStr += replaceVariables(customTlStr, selectedMsgHeaders[0]);
+        procCustomTlStr += replaceVariables(customTlStr, selectedMsgHeaders[i]);
         console.log("ActivateCustomTlString: procCustomTlStr resolved[" + i + "]: " + procCustomTlStr + "\n");
         if ((i + 1) !== selectedMsgHeaders.length) {
           procCustomTlStr += convertEscapeCharacters(selectionDelimiter);
