@@ -41,7 +41,7 @@ var thunderlinkCommandLineHandler = {
       version = Components.classes["@mozilla.org/preferences-service;1"].getService(Components.interfaces.nsIPrefBranch).getCharPref("app.version");
     }
     var versionChecker = Components.classes["@mozilla.org/xpcom/version-comparator;1"].getService(Components.interfaces.nsIVersionComparator);
-    if (version && versionChecker && versionChecker.compare(version, "60.0") > 0) {
+    if (version && versionChecker && versionChecker.compare(version, "64.0") > 0) {
       Components.utils.import("resource:///modules/MailUtils.jsm");
     } else {
       Components.utils.import("resource:///modules/MailUtils.js");
