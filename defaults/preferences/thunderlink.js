@@ -20,7 +20,7 @@ pref("extensions.thunderlink.custom-tl-string-1-appendtofile-path", "");
 
 pref("extensions.thunderlink.custom-tl-string-2-title", "local cmd");
 pref("extensions.thunderlink.custom-tl-string-2", "<tbexe> <thunderlink>");
-pref("extensions.thunderlink.custom-tl-string-2-selection-delimiter", "");
+pref("extensions.thunderlink.custom-tl-string-2-selection-delimiter", " / ");
 pref("extensions.thunderlink.custom-tl-string-2-clipboard-checkbox", true);
 pref("extensions.thunderlink.custom-tl-string-2-tagcheckbox", false);
 pref("extensions.thunderlink.custom-tl-string-2-tag", 1);
