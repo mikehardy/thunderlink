@@ -5,6 +5,7 @@ var EXPORTED_SYMBOLS = [
   "getThunderlinkPathToExe",
   "getThunderlinkForHdr",
   "appendThunderlinkToFile",
+  "convertEscapeCharacters",
 ];
 
 const MESSAGE_ID_PARAM = "messageid=";
@@ -18,7 +19,7 @@ if ("@mozilla.org/xre/app-info;1" in Components.classes) {
 }
 var versionChecker = Components.classes["@mozilla.org/xpcom/version-comparator;1"].getService(Components.interfaces.nsIVersionComparator);
 
-if (version && versionChecker && versionChecker.compare(version, "60.0") > 0) {
+if (version && versionChecker && versionChecker.compare(version, "64.0") > 0) {
   Components.utils.import("resource:///modules/MailUtils.jsm");
 } else {
   Components.utils.import("resource:///modules/MailUtils.js");
@@ -123,6 +124,14 @@ function openThunderlink(mailURL) {
   }
 }
 
+function convertEscapeCharacters(string) {
+  // replacing double quotes so they are escaped for JSON.parse
+  var result = string.replace(/["]/g, "\\\"");
+  // convert escape characters like \t to tabs
+  result = JSON.parse("\"" + result + "\"");
+  return result;
+}
+
 // eslint-disable-next-line no-unused-vars
 function replaceVariables(template, hdr) {
   Components.utils.import("resource:///modules/gloda/utils.js");
@@ -134,10 +143,7 @@ function replaceVariables(template, hdr) {
   protectedSubject = protectedSubject.split("]").join(")");
   protectedSubject = protectedSubject.replace(/[<>'"`´]/g, "");
 
-  // replacing double quotes so they are escaped for JSON.parse
-  var convertedEscapeCharacters = template.replace(/["]/g, "\\\"");
-  // convert escape characters like \t to tabs
-  convertedEscapeCharacters = JSON.parse("\"" + convertedEscapeCharacters + "\"");
+  var convertedEscapeCharacters = convertEscapeCharacters(template);
 
   var result = convertedEscapeCharacters.replace(/<thunderlink>/ig, getThunderlinkForHdr(hdr));
   result = result.replace(/<messageid>/ig, hdr.messageId);
@@ -153,8 +159,11 @@ function replaceVariables(template, hdr) {
   return result;
 }
 
-// eslint-disable-next-line no-unused-vars
-function appendThunderlinkToFile(hdr, messageTemplate, alertTemplate, filePath) {
+// eslint-disable-next-line no-unused-vars, max-len
+function appendThunderlinkToFile(hdrs, messageTemplate, alertTemplate, filePath, selectionDelimiter) {
+  var alertText = "";
+  var messageText = "";
+
   // create file object
   Components.utils.import("resource://gre/modules/FileUtils.jsm");
   // eslint-disable-next-line no-undef
@@ -174,11 +183,35 @@ function appendThunderlinkToFile(hdr, messageTemplate, alertTemplate, filePath) 
   var converter = Components.classes["@mozilla.org/intl/converter-output-stream;1"]
     .createInstance(Components.interfaces.nsIConverterOutputStream);
   converter.init(foStream, "UTF-8", 0, 0);
-  var messageText = replaceVariables(messageTemplate, hdr);
+
+  // generate message text
+  var i = 0;
+  for (; i < hdrs.length; i++) {
+    messageText += replaceVariables(messageTemplate, hdrs[i]);
+
+    if ((i + 1) !== hdrs.length) {
+      messageText += convertEscapeCharacters(selectionDelimiter);
+    }
+  }
+
   converter.writeString(messageText);
   converter.close(); // this closes foStream
 
-  var alertText = replaceVariables(alertTemplate, hdr);
-  // eslint-disable-next-line no-undef, no-alert
-  return "Mail written to file: " + filePath + "\n\n" + alertText;
+  // generate alert string
+  if (hdrs.length === 1) {
+    alertText += "Email written to file: " + filePath + "\n\n";
+    alertText += replaceVariables(alertTemplate, hdrs[0]);
+  } else if (hdrs.length === 2) {
+    alertText += hdrs.length;
+    alertText += " emails written to file: " + filePath + "\n\n";
+    alertText += replaceVariables(alertTemplate, hdrs[0]);
+    alertText += replaceVariables(alertTemplate, hdrs[1]);
+  } else {
+    alertText += hdrs.length;
+    alertText += " emails written to file: " + filePath + "\n\n";
+    alertText += replaceVariables(alertTemplate, hdrs[0]);
+    alertText += "...\n\n";
+    alertText += replaceVariables(alertTemplate, hdrs[hdrs.length - 1]);
+  }
+  return alertText;
 }

@@ -35,6 +35,14 @@
       <preference id="prefs_customTlString6title" name="extensions.thunderlink.custom-tl-string-6-title" type="string"/>
       <preference id="prefs_customTlString7title" name="extensions.thunderlink.custom-tl-string-7-title" type="string"/>
       <preference id="prefs_customTlString8title" name="extensions.thunderlink.custom-tl-string-8-title" type="string"/>
+      <preference id="prefs_customTlString1selectiondelimiter" name="extensions.thunderlink.custom-tl-string-1-selection-delimiter" type="string"/>
+      <preference id="prefs_customTlString2selectiondelimiter" name="extensions.thunderlink.custom-tl-string-2-selection-delimiter" type="string"/>
+      <preference id="prefs_customTlString3selectiondelimiter" name="extensions.thunderlink.custom-tl-string-3-selection-delimiter" type="string"/>
+      <preference id="prefs_customTlString4selectiondelimiter" name="extensions.thunderlink.custom-tl-string-4-selection-delimiter" type="string"/>
+      <preference id="prefs_customTlString5selectiondelimiter" name="extensions.thunderlink.custom-tl-string-5-selection-delimiter" type="string"/>
+      <preference id="prefs_customTlString6selectiondelimiter" name="extensions.thunderlink.custom-tl-string-6-selection-delimiter" type="string"/>
+      <preference id="prefs_customTlString7selectiondelimiter" name="extensions.thunderlink.custom-tl-string-7-selection-delimiter" type="string"/>
+      <preference id="prefs_customTlString8selectiondelimiter" name="extensions.thunderlink.custom-tl-string-8-selection-delimiter" type="string"/>
       <preference id="prefs_customTlString1clipboardcheckbox" name="extensions.thunderlink.custom-tl-string-1-clipboard-checkbox" type="bool"/>
       <preference id="prefs_customTlString2clipboardcheckbox" name="extensions.thunderlink.custom-tl-string-2-clipboard-checkbox" type="bool"/>
       <preference id="prefs_customTlString3clipboardcheckbox" name="extensions.thunderlink.custom-tl-string-3-clipboard-checkbox" type="bool"/>

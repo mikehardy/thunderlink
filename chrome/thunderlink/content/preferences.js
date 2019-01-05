@@ -49,6 +49,24 @@ var ThunderLinkPrefNS = {
       vbox.appendChild(csLabel);
       vbox.appendChild(csTextbox);
 
+      // Selection delimiter
+      var selectionDelimterBox = window.document.createElementNS(XUL_NS, "hbox");
+
+      var selectionDelimiterTextbox = window.document.createElementNS(XUL_NS, "textbox");
+      selectionDelimiterTextbox.setAttribute("id", "thunderlink-prefCustomTlString" + cstrnum + "-selection-delimiter");
+      selectionDelimiterTextbox.setAttribute("preference", "prefs_customTlString" + cstrnum + "selectiondelimiter");
+      selectionDelimiterTextbox.setAttribute("size", 10);
+      selectionDelimiterTextbox.setAttribute("value", ThunderLinkPrefNS.GetPreferenceValue("custom-tl-string-" + cstrnum + "-selection-delimiter", "string"));
+
+      var selectionDelimiterLabel = window.document.createElementNS(XUL_NS, "label");
+      selectionDelimiterLabel.setAttribute("value", "Selection delimiter:");
+      selectionDelimiterLabel.setAttribute("control", selectionDelimiterTextbox.id);
+
+      selectionDelimterBox.appendChild(selectionDelimiterLabel);
+      selectionDelimterBox.appendChild(selectionDelimiterTextbox);
+      vbox.appendChild(selectionDelimterBox);
+
+      // Clipboard checkbox
       var clipboardCheckbox = window.document.createElementNS(XUL_NS, "checkbox");
       clipboardCheckbox.setAttribute("id", "thunderlink-prefCustomTlString" + cstrnum + "-clipboard-checkbox");
       clipboardCheckbox.setAttribute("checked", ThunderLinkPrefNS.GetPreferenceValue("custom-tl-string-" + cstrnum + "-clipboard-checkbox", "bool"));
@@ -237,6 +255,11 @@ var ThunderLinkPrefNS = {
       var linkElement = prefwindow.getElementById("thunderlink-prefCustomTlString" + cstrnum + "-textbox");
       console.log("setting link " + cstrnum + " to " + linkElement.value);
       this.prefs.setCharPref("custom-tl-string-" + cstrnum, linkElement.value);
+
+      // Selection delimiter
+      var selectionDelimiterElement = prefwindow.getElementById("thunderlink-prefCustomTlString" + cstrnum + "-selection-delimiter");
+      console.log("setting selection delimiter " + cstrnum + " to " + selectionDelimiterElement.value);
+      this.prefs.setCharPref("custom-tl-string-" + cstrnum + "-selection-delimiter", selectionDelimiterElement.value);
 
       // Save whether we should copy thunderlink to clipboard
       var clipboardEnabledEl = prefwindow.getElementById("thunderlink-prefCustomTlString" + cstrnum + "-clipboard-checkbox");
