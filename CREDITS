@@ -13,3 +13,4 @@ Mike Hardy - current maintainer, ported to Thunderbird 64+
 @MarioKusek - Support for <date> in templates
 @MarioKusek - Support for some special characters in templates
 @MarioKusek - Add feature to append links to file
+@MarioKusek - Create links for more than one message at a time
