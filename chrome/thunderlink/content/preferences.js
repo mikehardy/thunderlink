@@ -41,7 +41,7 @@ var ThunderLinkPrefNS = {
       csTextbox.setAttribute("preference", "prefs_customTlString" + cstrnum);
       csTextbox.setAttribute("multiline", "true");
       csTextbox.setAttribute("cols", "50");
-      csTextbox.setAttribute("rows", "5");
+      csTextbox.setAttribute("rows", "2");
       csTextbox.setAttribute("value", ThunderLinkPrefNS.GetPreferenceValue("custom-tl-string-" + cstrnum, "string"));
       var csLabel = window.document.createElementNS(XUL_NS, "label");
       csLabel.setAttribute("label", "Custom String:");
@@ -79,7 +79,7 @@ var ThunderLinkPrefNS = {
         horizontalSeparator.setAttribute("orient", "horizontal");
         vbox.appendChild(horizontalSeparator);
       }
-      addHorizontalSeparator();
+      // addHorizontalSeparator();
 
       var tagCheckbox = window.document.createElementNS(XUL_NS, "checkbox");
       tagCheckbox.setAttribute("id", "thunderlink-prefCustomTlString" + cstrnum + "-tagcheckbox");
@@ -121,7 +121,7 @@ var ThunderLinkPrefNS = {
       labelbox.appendChild(menuList);
       vbox.appendChild(labelbox);
 
-      addHorizontalSeparator();
+      // addHorizontalSeparator();
 
       // Append to file checkbox
       var appendToFileCheckbox = window.document.createElementNS(XUL_NS, "checkbox");
@@ -149,7 +149,7 @@ var ThunderLinkPrefNS = {
       fileLabelBox.appendChild(appendToFileTextbox);
       vbox.appendChild(fileLabelBox);
 
-      addHorizontalSeparator();
+      // addHorizontalSeparator();
 
       // shortcut
       var keyLabel = window.document.createElementNS(XUL_NS, "label");

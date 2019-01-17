@@ -12,12 +12,17 @@
 -->
 
 <?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<?xml-stylesheet href="chrome://communicator/skin/" type="text/css"?>
+<?xml-stylesheet type="text/css" href="chrome://messenger/skin/preferences/preferences.css"?>
+
 <prefwindow id="thunderlink_prefs"
   xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
   xmlns:html="http://www.w3.org/1999/xhtml"
   title="Thunderlink Preferences"
+  onload="this.ThunderLinkPrefNS.CreateCustomStringTabbox()"
   onunload="this.ThunderLinkPrefNS.onUnload(event.target)">
-  <prefpane id="tl_prefs_pane" label="Thunderlink Settings">
+  <prefpane id="tl_prefs_pane" label="Thunderlink Settings" 
+            flex="1" style="overflow:auto" height="700">
     <preferences>
       <preference id="prefs_customTlString1" name="extensions.thunderlink.custom-tl-string-1" type="string"/>
       <preference id="prefs_customTlString2" name="extensions.thunderlink.custom-tl-string-2" type="string"/>
@@ -100,12 +105,12 @@
       <label control="csLabel" value="Custom ThunderLink string settings"/>
       <separator class="groove-thin"/>
       <label control="csLabel" value="You can use the following placeholders:"/>
-      <spacer size="10"/>
+      <spacer size="5"/>
       <label control="csLabel" value="&#60;thunderlink&#62; &#60;messageid&#62; &#60;subject&#62; &#60;filteredSubject&#62;"/>
       <label control="csLabel" value="&#60;sender&#62; &#60;tbexe&#62; &#60;time&#62;"/>
       <separator class="groove-thin"/>
       <label control="csLabel" value="Some characters need to be escaped with baskslash:"/>
-      <spacer size="10"/>
+      <spacer size="5"/>
       <html:ul>
         <html:li>tab -> \t</html:li>
         <html:li>new line -> \n</html:li>
@@ -118,7 +123,4 @@
   </prefpane>
 
   <script type="application/x-javascript" src="chrome://thunderlink/content/preferences.js" />
-  <script type="application/x-javascript" for="window" event="onload">
-        this.ThunderLinkPrefNS.CreateCustomStringTabbox();
-  </script>
 </prefwindow>
