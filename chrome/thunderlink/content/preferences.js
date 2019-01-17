@@ -59,7 +59,7 @@ var ThunderLinkPrefNS = {
       selectionDelimiterTextbox.setAttribute("value", ThunderLinkPrefNS.GetPreferenceValue("custom-tl-string-" + cstrnum + "-selection-delimiter", "string"));
 
       var selectionDelimiterLabel = window.document.createElementNS(XUL_NS, "label");
-      selectionDelimiterLabel.setAttribute("value", "Selection delimiter:");
+      selectionDelimiterLabel.setAttribute("value", "Multi-select delimiter:");
       selectionDelimiterLabel.setAttribute("control", selectionDelimiterTextbox.id);
 
       selectionDelimterBox.appendChild(selectionDelimiterLabel);
