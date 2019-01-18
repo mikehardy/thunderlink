@@ -74,13 +74,6 @@ var ThunderLinkPrefNS = {
       clipboardCheckbox.setAttribute("label", "Copy ThunderLink to clipboard");
       vbox.appendChild(clipboardCheckbox);
 
-      function addHorizontalSeparator() {
-        var horizontalSeparator = window.document.createElementNS(XUL_NS, "separator");
-        horizontalSeparator.setAttribute("orient", "horizontal");
-        vbox.appendChild(horizontalSeparator);
-      }
-      // addHorizontalSeparator();
-
       var tagCheckbox = window.document.createElementNS(XUL_NS, "checkbox");
       tagCheckbox.setAttribute("id", "thunderlink-prefCustomTlString" + cstrnum + "-tagcheckbox");
       tagCheckbox.setAttribute("checked", ThunderLinkPrefNS.GetPreferenceValue("custom-tl-string-" + cstrnum + "-tagcheckbox", "bool"));
@@ -121,8 +114,6 @@ var ThunderLinkPrefNS = {
       labelbox.appendChild(menuList);
       vbox.appendChild(labelbox);
 
-      // addHorizontalSeparator();
-
       // Append to file checkbox
       var appendToFileCheckbox = window.document.createElementNS(XUL_NS, "checkbox");
       appendToFileCheckbox.setAttribute("id", "thunderlink-prefCustomTlString" + cstrnum + "-appendtofile-checkbox");
@@ -148,8 +139,6 @@ var ThunderLinkPrefNS = {
       fileLabelBox.appendChild(appendToFileLabel);
       fileLabelBox.appendChild(appendToFileTextbox);
       vbox.appendChild(fileLabelBox);
-
-      // addHorizontalSeparator();
 
       // shortcut
       var keyLabel = window.document.createElementNS(XUL_NS, "label");
