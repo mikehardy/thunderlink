@@ -16,7 +16,7 @@ ThunderLinks are durable even if you file the message. They are based on the uni
 <b>Installation</b>
 ===========
 <ol>
-<li>Install the ThunderLink Add-On in Thunderbird - https://addons.thunderbird.net/en-US/thunderbird/addon/thunderlink/</li>
+<li>Install the ThunderLink Add-On in Thunderbird - https://addons.thunderbird.net/en-US/thunderbird/addon/thunderlink/?src=search</li>
 <li>Register the 'thunderlink' protocol in your OS following the instructions below:</li>
 </ol>
  </b>
