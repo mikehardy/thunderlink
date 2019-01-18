@@ -1,3 +1,7 @@
+1.2.10
+------
+- Ok button only for prefs, since they always save (@mikehardy) 
+
 1.2.9
 -----
 - Fixed preference window on Windows (@mikehardy)
