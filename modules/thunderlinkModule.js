@@ -153,9 +153,14 @@ function replaceVariables(template, hdr) {
   result = result.replace(/<tbexe>/ig, "\"" + getThunderlinkPathToExe() + "\" -thunderlink ");
 
   const date = new Date(hdr.date / 1000);
-  const dateString = date.toLocaleDateString() + " - " + date.toLocaleTimeString();
-  result = result.replace(/<time>/ig, dateString);
-
+  const isoDate = date.toISOString();
+  const splitDateTime = date.toISOString().split("T");
+  const dateString = splitDateTime[0];
+  const timeString = splitDateTime[1].substring(0, splitDateTime[1].length-1);
+  result = result.replace(/<time>/ig, isoDate);
+  result = result.replace(/<date>/ig, dateString);
+  result = result.replace(/<dateTime>/ig, timeString);
+  
   return result;
 }
 
