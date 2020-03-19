@@ -47,6 +47,8 @@ ThunderLinks are durable even if you file the message. They are based on the uni
    <li>Add the handler: `echo "x-scheme-handler/thunderlink=thunderbird-tl.desktop" >> ~/.local/share/applications/mimeapps.list`</li>
    </ol>
    </ol>
+   
+   `mimeapps.list` might be placed here: `~/.config/mimeapps.list`
 
    <b>Mac:</b>
    ----------
