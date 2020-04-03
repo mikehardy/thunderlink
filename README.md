@@ -33,20 +33,18 @@ ThunderLinks are durable even if you file the message. They are based on the uni
 
    These .reg files were generously provided by @mobileartur - please feel free to provide others or open pull requests to help other windows users. Note that 32bit Thunderbird is the current recommendation for Windows. For this reason we don't have registry files for 64-bit Thunderbird.
 
-   <b>Linux (Tested on Ubuntu 18.04LTS):</b>
+   Linux (Tested on Ubuntu 18.04LTS):
    ------------------------------------------
-   <ol>
-   <li>Install the desktop launcher that opens ThunderLinks in Thunderbird</li>
-   <ol>
-   <li>Download the thunderlink launcher https://github.com/mikehardy/thunderlink/blob/master/integration/thunderbird-tl.desktop</li>
-   <li>Copy it to ~/.local/share/applications/thunderbird-tl.desktop</li>
-   </ol>
-   <li>Connect the "thunderlink" URL type to the launcher file
-   <ol>
-   <li>Run the command `touch ~/.local/share/applications/mimeapps.list` to make sure you have a local MIME handler registry</li>
-   <li>Add the handler: `echo "x-scheme-handler/thunderlink=thunderbird-tl.desktop" >> ~/.local/share/applications/mimeapps.list`</li>
-   </ol>
-   </ol>
+   1. Install the desktop launcher that opens ThunderLinks in Thunderbird
+      - Manually
+         - Download the thunderlink launcher from  https://github.com/mikehardy/thunderlink/blob/master/integration/thunderbird-tl.desktop
+         - Copy it to `~/.local/share/applications/thunderbird-tl.desktop`
+      - Command line
+      - : `wget -P ~/.local/share/applications/ https://raw.githubusercontent.com/mikehardy/thunderlink/master/integration/thunderbird-tl.desktop`
+   2. Connect the "thunderlink" URL type to the launcher file
+      - Run the command `touch ~/.local/share/applications/mimeapps.list` to make sure you have a local MIME handler registry
+      - Add the handler: `echo "x-scheme-handler/thunderlink=thunderbird-tl.desktop" >> ~/.local/share/applications/mimeapps.list`
+      - Make the handler available: `update-desktop-database`
    
    `mimeapps.list` might be placed here: `~/.config/mimeapps.list`
 
