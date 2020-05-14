@@ -93,6 +93,31 @@ function openThunderlink(mailURL) {
           }
         }
       }
+    } else if (/^mid:/.test(mailURL)) {
+
+      // strip off the "mid:" prefix.
+      let messageID = mailURL.slice("mid:".length);
+
+      // Make sure the folder tree is initialized
+      MailUtils.discoverFolders();
+
+      // Search all folders for messageID.
+      var accountManager = Components.classes["@mozilla.org/messenger/account-manager;1"]
+        .getService(Components.interfaces.nsIMsgAccountManager);
+      var folders = accountManager.allFolders;
+      var foldersArray = fixIterator(folders.enumerate(), Components.interfaces.nsIMsgFolder);
+      for (var msgFolder of foldersArray) {
+        if (msgHdr !== null) {
+          break;
+        }
+        try {
+          msgHdr = msgFolder.msgDatabase.getMsgHdrForMessageID(messageID);
+        } catch (e) {
+          Components.utils.reportError("caught exception while accessing folder " + msgFolder.folderURL + ":\n" + e);
+        }
+      }
+    } else {
+      Components.utils.reportError("unrecognized URL: " + mailURL + "\n");
     }
 
     if (msgHdr) {
