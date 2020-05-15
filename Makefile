@@ -14,5 +14,6 @@ $(MANIFEST) : ./VERSION
 $(RDF): ./VERSION
 	perl -p -i -e "s/version>.+</version>$(VERSION)</" $(RDF)
 
+.PHONY: clean
 clean :
 	rm -f -- $(XPI)
