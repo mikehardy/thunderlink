@@ -2,7 +2,7 @@
 Encoding=UTF-8
 Name=Thunderlink Opener
 Comment=Open specific Message-ID Thunderbird
-Exec=thunderbird -thunderlink '%u'
+Exec=thunderbird -thunderlink %u
 Terminal=false
 X-MultipleArgs=false
 Type=Application
