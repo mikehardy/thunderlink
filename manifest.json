@@ -14,6 +14,6 @@
   "applications": {
     "gecko": {
       "id": "thunderlink@mozilla.org",
-      "strict_min_version": "42.0"
+      "strict_min_version": "60.0"
     }
   }}
