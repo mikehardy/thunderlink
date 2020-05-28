@@ -187,6 +187,8 @@ function replaceVariables(template, hdr) {
   const splitDateTime = date.toISOString().split("T");
   const dateString = splitDateTime[0];
   const timeString = splitDateTime[1].substring(0, splitDateTime[1].length-1);
+  const localeDateString = date.toLocaleDateString() + " - " + date.toLocaleTimeString();
+  result = result.replace(/<localeTime>/ig, localeDateString);
   result = result.replace(/<time>/ig, isoDate);
   result = result.replace(/<date>/ig, dateString);
   result = result.replace(/<dateTime>/ig, timeString);

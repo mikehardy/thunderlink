@@ -108,7 +108,7 @@
       <label control="csLabel" value="You can use the following placeholders:"/>
       <spacer size="5"/>
       <label control="csLabel" value="&#60;thunderlink&#62; &#60;messageid&#62; &#60;subject&#62; &#60;filteredSubject&#62;"/>
-      <label control="csLabel" value="&#60;tbexe&#62; &#60;dateTime&#62; &#60;date&#62; &#60;time&#62;"/>
+      <label control="csLabel" value="&#60;tbexe&#62; &#60;dateTime&#62; &#60;date&#62; &#60;time&#62; &#60;localeTime&#62;"/>
       <label control="csLabel" value="&#60;sender&#62; &#60;senderName&#62; &#60;senderEmail&#62;"/>
       <separator class="groove-thin"/>
       <label control="csLabel" value="Some characters need to be escaped with baskslash:"/>
