@@ -11,3 +11,4 @@ Categories=Application;Network;Email;
 MimeType=x-scheme-handler/thunderlink;
 StartupNotify=true
 Actions=Compose;Contacts
+NoDisplay=true
