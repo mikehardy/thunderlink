@@ -1,6 +1,16 @@
 <b>ThunderLink - clickable, durable links to specific messages</b>
 ======================================================
 
+### THUNDERLINK IS DEAD / LONG LIVE THUNDERLINK
+
+Hey people! In case you hadn't noticed, thunderlink doesn't work so well on modern Thunderbird versions. The underlying APIs we used to make thunderlinks work no longer exist. This beloved module needed a complete re-think and re-write.
+
+Guess what! The rewrite exists now! Head to https://github.com/CamielBouchier/cb_thunderlink and get yourself some modern thunderlinking going
+
+
+### Old Thunderlink README follows
+
+
 ThunderLinks are durable hyperlinks to specific email messages.
 
 Make a reference to the ThunderLink anywhere you want immediate access to the original message contents in full. For example, wikis, task trackers, etc.
